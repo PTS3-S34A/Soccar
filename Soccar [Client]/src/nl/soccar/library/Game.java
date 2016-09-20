@@ -4,13 +4,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.GameStatus;
 
 public class Game {
 
-    private LocalDateTime startTime;
+    private Optional<LocalDateTime> startTime;
     private Duration duration;
     private BallType balltype;
     private GameStatus status;
@@ -18,6 +19,7 @@ public class Game {
     private List<Event> events;
 
     public Game() {
+        startTime = Optional.empty();
         status = GameStatus.STOPPED;
         events = new ArrayList<>();
     }
@@ -40,7 +42,7 @@ public class Game {
         return Collections.unmodifiableList(events);
     }
 
-    public LocalDateTime getStartTime() {
+    public Optional<LocalDateTime> getStartTime() {
         return startTime;
     }
 
