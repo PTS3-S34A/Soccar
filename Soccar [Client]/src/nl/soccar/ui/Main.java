@@ -1,8 +1,9 @@
-package nl.soccar;
+package nl.soccar.ui;
 
-public class Soccar {
+public class Main {
 
     public static void main(String[] args) {
+        
     }
     
 }
