@@ -2,7 +2,6 @@ package nl.soccar.ui.fx;
 
 import javafx.scene.canvas.GraphicsContext;
 import nl.soccar.library.Car;
-import nl.soccar.ui.Drawable;
 
 /**
  *
@@ -23,5 +22,5 @@ public class CarUiFx extends DrawableFx<Car> {
     public void draw(GraphicsContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

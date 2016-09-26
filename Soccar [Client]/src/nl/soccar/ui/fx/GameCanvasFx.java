@@ -26,31 +26,31 @@ public class GameCanvasFx extends GameCanvas {
         gameTimer.setCycleCount(Timeline.INDEFINITE);
         gameTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(1F / 60F), e -> {
             //TODO add jBox2D world update
-            
+
             update();
             render();
         }));
-                
+
         Canvas canvas = context.getCanvas();
         canvas.setOnKeyPressed(e -> {
             Keyboard.getInstance().setKeyPressed(e.getCode());
         });
-        
+
         canvas.setOnKeyReleased(e -> {
             Keyboard.getInstance().setKeyReleased(e.getCode());
         });
     }
-    
+
     @Override
     public void start() {
         gameTimer.playFromStart();
     }
-    
+
     @Override
     public void stop() {
         gameTimer.stop();
     }
-    
+
     private void update() {
         List<Drawable> drawables = super.getDrawables();
         drawables.stream().forEach(d -> d.update());
@@ -58,7 +58,7 @@ public class GameCanvasFx extends GameCanvas {
 
     private void render() {
         clear();
-        
+
         List<Drawable> drawables = super.getDrawables();
         drawables.stream().forEach(d -> d.draw(context));
     }
@@ -67,5 +67,5 @@ public class GameCanvasFx extends GameCanvas {
         Canvas canvas = context.getCanvas();
         context.clearRect(0D, 0D, canvas.getWidth(), canvas.getHeight());
     }
-    
+
 }

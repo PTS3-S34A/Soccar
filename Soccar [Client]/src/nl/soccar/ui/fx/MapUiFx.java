@@ -22,5 +22,5 @@ public class MapUiFx extends DrawableFx<Map> {
     public void draw(GraphicsContext context) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
