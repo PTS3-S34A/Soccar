@@ -30,7 +30,9 @@ public class Car extends Entity {
         
     @Override
     public void move(double x, double y, double degree) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        super.x = x;
+        super.y = y;
+        super.degree = degree;
     }
 
     /**
