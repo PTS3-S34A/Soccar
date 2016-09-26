@@ -11,21 +11,23 @@ import java.util.List;
 public abstract class GameCanvas {
 
     private final List<Drawable> drawables;
-    
+
     public GameCanvas() {
         drawables = new ArrayList<>();
     }
 
-    public abstract void render();
+    public abstract void start();
+    
+    public abstract void stop();
 
-    public final void add(Drawable drawable) {
+    public final void addDrawable(Drawable drawable) {
         drawables.add(drawable);
     }
-    
-    public final void remove(Drawable drawable) {
+
+    public final void removeDrawable(Drawable drawable) {
         drawables.remove(drawable);
     }
-    
+
     public final List<Drawable> getDrawables() {
         return Collections.unmodifiableList(drawables);
     }
