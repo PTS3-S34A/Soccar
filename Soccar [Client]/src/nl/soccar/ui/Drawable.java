@@ -12,4 +12,6 @@ public interface Drawable<T> {
     
     void draw(GraphicsContext context);
     
+    T getModel();
+    
 }

@@ -9,19 +9,20 @@ import nl.soccar.ui.Drawable;
 public abstract class DrawableFx<T> implements Drawable {
     
     private GameCanvasFx canvas;
-    private T type;
+    private T model;
     
-    public DrawableFx(GameCanvasFx canvas, T type) {
+    public DrawableFx(GameCanvasFx canvas, T model) {
         this.canvas = canvas;
-        this.type = type;
+        this.model = model;
     }
     
     protected GameCanvasFx getCanvas() {
         return canvas;
     }
     
-    protected T getType() {
-        return type;
+    @Override
+    public final T getModel() {
+        return model;
     }
     
 }

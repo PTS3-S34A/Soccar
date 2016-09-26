@@ -1,7 +1,6 @@
 package nl.soccar.ui.fx;
 
 import java.util.List;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
