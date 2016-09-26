@@ -23,19 +23,19 @@
          <children>
             <AnchorPane prefHeight="341.0" prefWidth="460.0">
                <children>
-                  <Label layoutX="162.0" layoutY="100.0" text="Selecteer een auto:">
+                  <Label layoutX="176.0" layoutY="105.0" text="Select your car:">
                      <font>
                         <Font name="Segoe UI Light" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="52.0" layoutY="34.0" text="Spelernaam:">
+                  <Label layoutX="64.0" layoutY="36.0" text="Playername:">
                      <font>
                         <Font name="Segoe UI Light" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtfieldName" layoutX="179.0" layoutY="32.0">
+                  <TextField fx:id="txtfieldName" layoutX="208.0" layoutY="34.0">
                      <font>
-                        <Font name="Segoe UI Black" size="15.0" />
+                        <Font name="Segoe UI" size="15.0" />
                      </font>
                   </TextField>
                   <Button fx:id="btnSelectCasual" layoutX="64.0" layoutY="147.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Casual car">

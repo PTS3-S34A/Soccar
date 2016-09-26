@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.MainMenuFXMLController">
+   <children>
+      <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Available sessions">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="165.0" prefWidth="600.0">
+                           <children>
+                              <TableView prefHeight="693.0" prefWidth="1200.0">
+                                <columns>
+                                  <TableColumn prefWidth="644.0" text="Room name" />
+                                  <TableColumn prefWidth="170.0" text="Occupation" />
+                                    <TableColumn prefWidth="286.0" text="Owner" />
+                                    <TableColumn prefWidth="99.0" resizable="false" />
+                                </columns>
+                              </TableView>
+                              <HBox alignment="CENTER" layoutY="693.0" prefHeight="80.0" prefWidth="1200.0">
+                                 <children>
+                                    <Button alignment="CENTER" mnemonicParsing="false" text="Create a Room">
+                                       <font>
+                                          <Font name="Segoe UI" size="19.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Leaderboard">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
