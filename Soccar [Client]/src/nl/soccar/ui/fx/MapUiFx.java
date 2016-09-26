@@ -2,7 +2,6 @@ package nl.soccar.ui.fx;
 
 import javafx.scene.canvas.GraphicsContext;
 import nl.soccar.library.Map;
-import nl.soccar.ui.Drawable;
 
 /**
  *
