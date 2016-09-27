@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import nl.soccar.library.enumeration.MapType;
+import nl.soccar.util.MapUtilities;
 
 /**
  * Class that represents the Map model.
@@ -19,12 +20,16 @@ public class Map {
 
     private List<Car> cars;
     private Ball ball;
+    
+    public Map(Rectangle size) {
+        this(size, MapUtilities.getLeftGoal(), MapUtilities.getRightGoal());
+    }
 
     /**
      * Constructor used for instantiation of a Map object.
      *
      * @param size Size of the map.
-     * @param goalBlue Rectangle position of theblue goal.
+     * @param goalBlue Rectangle position of the blue goal.
      * @param goalRed Rectangle pisition of the red goal.
      */
     public Map(Rectangle size, Rectangle goalBlue, Rectangle goalRed) {
