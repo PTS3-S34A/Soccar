@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.CreateRoomFXMLController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="400.0" prefWidth="606.0">
+               <children>
+                  <Label layoutX="226.0" layoutY="43.0" text="Create a Room">
+                     <font>
+                        <Font name="Segoe UI" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="126.0" text="Room name:">
+                     <font>
+                        <Font name="Segoe UI Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="278.0" layoutY="125.0">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="135.0" layoutY="188.0" text="Room capacity:">
+                     <font>
+                        <Font name="Segoe UI Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="240.0" text="Map:">
+                     <font>
+                        <Font name="Segoe UI Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <Slider blockIncrement="2.0" layoutX="288.0" layoutY="194.0" majorTickUnit="6.0" max="6.0" min="2.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
+                  <Label layoutX="445.0" layoutY="212.0" text="players" />
+                  <ComboBox layoutX="276.0" layoutY="241.0" prefHeight="25.0" prefWidth="187.0" />
+                  <Button layoutX="214.0" layoutY="328.0" mnemonicParsing="false" text="Create this room">
+                     <font>
+                        <Font name="Segoe UI" size="17.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
