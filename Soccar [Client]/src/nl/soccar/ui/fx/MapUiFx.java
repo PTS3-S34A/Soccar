@@ -51,13 +51,13 @@ public class MapUiFx extends DrawableFx<Map> {
         
         switch (map.getMapType()) {
             case GRASSLAND:
-                context.drawImage(TEXTURE_GRASS, 0, 0, width, height);
+                context.drawImage(TEXTURE_GRASS, x, y, width, height);
                 break;
             case DESERT:
-                context.drawImage(TEXTURE_DESERT, 0, 0, width, height);
+                context.drawImage(TEXTURE_DESERT, x, y, width, height);
                 break;
             case MOON:
-                context.drawImage(TEXTURE_MOON, 0, 0, width, height);
+                context.drawImage(TEXTURE_MOON, x, y, width, height);
                 break;
         }
         
