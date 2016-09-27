@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.soccar.library.Soccar;
+import nl.soccar.ui.fx.FXMLConstants;
 
 /**
  *
@@ -14,7 +15,8 @@ import nl.soccar.library.Soccar;
  */
 public class Main extends Application {
 
-    private static Main mainClass = null;
+    private static Main mainClass;
+    
     private Stage primaryStage;
     
     @Override
@@ -22,19 +24,7 @@ public class Main extends Application {
         mainClass = this;
         this.primaryStage = primaryStage;
         
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("LoginFXML.fxml"));
-            
-            // TODO implementatie
-            Scene scene = new Scene(root, 1200, 800);
-
-            primaryStage.setTitle(Soccar.APPLICATION_NAME);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace(System.err);
-        }
+        setScene(FXMLConstants.LOCATION_LOGIN);
     }
 
     public static Main getInstance() {
@@ -46,27 +36,14 @@ public class Main extends Application {
     }
     
     public void login(String loginName) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("MainMenuFXML.fxml"));
-            
-            // TODO implementatie
-            Scene scene = new Scene(root, 1200, 800);
-
-            primaryStage.setTitle(Soccar.APPLICATION_NAME);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace(System.err);
-        }
+        //TODO Login handling
+        setScene(FXMLConstants.LOCATION_MAIN_MENU);
     }
     
     public void setScene(String sceneName) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(sceneName));
-            
-            // TODO implementatie
-            Scene scene = new Scene(root, 1200, 800);
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(sceneName));
+            Scene scene = new Scene(root, DisplayConstants.WIDTH, DisplayConstants.HEIGHT);
 
             primaryStage.setTitle(Soccar.APPLICATION_NAME);
             primaryStage.setScene(scene);

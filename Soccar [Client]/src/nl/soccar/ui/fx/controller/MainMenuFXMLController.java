@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.soccar.ui;
+package nl.soccar.ui.fx.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import nl.soccar.library.Soccar;
+import nl.soccar.ui.Main;
+import nl.soccar.ui.fx.FXMLConstants;
 
 /**
  * FXML Controller class
@@ -31,7 +33,7 @@ public class MainMenuFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnCreateRoom.setOnAction(e -> {
-            Main.getInstance().setScene("CreateRoomFXML.fxml");
+            Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM);
         });
     }
     
