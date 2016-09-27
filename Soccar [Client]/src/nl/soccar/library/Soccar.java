@@ -12,20 +12,30 @@ public class Soccar {
      */
     public static final String APPLICATION_NAME = "Soccar";
     
-    private Soccar instance;
+    private static Soccar instance;
+    
     private Player currentPlayer;
 
     // Constructor that is intentionally set private (Singleton)
     private Soccar() {
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+    
     /**
      * Method that sets the instance of the Singleton Soccar class.
      *
      * @param player Player that is currently using the game.
      */
-    public void setInstance(Player player) {
-        currentPlayer = player;
+    public static void setInstance(Player player) {
+        instance = new Soccar();
+        instance.currentPlayer = player;
     }
 
     /**
@@ -33,8 +43,8 @@ public class Soccar {
      *
      * @return Instance of the Soccar class.
      */
-    public Soccar getInstance() {
+    public static Soccar getInstance() {
         return instance;
     }
-
+       
 }
