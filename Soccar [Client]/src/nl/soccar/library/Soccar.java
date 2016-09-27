@@ -15,6 +15,8 @@ public class Soccar {
     private static Soccar instance;
     
     private Player currentPlayer;
+    
+    private SessionController sessionController;
 
     // Constructor that is intentionally set private (Singleton)
     private Soccar() {
@@ -28,6 +30,10 @@ public class Soccar {
         return currentPlayer;
     }
     
+    public SessionController getSessionController() {
+        return sessionController;
+    }
+    
     /**
      * Method that sets the instance of the Singleton Soccar class.
      *
@@ -35,6 +41,7 @@ public class Soccar {
      */
     public static void setInstance(Player player) {
         instance = new Soccar();
+        instance.sessionController = new SessionController();
         instance.currentPlayer = player;
     }
 

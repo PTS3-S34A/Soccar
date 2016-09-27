@@ -26,7 +26,7 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private Button btnLogin;
     @FXML
-    private TextField txtfieldName;
+    private TextField txtFieldName;
     @FXML
     private ToggleButton btnSelectCasualCar;
     @FXML
@@ -59,10 +59,10 @@ public class LoginFXMLController implements Initializable {
             selectedCar = CarType.SPORTSCAR;
         }
         
-        if (!txtfieldName.getText().isEmpty()) {
-            Main.getInstance().login(txtfieldName.getText(), selectedCar);
+        if (!txtFieldName.getText().isEmpty()) {
+            Main.getInstance().login(txtFieldName.getText(), selectedCar);
         } else {
-            txtfieldName.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
+            txtFieldName.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
         }
     }
 }
