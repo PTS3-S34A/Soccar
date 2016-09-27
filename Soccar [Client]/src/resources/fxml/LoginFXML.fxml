@@ -49,7 +49,7 @@
                         <Font name="Segoe UI Light" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtfieldName" layoutX="208.0" layoutY="34.0">
+                  <TextField fx:id="txtFieldName" layoutX="208.0" layoutY="34.0">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
