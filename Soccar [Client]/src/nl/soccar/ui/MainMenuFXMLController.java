@@ -24,7 +24,7 @@ import nl.soccar.library.Soccar;
 public class MainMenuFXMLController implements Initializable {
 
     @FXML
-    Button btnCreateRoom;
+    private Button btnCreateRoom;
     /**
      * Initializes the controller class.
      */
