@@ -53,7 +53,7 @@ public class CreateRoomFXMLController implements Initializable {
             Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU);
         });
         btnCreateRoom.setOnAction(e -> {
-           if(!textFieldRoomName.getText().isEmpty()) {
+           if (!textFieldRoomName.getText().isEmpty()) {
                createRoom();
            } else {
                textFieldRoomName.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
@@ -64,11 +64,9 @@ public class CreateRoomFXMLController implements Initializable {
     }    
     
     public void createRoom() {
-        String password;
+        String password = null;
          
-        if (textFieldPassword.getText().isEmpty()) {
-            password = null;
-        } else {
+        if (!textFieldPassword.getText().isEmpty()) {
             password = textFieldPassword.getText();
         }
         

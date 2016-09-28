@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.management.monitor.StringMonitor;
 import nl.soccar.library.Player;
 import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.CarType;

@@ -34,13 +34,15 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private ToggleButton btnSelectSportsCar;
     
-    private final ToggleGroup TOGGLE_GROUP = new ToggleGroup();
+    private ToggleGroup toggleGroupCars;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {       
-        btnSelectPickup.setToggleGroup(TOGGLE_GROUP);
-        btnSelectCasualCar.setToggleGroup(TOGGLE_GROUP);
-        btnSelectSportsCar.setToggleGroup(TOGGLE_GROUP);
+    public void initialize(URL url, ResourceBundle rb) {  
+        toggleGroupCars  = new ToggleGroup();
+        
+        btnSelectPickup.setToggleGroup(toggleGroupCars);
+        btnSelectCasualCar.setToggleGroup(toggleGroupCars);
+        btnSelectSportsCar.setToggleGroup(toggleGroupCars);
         
         btnSelectCasualCar.setSelected(true);
         btnLogin.setOnAction(e -> {
