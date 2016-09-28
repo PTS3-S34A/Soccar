@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,15 +12,53 @@
 
 <AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.MainMenuFXMLController">
    <children>
-      <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+            <AnchorPane prefHeight="87.0" prefWidth="1200.0">
+               <children>
+                  <Label layoutX="806.0" layoutY="32.0" text="Logged in user:">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="11.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#ffda00" />
+                              <Stop color="RED" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
+                  <Label fx:id="lblUsername" layoutX="923.0" layoutY="32.0" text="maatwerkException()">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnLogOut" layoutX="1108.0" layoutY="27.0" mnemonicParsing="false" text="Log out">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="87.0" prefHeight="708.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TabPane prefHeight="602.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Available sessions">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="165.0" prefWidth="600.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="689.0" prefWidth="1200.0">
                            <children>
-                              <TableView prefHeight="693.0" prefWidth="1200.0">
+                              <TableView prefHeight="612.0" prefWidth="1200.0">
                                 <columns>
                                   <TableColumn prefWidth="644.0" text="Room name" />
                                   <TableColumn prefWidth="170.0" text="Occupation" />
@@ -25,9 +66,9 @@
                                     <TableColumn prefWidth="99.0" resizable="false" />
                                 </columns>
                               </TableView>
-                              <HBox alignment="CENTER" layoutY="693.0" prefHeight="80.0" prefWidth="1200.0">
+                              <HBox alignment="CENTER" layoutY="611.0" prefHeight="80.0" prefWidth="1200.0">
                                  <children>
-                                    <Button alignment="CENTER" mnemonicParsing="false" text="Create a Room">
+                                    <Button fx:id="btnCreateRoom" alignment="CENTER" mnemonicParsing="false" text="Create a Room">
                                        <font>
                                           <Font name="Segoe UI" size="19.0" />
                                        </font>

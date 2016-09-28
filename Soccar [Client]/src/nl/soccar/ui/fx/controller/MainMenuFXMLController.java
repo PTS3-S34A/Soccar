@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import nl.soccar.library.Soccar;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
@@ -27,6 +28,10 @@ public class MainMenuFXMLController implements Initializable {
 
     @FXML
     private Button btnCreateRoom;
+    @FXML
+    private Button btnLogOut;
+    @FXML
+    private Label lblUsername;
     /**
      * Initializes the controller class.
      */
@@ -34,7 +39,12 @@ public class MainMenuFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btnCreateRoom.setOnAction(e -> {
             Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM);
+        });    
+        btnLogOut.setOnAction(e -> {
+            Main.getInstance().logOut();
         });
+        
+        lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());  
     }
     
 }

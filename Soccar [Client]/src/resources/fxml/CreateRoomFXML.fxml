@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,48 +10,101 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.CreateRoomFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.CreateRoomFXMLController">
    <children>
-      <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="400.0" prefWidth="606.0">
+            <AnchorPane prefHeight="88.0" prefWidth="1210.0">
                <children>
-                  <Label layoutX="226.0" layoutY="43.0" text="Create a Room">
+                  <Label layoutX="806.0" layoutY="32.0" text="Logged in user:">
                      <font>
-                        <Font name="Segoe UI" size="19.0" />
+                        <Font name="Segoe UI" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="135.0" layoutY="126.0" text="Room name:">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="11.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1210.0">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#ffda00" />
+                              <Stop color="RED" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
+                  <Label fx:id="lblUsername" layoutX="923.0" layoutY="32.0" text="maatwerkException()">
                      <font>
-                        <Font name="Segoe UI Light" size="17.0" />
+                        <Font name="Segoe UI" size="16.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="278.0" layoutY="125.0">
+                  <Button fx:id="btnLogOut" layoutX="1108.0" layoutY="27.0" mnemonicParsing="false" text="Log out">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="135.0" layoutY="188.0" text="Room capacity:">
-                     <font>
-                        <Font name="Segoe UI Light" size="17.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="135.0" layoutY="240.0" text="Map:">
-                     <font>
-                        <Font name="Segoe UI Light" size="17.0" />
-                     </font>
-                  </Label>
-                  <Slider blockIncrement="2.0" layoutX="288.0" layoutY="194.0" majorTickUnit="6.0" max="6.0" min="2.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
-                  <Label layoutX="445.0" layoutY="212.0" text="players" />
-                  <ComboBox layoutX="276.0" layoutY="241.0" prefHeight="25.0" prefWidth="187.0" />
-                  <Button layoutX="214.0" layoutY="328.0" mnemonicParsing="false" text="Create this room">
-                     <font>
-                        <Font name="Segoe UI" size="17.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
          </children>
       </HBox>
+      <HBox alignment="CENTER" layoutY="86.0" prefHeight="378.0" prefWidth="1210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+         <children>
+            <AnchorPane prefHeight="390.0" prefWidth="606.0">
+               <children>
+                  <Label layoutX="218.0" layoutY="22.0" text="Room Configuration">
+                     <font>
+                        <Font name="Segoe UI" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="90.0" text="Room name* : ">
+                     <font>
+                        <Font name="Segoe UI Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldRoomName" layoutX="278.0" layoutY="89.0">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="135.0" layoutY="200.0" text="Room capacity:">
+                     <font>
+                        <Font name="Segoe UI Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="252.0" text="Map:">
+                     <font>
+                        <Font name="Segoe UI Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <Slider blockIncrement="2.0" layoutX="278.0" layoutY="204.0" majorTickUnit="6.0" max="6.0" min="2.0" minorTickCount="2" prefHeight="38.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
+                  <Label layoutX="464.0" layoutY="219.0" text="players" />
+                  <ComboBox layoutX="276.0" layoutY="253.0" prefHeight="25.0" prefWidth="187.0" />
+                  <Button fx:id="btnCreateRoom" layoutX="214.0" layoutY="329.0" mnemonicParsing="false" text="Create this room">
+                     <font>
+                        <Font name="Segoe UI" size="17.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="135.0" layoutY="148.0" text="Password:">
+                     <font>
+                        <Font name="Segoe UI Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textFieldPassword" layoutX="277.0" layoutY="148.0">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <Button fx:id="btnCancel" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" text="Cancel">
+         <font>
+            <Font name="Segoe UI" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

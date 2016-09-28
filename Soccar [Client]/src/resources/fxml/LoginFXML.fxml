@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -8,9 +10,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="556.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.LoginFXMLController">
+<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="556.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.LoginFXMLController">
    <children>
-      <HBox alignment="CENTER" layoutX="70.0" layoutY="14.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="14.0">
+      <HBox alignment="CENTER" layoutX="70.0" layoutY="33.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="33.0">
          <children>
             <ImageView fitHeight="110.0" fitWidth="405.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -19,7 +21,21 @@
             </ImageView>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="70.0" layoutY="150.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="150.0">
+      <HBox alignment="CENTER" layoutY="169.0" prefHeight="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="11.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0" HBox.hgrow="ALWAYS">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffda00" />
+                        <Stop color="RED" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="70.0" layoutY="186.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="186.0">
          <children>
             <AnchorPane prefHeight="341.0" prefWidth="460.0">
                <children>
@@ -33,28 +49,19 @@
                         <Font name="Segoe UI Light" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtfieldName" layoutX="208.0" layoutY="34.0">
+                  <TextField fx:id="txtFieldName" layoutX="208.0" layoutY="34.0">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="btnSelectCasual" layoutX="64.0" layoutY="147.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Casual car">
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font></Button>
-                  <Button fx:id="btnSelectPickup" layoutX="192.0" layoutY="147.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Pickup">
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font></Button>
-                  <Button fx:id="btnSelectSportscar" layoutX="319.0" layoutY="147.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Sportscar">
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font></Button>
                   <Button fx:id="btnLogin" layoutX="186.0" layoutY="321.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="88.0" text="Play">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
+                  <ToggleButton fx:id="btnSelectCasualCar" layoutX="70.0" layoutY="149.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Casual Car" />
+                  <ToggleButton fx:id="btnSelectPickup" layoutX="192.0" layoutY="149.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Pickup" />
+                  <ToggleButton fx:id="btnSelectSportsCar" layoutX="317.0" layoutY="149.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Sports Car" />
                </children>
             </AnchorPane>
          </children>
