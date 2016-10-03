@@ -3,6 +3,8 @@ package nl.soccar.library;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Class that represents the SessionController model.
@@ -31,8 +33,9 @@ public class SessionController {
      * @return Session that was created.
      */
     public Session create(String name, String password, Player player) {
-        // TODO implementatie
-        throw new UnsupportedOperationException("Not supported yet.");
+        Session session = new Session(name, password);
+        allSessions.add(session);
+        return session;
     }
 
     /**
@@ -66,6 +69,15 @@ public class SessionController {
      */
     public List<Session> getAllSessions() {
         return Collections.unmodifiableList(allSessions);
+    }
+    
+    public ObservableList<Room> getAllRooms() {
+        ObservableList<Room> roomList = FXCollections.observableArrayList();
+        for(Session s : allSessions) {
+            roomList.add(s.getRoom());
+        }
+        return roomList;
+        //return Collections.unmodifiableList(allSessions);
     }
 
 }

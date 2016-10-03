@@ -5,13 +5,13 @@ import java.util.List;
 
 /**
  * Class that represents the Room model.
- * 
+ *
  * @author PTS34A
  */
 public class Room {
 
     private static final int DEFAULT_CAPACITY = 6;
-    
+
     private String name;
     private String password;
     private int capacity;
@@ -21,9 +21,9 @@ public class Room {
 
     /**
      * Constructor used for instantiation of a Room object.
-     * 
+     *
      * @param name
-     * @param password 
+     * @param password
      */
     public Room(String name, String password) {
         this.name = name;
@@ -32,10 +32,11 @@ public class Room {
     }
 
     /**
-     * Method that checks if the password of the room is equal to the password that is passed in as argument.
-     * 
+     * Method that checks if the password of the room is equal to the password
+     * that is passed in as argument.
+     *
      * @param password Password that needs to be checked for equality.
-     * @return 
+     * @return
      */
     public boolean check(String password) {
         return password.equals(this.password);
@@ -43,17 +44,22 @@ public class Room {
 
     /**
      * Method that gets the player that is the host of this room.
-     * 
+     *
      * @return Player that is the host of the room.
      */
     public Player getHost() {
-        // TODO implementatie
-        throw new UnsupportedOperationException("Not supported yet.");
+        Player hostPlayer = getAllPlayers().get(0);
+        if (hostPlayer == null) {
+            //TODO No host available.
+            return null;
+        } else {
+            return getAllPlayers().get(0);
+        }
     }
 
     /**
      * Method that gets team red.
-     * 
+     *
      * @return Team red.
      */
     public Team getTeamRed() {
@@ -62,7 +68,7 @@ public class Room {
 
     /**
      * Method that gets team blue.
-     * 
+     *
      * @return Team blue.
      */
     public Team getTeamBlue() {
@@ -71,7 +77,7 @@ public class Room {
 
     /**
      * Method that gets a list of all players from both teams.
-     * 
+     *
      * @return A list of players from both teams.
      */
     public List<Player> getAllPlayers() {
@@ -82,9 +88,9 @@ public class Room {
         return players;
     }
 
-    /** 
+    /**
      * Method that gets the name of this room.
-     * 
+     *
      * @return Name of this room.
      */
     public String getName() {
@@ -93,7 +99,7 @@ public class Room {
 
     /**
      * Method that gets the capicity of this room.
-     * 
+     *
      * @return Capicity of this room.
      */
     public int getCapacity() {
@@ -102,7 +108,7 @@ public class Room {
 
     /**
      * Method that sets the capicity of this room.
-     * 
+     *
      * @param capacity Capicity that needs to be set for this room.
      */
     public void setCapacity(int capacity) {

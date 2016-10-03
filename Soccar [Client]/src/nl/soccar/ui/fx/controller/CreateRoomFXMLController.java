@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nl.soccar.ui.fx.controller;
 
 import java.net.URL;
@@ -10,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -22,7 +18,7 @@ import nl.soccar.ui.fx.FXMLConstants;
 /**
  * FXML Controller class
  *
- * @author Luuk
+ * @author PTS34A
  */
 public class CreateRoomFXMLController implements Initializable {
     
@@ -40,10 +36,12 @@ public class CreateRoomFXMLController implements Initializable {
     private TextField textFieldPassword; 
     @FXML
     private Slider sliderCapacity;
-    /**
-     * Initializes the controller class.
-     */
+    @FXML 
+    private ComboBox cbMap;
     
+    /**
+     * Initialization of this controller class on current scene; Events get handled.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnLogOut.setOnAction(e -> {
@@ -63,6 +61,9 @@ public class CreateRoomFXMLController implements Initializable {
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername()); 
     }    
     
+    /**
+     * Event-handler for CreatRoom button; Uses password, roomname, capacity and map-type.
+     */
     public void createRoom() {
         String password = null;
          
