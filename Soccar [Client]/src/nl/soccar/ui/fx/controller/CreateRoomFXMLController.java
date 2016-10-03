@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import nl.soccar.library.Session;
 import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
+import nl.soccar.library.enumeration.MapType;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
 
@@ -59,6 +60,8 @@ public class CreateRoomFXMLController implements Initializable {
         });
         
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername()); 
+        
+        cbMap.getItems().addAll(MapType.values());
     }    
     
     /**
@@ -73,5 +76,9 @@ public class CreateRoomFXMLController implements Initializable {
         
         Session newSession = Soccar.getInstance().getSessionController().create(textFieldRoomName.getText(), password, Soccar.getInstance().getCurrentPlayer());
         newSession.getRoom().setCapacity((int)sliderCapacity.getValue());
+        
+        
+        Soccar.getInstance().getSessionController().setCurrentSession(newSession);
+        Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
     }
 }
