@@ -31,8 +31,7 @@ public class Team {
      * @param player Player that needs to be added to this team.
      */
     public void join(Player player) {
-        // TODO implementatie
-        throw new UnsupportedOperationException("Not supported yet.");
+        players.add(player);
     }
 
     /**
