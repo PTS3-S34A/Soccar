@@ -23,8 +23,8 @@ public class Room {
     /**
      * Constructor used for instantiation of a Room object.
      *
-     * @param name
-     * @param password
+     * @param name Name for the initiatabe room.
+     * @param password Optional password for the initiatable room. Empty when no password is given.
      */
     public Room(String name, String password) {
         this.name = name;
@@ -40,7 +40,7 @@ public class Room {
      * that is passed in as argument.
      *
      * @param password Password that needs to be checked for equality.
-     * @return
+     * @return boolean Is false if the given password is not equal to the actual password. True if it's equal.
      */
     public boolean check(String password) {
         return password.equals(this.password);
