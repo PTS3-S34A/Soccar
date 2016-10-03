@@ -39,6 +39,8 @@ public class SessionViewFXMLController implements Initializable {
     private Label lblOccupancy;
     @FXML
     private Button btnStartGame;
+    @FXML
+    private ImageView imgMap;
     
     private Session currentSession; 
     
