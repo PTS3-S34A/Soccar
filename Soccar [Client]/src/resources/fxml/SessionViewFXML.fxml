@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.SessionViewFXMLController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="88.0" prefWidth="1210.0">
+               <children>
+                  <Label layoutX="806.0" layoutY="32.0" text="Logged in user:">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="11.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1210.0">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#ffda00" />
+                              <Stop color="RED" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
+                  <Label fx:id="lblUsername" layoutX="923.0" layoutY="32.0" text="maatwerkException()">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnLogOut" layoutX="1108.0" layoutY="27.0" mnemonicParsing="false" text="Log out">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="86.0" prefHeight="540.0" prefWidth="1210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+         <children>
+            <AnchorPane prefHeight="645.0" prefWidth="881.0">
+               <children>
+                  <Label fx:id="lblRoomName" alignment="CENTER" layoutX="218.0" layoutY="22.0" text="Room: " AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <font>
+                        <Font name="Segoe UI" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="118.0" layoutY="104.0" text="Blue Team:">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="lvPlayersRed" layoutX="25.0" layoutY="137.0" prefHeight="234.0" prefWidth="258.0" />
+                  <Label layoutX="424.0" layoutY="104.0" text="Map:">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblRoomStatus" alignment="CENTER" layoutX="365.0" layoutY="46.0" text="Status: waiting for players " AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <font>
+                        <Font name="Segoe UI" size="13.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="153.0" fitWidth="252.0" layoutX="315.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
+                  <ListView fx:id="lvPlayersBlue" layoutX="593.0" layoutY="135.0" prefHeight="234.0" prefWidth="258.0" />
+                  <Label layoutX="687.0" layoutY="104.0" text="Red Team:">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblOccupancy" alignment="CENTER" layoutX="100.0" layoutY="400.0" text="Occupancy:" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnStartGame" disable="true" layoutX="384.0" layoutY="468.0" mnemonicParsing="false" text="Start Game">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <Button fx:id="btnLeaveRoom" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" text="Leave">
+         <font>
+            <Font name="Segoe UI" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
