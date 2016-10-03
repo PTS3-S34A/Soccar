@@ -92,16 +92,12 @@
                         <Font name="Segoe UI Light" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="textFieldPassword" layoutX="277.0" layoutY="148.0">
-                     <font>
-                        <Font name="Segoe UI" size="15.0" />
-                     </font>
-                  </TextField>
                   <Label layoutX="370.0" layoutY="225.0" text="4">
                      <font>
                         <Font size="9.0" />
                      </font>
                   </Label>
+                  <PasswordField fx:id="textFieldPassword" layoutX="279.0" layoutY="149.0" prefHeight="25.0" prefWidth="187.0" />
                </children>
             </AnchorPane>
          </children>

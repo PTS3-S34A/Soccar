@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import nl.soccar.library.Session;
@@ -34,7 +35,7 @@ public class CreateRoomFXMLController implements Initializable {
     @FXML
     private TextField textFieldRoomName; 
     @FXML
-    private TextField textFieldPassword; 
+    private PasswordField textFieldPassword; 
     @FXML
     private Slider sliderCapacity;
     @FXML 
@@ -61,14 +62,14 @@ public class CreateRoomFXMLController implements Initializable {
         
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername()); 
         
-        cbMap.getItems().addAll(MapType.values());
+        cbMap.getItems().addAll(MapType.values().toString());
     }    
     
     /**
      * Event-handler for CreatRoom button; Uses password, roomname, capacity and map-type.
      */
     public void createRoom() {
-        String password = null;
+        String password = "";
          
         if (!textFieldPassword.getText().isEmpty()) {
             password = textFieldPassword.getText();
@@ -76,7 +77,6 @@ public class CreateRoomFXMLController implements Initializable {
         
         Session newSession = Soccar.getInstance().getSessionController().create(textFieldRoomName.getText(), password, Soccar.getInstance().getCurrentPlayer());
         newSession.getRoom().setCapacity((int)sliderCapacity.getValue());
-        
         
         Soccar.getInstance().getSessionController().setCurrentSession(newSession);
         Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
