@@ -12,6 +12,10 @@ public abstract class GameCanvas {
 
     private final List<Drawable> drawables;
 
+    /**
+     * Initiates a new GameCanvas object.
+     * 
+     */
     public GameCanvas() {
         drawables = new ArrayList<>();
     }
@@ -20,14 +24,29 @@ public abstract class GameCanvas {
     
     public abstract void stop();
 
+    /**
+     * Method that adds a drawable to the list of drawables.
+     * 
+     * @param drawable Drawable item that needs to be added to the list of drawables.
+     */
     public final void addDrawable(Drawable drawable) {
         drawables.add(drawable);
     }
 
+    /**
+     * Method that removes drawable of the list of drawables.
+     * 
+     * @param drawable Drawable item that needs to be removed from the list.
+     */
     public final void removeDrawable(Drawable drawable) {
         drawables.remove(drawable);
     }
 
+    /**
+     * Method that gets the list of drawable items of this GameCanvas.
+     * 
+     * @return List of drawables.
+     */
     public final List<Drawable> getDrawables() {
         return Collections.unmodifiableList(drawables);
     }
