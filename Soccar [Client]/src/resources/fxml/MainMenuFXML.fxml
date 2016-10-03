@@ -60,10 +60,9 @@
                            <children>
                               <TableView fx:id="tblSessionList" prefHeight="612.0" prefWidth="1200.0">
                                 <columns>
-                                  <TableColumn fx:id="tbclName" prefWidth="644.0" text="Room name" />
-                                  <TableColumn fx:id="tbclOccupation" prefWidth="170.0" text="Occupation" />
-                                    <TableColumn fx:id="tbclOwner" prefWidth="286.0" text="Owner" />
-                                    <TableColumn prefWidth="99.0" resizable="false" />
+                                  <TableColumn fx:id="tbclName" prefWidth="534.0" text="Room name" />
+                                  <TableColumn fx:id="tbclOccupation" prefWidth="380.0" text="Occupation" />
+                                    <TableColumn fx:id="tbclOwner" prefWidth="285.0" text="Owner" />
                                 </columns>
                               </TableView>
                               <HBox alignment="CENTER" layoutY="611.0" prefHeight="80.0" prefWidth="1200.0">
