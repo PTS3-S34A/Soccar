@@ -41,8 +41,7 @@ public class Team {
      * @param player Player that needs to be removed to this team.
      */
     public void leave(Player player) {
-        // TODO implementatie
-        throw new UnsupportedOperationException("Not supported yet.");
+        players.remove(player);
     }
 
     /**

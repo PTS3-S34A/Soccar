@@ -57,20 +57,11 @@ public class MainMenuFXMLController implements Initializable {
         
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());  
         
-        tblSessionList.setEditable(true);        
+        updateTable();     
     }
     
     public void updateTable() {
-        tbclName.setMinWidth(200);
-        tbclName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        
-        tbclOccupation.setMinWidth(200);
-        tbclOccupation.setCellValueFactory(new PropertyValueFactory<>("capacity"));
-        
-        tbclOwner.setMinWidth(200);
-        tbclOwner.setCellValueFactory(new PropertyValueFactory<>("owner"));
-        
-        tblSessionList.setItems(Soccar.getInstance().getSessionController().getAllRooms());
+        tblSessionList.getItems().addAll(Soccar.getInstance().getSessionController().getAllSessions());
     }
     
 }

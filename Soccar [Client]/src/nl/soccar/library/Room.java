@@ -2,6 +2,7 @@ package nl.soccar.library;
 
 import java.util.ArrayList;
 import java.util.List;
+import nl.soccar.library.enumeration.TeamColour;
 
 /**
  * Class that represents the Room model.
@@ -29,6 +30,9 @@ public class Room {
         this.name = name;
         this.password = password;
         capacity = DEFAULT_CAPACITY;
+        
+        teamBlue = new Team(TeamColour.BLUE);
+        teamRed = new Team(TeamColour.RED);
     }
 
     /**
