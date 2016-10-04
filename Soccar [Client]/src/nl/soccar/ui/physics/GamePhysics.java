@@ -19,4 +19,8 @@ public class GamePhysics {
         world.step(1.0F / PhysicsContants.FPS, PhysicsContants.VELOCITY_ITERATIONS, PhysicsContants.POSITION_ITERATIONS);
     }
 
+    public World getWorld() {
+        return world;
+    }
+
 }
