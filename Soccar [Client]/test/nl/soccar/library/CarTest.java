@@ -15,17 +15,20 @@ public class CarTest {
     //Declaration of test objects.
     private Car car;
     private Player player;
-    private final double x = 1D;
-    private final double y = 1D;
-    private final double degree = 1D;
+    private double x = 1D;
+    private double y = 1D;
+    private double degree = 1D;
     
-    public CarTest() {
-    }
     @Before
     public void setUp() {
         player = new Player("Testuser", "password", Privilege.NORMAL, CarType.CASUAL);
         car = new Car(0, 0, 0, player.getCarType(), player);
+        
+        x = 1D;
+        y = 1D;
+        degree = 1D;
     }
+    
     /**
      * Test of move method, of class Car.
      */
@@ -36,4 +39,5 @@ public class CarTest {
         assertSame(Math.round(y), Math.round(car.getY()));
         assertSame(Math.round(degree), Math.round(car.getDegree()));
     }
+    
 }

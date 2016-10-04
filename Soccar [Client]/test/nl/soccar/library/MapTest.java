@@ -18,9 +18,6 @@ public class MapTest {
     private Car car;
     private Player player;
     
-    public MapTest() {
-    }
-    
     @Before
     public void setUp() {
         player = new Player("Testuser", "password", Privilege.NORMAL, CarType.CASUAL);

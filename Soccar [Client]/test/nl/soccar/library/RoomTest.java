@@ -12,14 +12,12 @@ public class RoomTest {
     
     // Declaration of test objects
     private Room room;
-    private final String pass = "12345";
-    
-    
-    public RoomTest() {
-    }
+    private String pass; 
     
     @Before
     public void setUp() {
+        pass = "12345";
+        
         room = new Room("De vliegende hollander", pass);
     }
 

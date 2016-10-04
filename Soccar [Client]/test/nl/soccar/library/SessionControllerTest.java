@@ -55,7 +55,7 @@ public class SessionControllerTest {
     public void testLeave() {
         controller.create("test123", "123", player);
         controller.leave(session, player);
-        
+        // TO DO : Check if currentSession is empty
     }
 
     /**

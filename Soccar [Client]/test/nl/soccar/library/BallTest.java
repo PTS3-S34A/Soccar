@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nl.soccar.library;
 
 import nl.soccar.library.enumeration.BallType;
@@ -14,19 +9,21 @@ import static org.junit.Assert.*;
  *
  * @author PTS34A
  */
+
 public class BallTest {
     // Declaration of test objects
     private Ball ball;
-    private final double x = 1D;
-    private final double y = 1D;
-    private final double degree = 1D;
-    
-    public BallTest() {
-    }
+    private double x;
+    private double y;
+    private double degree;
     
     @Before
     public void setUp() {
         ball = new Ball(0, 0, 0, BallType.FOOTBALL);
+        
+        x = 1D;
+        y =1D;
+        degree = 1D;
     }
 
     /**
@@ -40,5 +37,4 @@ public class BallTest {
         assertSame(Math.round(degree), Math.round(ball.getDegree()));
     }
 
-    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nl.soccar.library;
 
 import java.util.List;
@@ -15,16 +10,13 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Raymond
+ * @author PTS34A
  */
 public class TeamTest {
     
     // Delcaration of test objects
     private Team team;
     private Player player;
-    
-    public TeamTest() {
-    }
     
     @Before
     public void setUp() {

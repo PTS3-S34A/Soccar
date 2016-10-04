@@ -24,9 +24,6 @@ public class GameTest {
     protected Object clone() throws CloneNotSupportedException {
         return super.clone(); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public GameTest() {
-    }
     
     @Before
     public void setUp() {
