@@ -34,9 +34,9 @@ public abstract class GameCanvas {
     }
 
     /**
-     * Method that removes drawable of the list of drawables.
+     * Method that removes drawable out of the list of drawables.
      * 
-     * @param drawable Drawable item that needs to be removed from the list.
+     * @param drawable Drawable item that needs to be removed from the drawable list.
      */
     public final void removeDrawable(Drawable drawable) {
         drawables.remove(drawable);
@@ -45,7 +45,7 @@ public abstract class GameCanvas {
     /**
      * Method that gets the list of drawable items of this GameCanvas.
      * 
-     * @return List of drawables.
+     * @return unmodifiable List of drawables.
      */
     public final List<Drawable> getDrawables() {
         return Collections.unmodifiableList(drawables);

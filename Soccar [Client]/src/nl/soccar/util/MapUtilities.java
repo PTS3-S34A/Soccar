@@ -12,7 +12,7 @@ public final class MapUtilities {
     /**
      * Method that calculates and returns the rectangle of the left goal of the map.
      * 
-     * @return The rectangle of the the left goal of the map.
+     * @return Rectangle The rectangle of the the left goal of the map.
      */
     public static Rectangle getLeftGoal() {
         double goalPositionY = (DisplayConstants.HEIGHT / 2) - (DisplayConstants.GOAL_HEIGHT / 2);
@@ -22,9 +22,9 @@ public final class MapUtilities {
     }
 
     /**
-     * Method that calculates and returns the rectangle of the right goalm of the map.
+     * Method that calculates and returns the rectangle of the right goal of the map.
      * 
-     * @return The rectangle of the right goal of the map.
+     * @return Rectangle The rectangle of the right goal of the map.
      */
     public static Rectangle getRightGoal() {
         double goalPositionY = (DisplayConstants.HEIGHT / 2) - (DisplayConstants.GOAL_HEIGHT / 2);

@@ -14,9 +14,9 @@ public interface Drawable<T> {
     void update();
     
     /**
-     * Method that draws this Drawable object on the context.
+     * Method that draws this Drawable object on the graphics context.
      * 
-     * @param context The drawable context.
+     * @param context The drawable graphics context.
      */
     void draw(GraphicsContext context);
     

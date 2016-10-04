@@ -13,7 +13,7 @@ public final class Keyboard {
     private static final Keyboard instance = new Keyboard();
 
     /**
-     * Method that gets this Keyboard object.
+     * Method that gets this static instance of the Keyboard object.
      * 
      * @return This keyboard object.
      */
@@ -28,10 +28,10 @@ public final class Keyboard {
     }
 
     /**
-     * Method that checks if the given key is pressed.
+     * Method that checks if the given key is already present in pressedKeys list.
      * 
      * @param code The keycode that needs to be checked.
-     * @return 
+     * @return boolean True if already pressed, false if not in pressedKeys list.
      */
     public boolean isPressed(KeyCode code) {
         return pressedKeys.contains(code);
@@ -49,7 +49,7 @@ public final class Keyboard {
     }
 
     /**
-     * Method that removes the given KeyCode of the pressedKeys list.
+     * Method that removes the given KeyCode from the pressedKeys list.
      * 
      * @param code The keycode that needs to be removed of the pressedKeys list.
      */

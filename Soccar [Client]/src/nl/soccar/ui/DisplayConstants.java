@@ -23,6 +23,7 @@ public final class DisplayConstants {
     public static final int BOX_HEIGHT = 325;
     public static final int GOAL_WIDTH = 35;
     public static final double GOAL_HEIGHT = BOX_HEIGHT / 1.5;
+    
     /**
      * Map images properties
      */
