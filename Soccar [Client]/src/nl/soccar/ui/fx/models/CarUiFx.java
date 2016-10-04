@@ -1,9 +1,11 @@
 package nl.soccar.ui.fx.models;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import nl.soccar.library.Car;
+import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
 import nl.soccar.ui.input.Keyboard;
@@ -19,6 +21,12 @@ import nl.soccar.util.PhysicsUtilities;
  */
 public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
+    private static final Image TEXTURE_CAR_RED;
+
+    static {
+        TEXTURE_CAR_RED = new Image(DisplayConstants.LOCATION_TEXTURE_CAR_RED);
+    }
+
     public CarUiFx(GameCanvasFx canvas, Car car, CarPhysics physics) {
         super(canvas, car, physics);
     }
@@ -26,7 +34,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
     @Override
     public void update() {
         CarPhysics physics = super.getPhysicsModel();
-        
+
         Keyboard keyboard = Keyboard.getInstance();
         if (keyboard.isPressed(KeyCode.W)) {
             physics.setThrottleAction(ThrottleAction.ACCELERATE);
@@ -35,7 +43,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
         } else {
             physics.setThrottleAction(ThrottleAction.IDLE);
         }
-        
+
         if (keyboard.isPressed(KeyCode.A)) {
             physics.setSteerAction(SteerAction.STEER_LEFT);
         } else if (keyboard.isPressed(KeyCode.D)) {
@@ -43,7 +51,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
         } else {
             physics.setSteerAction(SteerAction.NONE);
         }
-        
+
         physics.step();
 
         Car car = super.getModel();
@@ -70,8 +78,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
         gc.translate(x, y); // Set the origin point of the rotation.
         gc.rotate(-Math.toDegrees(car.getDegree())); // Set the angle of the rotation.
-        gc.setFill(Color.RED);
-        gc.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left.
+        gc.drawImage(TEXTURE_CAR_RED, -width / 2, -height / 2, width, height);
 
         gc.restore(); // Restore canvas to display a rotated image.
     }

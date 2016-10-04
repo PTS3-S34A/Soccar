@@ -8,6 +8,7 @@ import nl.soccar.ui.physics.PhysicsContants;
 import nl.soccar.ui.physics.WorldObject;
 import nl.soccar.ui.physics.enumeration.SteerAction;
 import nl.soccar.ui.physics.enumeration.ThrottleAction;
+import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -40,7 +41,7 @@ public class CarPhysics implements WorldObject {
 
     private List<WheelPhysics> wheels;
 
-    public CarPhysics(Car car, float wheelWidth, float wheelHeight, World world) {
+    public CarPhysics(Car car, World world) {
         width = car.getWidth();
         height = car.getHeight();
         steerAngle = 0.0F;
@@ -70,11 +71,14 @@ public class CarPhysics implements WorldObject {
 
         wheels = new ArrayList<>();
 
+        float wheelWidth = PhysicsUtilities.calculateWheelWidth(width);
+        float wheelHeight = PhysicsUtilities.calculateWheelHeight(wheelWidth);
+                
         // Create wheels
-        wheels.add(new WheelPhysics(-4.8F, 4.0F, wheelWidth, wheelHeight, true, true, body, world));
-        wheels.add(new WheelPhysics(4.8F, 4.0F, wheelWidth, wheelHeight, true, true, body, world));
-        wheels.add(new WheelPhysics(-4.8F, -4.0F, wheelWidth, wheelHeight, false, false, body, world));
-        wheels.add(new WheelPhysics(4.8F, -4.0F, wheelWidth, wheelHeight, false, false, body, world));
+        wheels.add(new WheelPhysics(-width / 2.3F, height / 4.0F, wheelWidth, wheelHeight, true, true, body, world));
+        wheels.add(new WheelPhysics(width / 2.3F, height / 4.0F, wheelWidth, wheelHeight, true, true, body, world));
+        wheels.add(new WheelPhysics(-width / 2.3F, -height / 4.0F, wheelWidth, wheelHeight, false, false, body, world));
+        wheels.add(new WheelPhysics(width / 2.3F, -height / 4.0F, wheelWidth, wheelHeight, false, false, body, world));
     }
 
     @Override

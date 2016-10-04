@@ -28,7 +28,22 @@ public final class PhysicsUtilities {
     public static float toPixelHeight(float height) {
         return height * PhysicsContants.PIXELS_PER_METER;
     }
-
+    
+    // Calculate relative car height based on giving width
+    public static float calculateCarHeight(float carWidth) {
+        return carWidth * 47 / 20;
+    }
+    
+    // Calculate relative wheel width based on given car width
+    public static float calculateWheelWidth(float carWidth) {
+        return carWidth / 5;
+    }
+    
+    // Calculate relative wheel height based on hiven car width
+    public static float calculateWheelHeight(float wheelWidth) {
+        return wheelWidth * 2;
+    }
+    
     private PhysicsUtilities() {
     }
     
