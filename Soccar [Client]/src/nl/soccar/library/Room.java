@@ -56,7 +56,7 @@ public class Room {
         List<Player> allPlayers = getAllPlayers();
         
         if (allPlayers.size() != 0) {
-            hostPlayer = getAllPlayers().get(0);
+            hostPlayer = allPlayers.get(0);
         }
         
         return hostPlayer;
