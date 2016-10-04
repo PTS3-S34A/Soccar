@@ -1,5 +1,6 @@
 package nl.soccar.ui.physics.models;
 
+import nl.soccar.library.Ball;
 import nl.soccar.ui.physics.WorldObject;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
@@ -22,12 +23,12 @@ public class BallPhysics implements WorldObject {
     private final Body body;
     private final float radius;
 
-    public BallPhysics(float posX, float posY, int radius, World world) {
-        this.radius = radius;
+    public BallPhysics(Ball ball, World world) {
+        radius = ball.getRadius();
 
         BodyDef bd = new BodyDef();
         bd.type = BodyType.DYNAMIC;
-        bd.position.set(posX, posY);
+        bd.position.set(ball.getX(), ball.getY());
 
         CircleShape cs = new CircleShape();
         cs.m_radius = radius;
@@ -36,6 +37,7 @@ public class BallPhysics implements WorldObject {
         fd.density = DENSITY;
         fd.friction = FRICTION;
         fd.density = RESTITUTION;
+        fd.shape = cs;
 
         body = world.createBody(bd);
         body.createFixture(fd);
@@ -51,14 +53,17 @@ public class BallPhysics implements WorldObject {
         body.applyAngularImpulse(0.1F * body.getInertia() * -body.getAngularVelocity());
     }
 
+    @Override
     public float getX() {
         return body.getPosition().x;
     }
 
+    @Override
     public float getY() {
         return body.getPosition().y;
     }
 
+    @Override
     public float getDegree() {
         return body.m_sweep.a;
     }
