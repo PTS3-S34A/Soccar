@@ -76,4 +76,8 @@ public class Player {
         this.statistics = statistics;
     }
     
+    @Override
+    public String toString() {
+        return username;
+    }
 }

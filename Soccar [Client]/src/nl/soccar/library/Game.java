@@ -22,7 +22,7 @@ public class Game {
     private GameStatus status;
 
     private List<Event> events;
-
+    
     /**
      * Initiates a new Game Object.
      */

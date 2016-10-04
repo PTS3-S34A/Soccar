@@ -14,6 +14,7 @@ public final class FXMLConstants {
     public static final String LOCATION_MAIN_MENU = "resources/fxml/MainMenuFXML.fxml";
     public static final String LOCATION_LOGIN = "resources/fxml/LoginFXML.fxml";
     public static final String LOCATION_CREATE_ROOM = "resources/fxml/CreateRoomFXML.fxml";
+    public static final String LOCATION_SESSION_VIEW = "resources/fxml/SessionViewFXML.fxml";
     
     private FXMLConstants() {
     }
