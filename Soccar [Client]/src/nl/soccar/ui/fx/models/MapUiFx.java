@@ -1,4 +1,4 @@
-package nl.soccar.ui.fx;
+package nl.soccar.ui.fx.models;
 
 import java.awt.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
@@ -6,7 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import nl.soccar.library.Map;
 import nl.soccar.ui.DisplayConstants;
-import nl.soccar.util.MapUtilities;
+import nl.soccar.ui.fx.DrawableFx;
+import nl.soccar.ui.fx.GameCanvasFx;
 
 /**
  *
