@@ -10,16 +10,16 @@ import nl.soccar.ui.DisplayConstants;
 public final class MapUtilities {
 
     public static Rectangle getLeftGoal() {
-        double goalPositionY = (DisplayConstants.HEIGHT / 2) - (DisplayConstants.GOAL_HEIGHT / 2);
+        double goalPositionY = (DisplayConstants.SCREEN_HEIGHT / 2) - (DisplayConstants.GOAL_HEIGHT / 2);
 
         return new Rectangle(DisplayConstants.FIELD_MARGIN - DisplayConstants.GOAL_WIDTH, (int) goalPositionY,
                 DisplayConstants.GOAL_WIDTH, (int) DisplayConstants.GOAL_HEIGHT);
     }
 
     public static Rectangle getRightGoal() {
-        double goalPositionY = (DisplayConstants.HEIGHT / 2) - (DisplayConstants.GOAL_HEIGHT / 2);
+        double goalPositionY = (DisplayConstants.SCREEN_HEIGHT / 2) - (DisplayConstants.GOAL_HEIGHT / 2);
         
-        return new Rectangle(DisplayConstants.WIDTH - DisplayConstants.FIELD_MARGIN, (int) goalPositionY,
+        return new Rectangle(DisplayConstants.SCREEN_WIDTH - DisplayConstants.FIELD_MARGIN, (int) goalPositionY,
                 DisplayConstants.GOAL_WIDTH, (int) DisplayConstants.GOAL_HEIGHT);
     }
 

@@ -8,10 +8,10 @@ package nl.soccar.library;
  */
 public abstract class Entity {
     
-    protected double x;
-    protected double y;
-    protected double degree;
-    protected double velocity;
+    protected float x;
+    protected float y;
+    protected float degree;
+    protected float velocity;
 
     /**
      * Initiates a new Entity Object.
@@ -20,7 +20,7 @@ public abstract class Entity {
      * @param y The y-position of this Entity.
      * @param degree The degree which this Entity is going.
      */
-    public Entity(double x, double y, double degree) {
+    public Entity(float x, float y, float degree) {
         this.x = x;
         this.y = y;
         this.degree = degree;
@@ -34,14 +34,14 @@ public abstract class Entity {
      * @param y The new y-position.
      * @param degree The new degree.
      */
-    public abstract void move(double x, double y, double degree);
+    public abstract void move(float x, float y, float degree);
 
     /**
      * Gets the x-position of this Entity.
      * 
      * @return The x-position of this Entity.
      */
-    public final double getX() {
+    public final float getX() {
         return x;
     }
 
@@ -50,7 +50,7 @@ public abstract class Entity {
      * 
      * @return The y-position of this Entity.
      */
-    public final double getY() {
+    public final float getY() {
         return y;
     }
 
@@ -59,7 +59,7 @@ public abstract class Entity {
      * 
      * @return The degree of this Entity.
      */
-    public final double getDegree() {
+    public final float getDegree() {
         return degree;
     }
 
@@ -68,7 +68,7 @@ public abstract class Entity {
      * 
      * @return The velocity of this Entity.
      */
-    public final double getVelocity() {
+    public final float getVelocity() {
         return velocity;
     }
 
