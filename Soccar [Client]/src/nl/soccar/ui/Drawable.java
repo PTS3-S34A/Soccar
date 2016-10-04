@@ -20,15 +20,11 @@ public interface Drawable<M> {
      */
     void draw(GraphicsContext context);
     
-<<<<<<< HEAD
-    M getModel();
-=======
     /**
      * Method that returns this model.
      * 
      * @return This model.
      */
-    T getModel();
->>>>>>> refs/remotes/origin/master
+    M getModel();
     
 }

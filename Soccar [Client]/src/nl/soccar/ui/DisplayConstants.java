@@ -27,14 +27,10 @@ public final class DisplayConstants {
     public static final int BOX_HEIGHT = 325;
     public static final int GOAL_WIDTH = 35;
     public static final double GOAL_HEIGHT = BOX_HEIGHT / 1.5;
-<<<<<<< HEAD
-
-=======
     
     /**
      * Map images properties
      */
->>>>>>> refs/remotes/origin/master
     public static final String LOCATION_TEXTURE_MOON = "resources/images/moon_texture.jpg";
     public static final String LOCATION_TEXTURE_DESERT = "resources/images/desert_texture.jpg";
     public static final String LOCATION_TEXTURE_GRASS = "resources/images/grass_texture.jpg";

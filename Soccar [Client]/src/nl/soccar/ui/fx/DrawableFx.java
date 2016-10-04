@@ -11,17 +11,13 @@ public abstract class DrawableFx<M> implements Drawable {
     private GameCanvasFx canvas;
     private M model;
 
-<<<<<<< HEAD
-    public DrawableFx(GameCanvasFx canvas, M model) {
-=======
     /**
      * Initiates a new DrawableFx object.
      * 
      * @param canvas The drawable context of this DrawableFx.
      * @param model  The used model of this DrawableFx.
      */
-    public DrawableFx(GameCanvasFx canvas, T model) {
->>>>>>> refs/remotes/origin/master
+    public DrawableFx(GameCanvasFx canvas, M model) {
         this.canvas = canvas;
         this.model = model;
     }
