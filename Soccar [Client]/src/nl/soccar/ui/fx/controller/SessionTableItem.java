@@ -2,6 +2,7 @@ package nl.soccar.ui.fx.controller;
 
 import javafx.beans.property.SimpleStringProperty;
 import nl.soccar.library.Player;
+import nl.soccar.library.Room;
 import nl.soccar.library.Session;
 
 /**
@@ -16,17 +17,18 @@ public class SessionTableItem {
     private final Session session;
 
     public SessionTableItem(Session s) {
-        this.roomName = new SimpleStringProperty(s.getRoom().getName());
-        this.occupancy = new SimpleStringProperty(s.getRoom().getAllPlayers().size() + " / " + s.getRoom().getCapacity());
-        
-        Player host = s.getRoom().getHost();
-        if (host != null) {
-            this.hostName = new SimpleStringProperty(host.getUsername());
-        } else {
-            this.hostName = new SimpleStringProperty("No host available");
-        }
-
         this.session = s;
+        
+        Room room = s.getRoom();
+        roomName = new SimpleStringProperty(room.getName());
+        occupancy = new SimpleStringProperty(room.getAllPlayers().size() + " / " + room.getCapacity());
+        
+        Player host = room.getHost();
+        if (host != null) {
+            hostName = new SimpleStringProperty(host.getUsername());
+        } else {
+            hostName = new SimpleStringProperty("No host available");
+        }
     }
 
     public String getRoomName() {

@@ -52,13 +52,14 @@ public class Room {
      * @return Player that is the host of the room.
      */
     public Player getHost() {
-        Player hostPlayer = getAllPlayers().get(0);
-        if (hostPlayer == null) {
-            //TODO No host available.
-            return null;
-        } else {
-            return getAllPlayers().get(0);
+        Player hostPlayer = null;
+        List<Player> allPlayers = getAllPlayers();
+        
+        if (allPlayers.size() != 0) {
+            hostPlayer = allPlayers.get(0);
         }
+        
+        return hostPlayer;
     }
 
     /**

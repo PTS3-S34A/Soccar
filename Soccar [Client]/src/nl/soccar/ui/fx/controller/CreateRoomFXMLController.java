@@ -62,7 +62,7 @@ public class CreateRoomFXMLController implements Initializable {
         
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername()); 
         
-        cbMap.getItems().addAll(MapType.values().toString());
+        cbMap.getItems().addAll(MapType.values());
     }    
     
     /**
