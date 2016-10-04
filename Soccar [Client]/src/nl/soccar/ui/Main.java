@@ -53,7 +53,7 @@ public class Main extends Application {
     public void setScene(String sceneName) {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(sceneName));
-            Scene scene = new Scene(root, DisplayConstants.WIDTH, DisplayConstants.HEIGHT);
+            Scene scene = new Scene(root, DisplayConstants.SCREEN_WIDTH, DisplayConstants.SCREEN_HEIGHT);
 
             primaryStage.setTitle(Soccar.APPLICATION_NAME);
             primaryStage.setScene(scene);

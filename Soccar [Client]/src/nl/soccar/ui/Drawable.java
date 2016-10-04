@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * @author PTS34A
  */
-public interface Drawable<T> {
+public interface Drawable<M> {
     
     /**
      * Method that updates the position of this Drawable object.
@@ -25,6 +25,6 @@ public interface Drawable<T> {
      * 
      * @return This model.
      */
-    T getModel();
+    M getModel();
     
 }

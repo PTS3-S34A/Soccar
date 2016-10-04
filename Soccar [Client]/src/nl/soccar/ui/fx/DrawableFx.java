@@ -6,10 +6,10 @@ import nl.soccar.ui.Drawable;
  *
  * @author PTS34A
  */
-public abstract class DrawableFx<T> implements Drawable {
+public abstract class DrawableFx<M> implements Drawable {
 
     private GameCanvasFx canvas;
-    private T model;
+    private M model;
 
     /**
      * Initiates a new DrawableFx object.
@@ -17,7 +17,7 @@ public abstract class DrawableFx<T> implements Drawable {
      * @param canvas The drawable context of this DrawableFx.
      * @param model  The used model of this DrawableFx.
      */
-    public DrawableFx(GameCanvasFx canvas, T model) {
+    public DrawableFx(GameCanvasFx canvas, M model) {
         this.canvas = canvas;
         this.model = model;
     }
@@ -37,8 +37,7 @@ public abstract class DrawableFx<T> implements Drawable {
      * @return The model.
      */
     @Override
-    public final T getModel() {
+    public final M getModel() {
         return model;
     }
-
 }

@@ -9,6 +9,8 @@ import javafx.util.Duration;
 import nl.soccar.ui.Drawable;
 import nl.soccar.ui.GameCanvas;
 import nl.soccar.ui.input.Keyboard;
+import nl.soccar.ui.physics.GamePhysics;
+import nl.soccar.ui.physics.PhysicsContants;
 
 /**
  *
@@ -16,17 +18,18 @@ import nl.soccar.ui.input.Keyboard;
  */
 public class GameCanvasFx extends GameCanvas {
 
+    private GamePhysics physics;
     private GraphicsContext context;
     private Timeline gameTimer;
 
-    public GameCanvasFx(GraphicsContext context) {
+    public GameCanvasFx(GamePhysics physics, GraphicsContext context) {
+        this.physics = physics;
         this.context = context;
 
         gameTimer = new Timeline();
         gameTimer.setCycleCount(Timeline.INDEFINITE);
-        gameTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(1F / 60F), e -> {
-            //TODO add jBox2D world update
-
+        gameTimer.getKeyFrames().add(new KeyFrame(Duration.seconds(1.0F / PhysicsContants.FPS), e -> {
+            physics.step();
             update();
             render();
         }));
