@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.CreateRoomFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.SessionViewFXMLController">
    <children>
       <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -50,59 +50,53 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="86.0" prefHeight="378.0" prefWidth="1210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+      <HBox alignment="CENTER" layoutY="86.0" prefHeight="540.0" prefWidth="1210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
          <children>
-            <AnchorPane prefHeight="390.0" prefWidth="606.0">
+            <AnchorPane prefHeight="645.0" prefWidth="881.0">
                <children>
-                  <Label layoutX="218.0" layoutY="22.0" text="Room Configuration">
+                  <Label fx:id="lblRoomName" alignment="CENTER" layoutX="218.0" layoutY="22.0" text="Room: " AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
                      <font>
                         <Font name="Segoe UI" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="135.0" layoutY="90.0" text="Room name* : ">
-                     <font>
-                        <Font name="Segoe UI Light" size="17.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="textFieldRoomName" layoutX="278.0" layoutY="89.0">
+                  <Label layoutX="118.0" layoutY="104.0" text="Blue Team:">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
-                  </TextField>
-                  <Label layoutX="135.0" layoutY="200.0" text="Room capacity:">
+                  </Label>
+                  <ListView fx:id="lvPlayersRed" layoutX="25.0" layoutY="137.0" prefHeight="234.0" prefWidth="258.0" />
+                  <Label layoutX="424.0" layoutY="104.0" text="Map:">
                      <font>
-                        <Font name="Segoe UI Light" size="17.0" />
+                        <Font name="Segoe UI" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="135.0" layoutY="252.0" text="Map:">
+                  <Label fx:id="lblRoomStatus" alignment="CENTER" layoutX="365.0" layoutY="46.0" text="Status: waiting for players " AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
                      <font>
-                        <Font name="Segoe UI Light" size="17.0" />
+                        <Font name="Segoe UI" size="13.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="sliderCapacity" blockIncrement="2.0" layoutX="278.0" layoutY="204.0" majorTickUnit="6.0" max="6.0" min="2.0" minorTickCount="2" prefHeight="38.0" prefWidth="187.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
-                  <Label layoutX="464.0" layoutY="219.0" text="players" />
-                  <ComboBox fx:id="cbMap" layoutX="276.0" layoutY="253.0" prefHeight="25.0" prefWidth="187.0" />
-                  <Button fx:id="btnCreateRoom" layoutX="214.0" layoutY="329.0" mnemonicParsing="false" text="Create this room">
+                  <ImageView fitHeight="153.0" fitWidth="252.0" layoutX="315.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
+                  <ListView fx:id="lvPlayersBlue" layoutX="593.0" layoutY="135.0" prefHeight="234.0" prefWidth="258.0" />
+                  <Label layoutX="687.0" layoutY="104.0" text="Red Team:">
                      <font>
-                        <Font name="Segoe UI" size="17.0" />
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblOccupancy" alignment="CENTER" layoutX="100.0" layoutY="400.0" text="Occupancy:" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnStartGame" disable="true" layoutX="384.0" layoutY="468.0" mnemonicParsing="false" text="Start Game">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
                      </font>
                   </Button>
-                  <Label layoutX="135.0" layoutY="148.0" text="Password:">
-                     <font>
-                        <Font name="Segoe UI Light" size="17.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="370.0" layoutY="225.0" text="4">
-                     <font>
-                        <Font size="9.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="textFieldPassword" layoutX="279.0" layoutY="149.0" prefHeight="25.0" prefWidth="187.0" />
                </children>
             </AnchorPane>
          </children>
       </HBox>
-      <Button fx:id="btnCancel" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="btnLeaveRoom" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" text="Leave">
          <font>
             <Font name="Segoe UI" size="17.0" />
          </font>

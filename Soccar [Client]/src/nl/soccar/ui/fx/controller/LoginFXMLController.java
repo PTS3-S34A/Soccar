@@ -36,6 +36,12 @@ public class LoginFXMLController implements Initializable {
     
     private ToggleGroup toggleGroupCars;
     
+    /**
+     * Initialization of this controller class on current scene; Events get handled.
+     * 
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
         toggleGroupCars  = new ToggleGroup();
@@ -52,6 +58,9 @@ public class LoginFXMLController implements Initializable {
         
     }
 
+    /**
+     * Handler for login-button; Uses current selected car, username and optional password.
+     */
     public void login() {
         CarType selectedCar = CarType.CASUAL;
         if (btnSelectCasualCar.isSelected()) {
