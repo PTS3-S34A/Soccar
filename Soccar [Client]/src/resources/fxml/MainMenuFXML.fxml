@@ -16,7 +16,7 @@
          <children>
             <AnchorPane prefHeight="87.0" prefWidth="1200.0">
                <children>
-                  <Label layoutX="806.0" layoutY="32.0" text="Logged in user:">
+                  <Label layoutX="806.0" layoutY="14.0" text="Logged in user:">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
@@ -36,7 +36,7 @@
                         </LinearGradient>
                      </fill>
                   </Rectangle>
-                  <Label fx:id="lblUsername" layoutX="923.0" layoutY="32.0" text="maatwerkException()">
+                  <Label fx:id="lblUsername" layoutX="923.0" layoutY="14.0" text="namePlaceHolder">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
@@ -46,6 +46,16 @@
                         <Font name="Segoe UI" size="15.0" />
                      </font>
                   </Button>
+                  <Label layoutX="806.0" layoutY="47.0" text="Current car:">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblCar" layoutX="923.0" layoutY="47.0" text="carPlaceHolder">
+                     <font>
+                        <Font name="Segoe UI" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
@@ -58,11 +68,12 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="689.0" prefWidth="1200.0">
                            <children>
-                              <TableView fx:id="tblSessionList" prefHeight="612.0" prefWidth="1200.0">
+                              <TableView fx:id="tblSessionList" prefHeight="573.0" prefWidth="1200.0">
                                 <columns>
-                                  <TableColumn fx:id="tbclName" prefWidth="534.0" text="Room name" />
-                                  <TableColumn fx:id="tbclOccupation" prefWidth="380.0" text="Occupation" />
-                                    <TableColumn fx:id="tbclOwner" prefWidth="285.0" text="Owner" />
+                                  <TableColumn fx:id="tbclName" prefWidth="509.0" text="Room name" />
+                                    <TableColumn fx:id="tbclPassword" prefWidth="137.0" text="Password" />
+                                  <TableColumn fx:id="tbclOccupation" prefWidth="182.0" text="Occupation" />
+                                    <TableColumn fx:id="tbclOwner" prefWidth="446.0" text="Owner" />
                                 </columns>
                               </TableView>
                               <HBox alignment="CENTER" layoutY="611.0" prefHeight="80.0" prefWidth="1200.0">
@@ -74,6 +85,7 @@
                                     </Button>
                                  </children>
                               </HBox>
+                              <Button fx:id="btnJoinRoom" layoutX="542.0" layoutY="586.0" mnemonicParsing="false" text="Join selected room" />
                            </children>
                         </AnchorPane>
                   </content>

@@ -120,4 +120,7 @@ public class Room {
         this.capacity = capacity;
     }
 
+    public boolean passwordAvailable() {
+        return password.length() > 0;
+    }
 }
