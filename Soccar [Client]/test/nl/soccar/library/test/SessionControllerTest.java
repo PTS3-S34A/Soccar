@@ -32,9 +32,9 @@ public class SessionControllerTest {
         sessionController = new SessionController();
         session = new Session("name", "password");
         player1 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
-        player2 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
-        player3 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
-        player4 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
+        player2 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player3 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player4 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
     }
 
     /**
