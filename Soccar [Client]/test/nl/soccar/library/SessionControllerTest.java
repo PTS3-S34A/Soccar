@@ -7,64 +7,80 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * JUnit test that tests the nl.soccar.library.SessionController class.
  *
  * @author PTS34A
  */
 public class SessionControllerTest {
-    
+
     // Declaration of test objects.
-    private SessionController controller;
+    private SessionController sessionController;
     private Session session;
-    private Player player;
+    private Player player1;
     private Player player2;
-    
-    public SessionControllerTest() {
-    }
-    
+    private Player player3;
+    private Player player4;
+
+    /**
+     * Instantiation of test objects.
+     */
     @Before
     public void setUp() {
-        controller = new SessionController();
-        session = new Session("Testroom", "1234");
-        player = new Player("Testuser", "password", Privilege.NORMAL, CarType.CASUAL);
-        player2 = new Player("Testuser2", "password", Privilege.NORMAL, CarType.CASUAL);
+        sessionController = new SessionController();
+        session = new Session("name", "password");
+        player1 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player2 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
+        player3 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
+        player4 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
     }
 
     /**
-     * Test of create method, of class SessionController.
+     * Tests the create and getAllSessions methods.
      */
     @Test
-    public void testCreate() {
-        controller.create("test123", "123", player);
-        assertNotNull(controller.getAllSessions());
+    public void createAndGetAllSessionsTest() {
+        sessionController.create("name", "password", player1);
+        assertNotNull(sessionController.getAllSessions());
     }
 
     /**
-     * Test of join method, of class SessionController.
+     * Tests the join method.
      */
     @Test
-    public void testJoin() {
-        controller.create("test123", "123", player);
-        Session s2 = controller.join("test123", "123", player2);
-        assertNotNull(s2);
+    public void joinTest() {
+        sessionController.create("name", "password", player1);
+        assertNotNull(sessionController.join("name", "password", player2));
+        assertNotNull(sessionController.join("name", "password", player3));
+        assertNotNull(sessionController.join("name", "password", player4));
+        assertNull(sessionController.join("name", "wrong password", player1));
+        assertNull(sessionController.join("wrong name", "password", player1));
     }
 
     /**
-     * Test of leave method, of class SessionController.
+     * Tests the leave method.
      */
     @Test
-    public void testLeave() {
-        controller.create("test123", "123", player);
-        controller.leave(session, player);
-        // TO DO : Check if currentSession is empty
+    public void leaveTest() {
+        sessionController.create("name", "password", player1);
+        sessionController.leave(session, player1);
     }
 
     /**
-     * Test of getAllSessions method, of class SessionController.
+     * Tests the getAllRooms method.
      */
     @Test
-    public void testGetAllSessions() {
-        controller.create("test123", "123", player);
-        assertNotNull(controller.getAllSessions());
+    public void getAllRoomsTest() {
+        sessionController.create("name", "password", player1);
+        assertNotNull(sessionController.getAllRooms());
     }
-    
+
+    /**
+     * Tests get getCurrentSession and setCurrentSession methods.
+     */
+    @Test
+    public void getCurrentSessionAndSetCurrentSessionTest() {
+        sessionController.setCurrentSession(session);
+        assertEquals(session, sessionController.getCurrentSession());
+    }
+
 }

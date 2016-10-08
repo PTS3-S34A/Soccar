@@ -1,6 +1,5 @@
 package nl.soccar.library;
 
-import java.util.List;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.library.enumeration.TeamColour;
@@ -9,39 +8,42 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * JUnit test that tests the nl.soccar.library.Team class.
  *
  * @author PTS34A
  */
 public class TeamTest {
-    
-    // Delcaration of test objects
+
+    // Delcaration of test objects.
     private Team team;
     private Player player;
-    
+
+    /**
+     * Instantiation of test objects.
+     */
     @Before
     public void setUp() {
-        player = new Player("Testuser", "password", Privilege.NORMAL, CarType.CASUAL);
+        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
         team = new Team(TeamColour.BLUE);
     }
-    
 
     /**
-     * Test of join method, of class Team.
+     * Tests the join, leave and getPlayers methods.
      */
     @Test
-    public void testJoin() {
+    public void joinAndLeaveAndGetPlayersTest() {
         team.join(player);
-        assertNotNull(team.getPlayers());
-    }
-
-    /**
-     * Test of leave method, of class Team.
-     */
-    @Test
-    public void testLeave() {
-        team.join(player);
+        assertEquals(1, team.getPlayers().size());
         team.leave(player);
-        assertNull(team.getPlayers());
+        assertEquals(0, team.getPlayers().size());
+    }
+    
+    /**
+     * Tests get getTeamColour method.
+     */
+    @Test
+    public void getTeamColourTest() {
+        assertEquals(TeamColour.BLUE, team.getTeamColour());
     }
     
 }

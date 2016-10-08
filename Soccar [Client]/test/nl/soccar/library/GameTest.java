@@ -1,7 +1,9 @@
 package nl.soccar.library;
 
 import java.time.LocalDateTime;
+import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.CarType;
+import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.EventType;
 import nl.soccar.library.enumeration.GameStatus;
 import nl.soccar.library.enumeration.Privilege;
@@ -10,53 +12,88 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * JUnit test that tests the nl.soccar.library.Game class.
  *
  * @author PTS34A
  */
 public class GameTest {
-    
-    // Declaration of test objects
-    private Game game;
-    private Event event;
+
+    // Declaration of test objects.
     private Player player;
-    
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone(); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    private Event event;
+    private Game game;
+
+    /**
+     * Instantiation of test objects.
+     */
     @Before
     public void setUp() {
+        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        event = new Event(EventType.GOAL, LocalDateTime.of(2016, 1, 1, 0, 0), player);
         game = new Game();
-        player = new Player("Testuser", "password", Privilege.NORMAL, CarType.CASUAL);
-        event = new Event(EventType.GOAL, LocalDateTime.now(), player);
-    }
-    
-    /**
-     * Test of start method, of class Game.
-     */
-    @Test
-    public void testStart() {
-        game.start();
-        assertEquals(GameStatus.STARTED, game.getStatus());
     }
 
     /**
-     * Test of stop method, of class Game.
+     * Tests the start method.
      */
     @Test
-    public void testStop() {
-        game.stop();
+    public void startTest() {
+        // TODO
+        // game.start();
+        // assertEquals(GameStatus.STARTED, game.getStatus());
+    }
+
+    /**
+     * Tests the stop method.
+     */
+    @Test
+    public void stopTest() {
+        // TODO
+        // game.stop();
+        // assertEquals(GameStatus.STOPPED, game.getStatus());
+    }
+
+    /**
+     * Tests the addEvent and getEvent methods.
+     */
+    @Test
+    public void addEventAndGetEventsTest() {
+        game.addEvent(event);
+        assertEquals(event, game.getEvents().get(0));
+    }
+
+    /**
+     * Tests the getStarttime method.
+     */
+    @Test
+    public void getStartTimeTest() {
+        // TODO
+    }
+
+    /**
+     * Tests the getStatus method.
+     */
+    @Test
+    public void getStatusTest() {
         assertEquals(GameStatus.STOPPED, game.getStatus());
     }
 
     /**
-     * Test of addEvent method, of class Game.
+     * Tests the getDuration and setDuration methods.
      */
     @Test
-    public void testAddEvent() {
-        game.addEvent(event);
-        assertNotNull(game.getEvents());
+    public void getDurationAndSetDurationTest() {
+        game.setDuration(Duration.MINUTES_3);
+        assertEquals(Duration.MINUTES_3, game.getDuration());
+    }
+
+    /**
+     * Tests the getBallType and setBallType methods.
+     */
+    @Test
+    public void getBalltypeAndSetBalltypeTest() {
+        game.setBalltype(BallType.BOWLING);
+        assertEquals(BallType.BOWLING, game.getBalltype());
     }
 
 }

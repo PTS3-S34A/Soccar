@@ -2,36 +2,75 @@ package nl.soccar.library;
 
 import java.awt.Rectangle;
 import nl.soccar.library.enumeration.CarType;
+import nl.soccar.library.enumeration.MapType;
 import nl.soccar.library.enumeration.Privilege;
+import nl.soccar.util.MapUtilities;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * JUnit test that tests the nl.soccar.library.Map class.
  *
  * @author PTS34A
  */
 public class MapTest {
-    
-    //Delcaration of test objects
-    private Map map;
-    private Car car;
+
+    // Declaration of test objects.
     private Player player;
-    
+    private Car car;
+    private Map map;
+
+    /**
+     * Instantiation of test objects.
+     */
     @Before
     public void setUp() {
-        player = new Player("Testuser", "password", Privilege.NORMAL, CarType.CASUAL);
-        car = new Car(0, 0, 0, player.getCarType(), player);
+        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        car = new Car(0.0F, 0.0F, 0.0F, 10.0F, 10.0F, player.getCarType(), player);
         map = new Map(new Rectangle(0, 0, 10, 10));
     }
 
     /**
-     * Test of addCar method, of class Map.
+     * Tests the addCar and getCarFromPlayer methods.
      */
     @Test
-    public void testAddCar() {
+    public void addCarAndGetCarFromPlayerTest() {
         map.addCar(car);
-        assertNotNull(map.getCarFromPlayer(player));
+        assertEquals(car, map.getCarFromPlayer(player));
+    }
+
+    /**
+     * Tests the getSize method.
+     */
+    @Test
+    public void getSizeTest() {
+        assertEquals(new Rectangle(0, 0, 10, 10), map.getSize());
+    }
+
+    /**
+     * Tests the getGoalBlue method.
+     */
+    @Test
+    public void getGoalBlueTest() {
+        assertEquals(MapUtilities.getLeftGoal(), map.getGoalBlue());
+    }
+
+    /**
+     * Tests the getGoalBlue method.
+     */
+    @Test
+    public void getGoalRedTest() {
+        assertEquals(MapUtilities.getRightGoal(), map.getGoalRed());
+    }
+    
+    /**
+     * Tests the getMapType and setMapType methods.
+     */
+    @Test
+    public void getMapTypeTest() {
+        map.setMapType(MapType.MOON);
+        assertEquals(MapType.MOON, map.getMapType());
     }
     
 }

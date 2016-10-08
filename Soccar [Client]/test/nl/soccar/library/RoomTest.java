@@ -1,40 +1,88 @@
 package nl.soccar.library;
 
+import nl.soccar.library.enumeration.CarType;
+import nl.soccar.library.enumeration.Privilege;
+import nl.soccar.library.enumeration.TeamColour;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * JUnit test that tests the nl.soccar.library.Room class.
  *
  * @author PTS34A
  */
 public class RoomTest {
-    
-    // Declaration of test objects
+
+    // Declaration of test objects.
     private Room room;
-    private String pass; 
-    
+    private Player player;
+
     @Before
     public void setUp() {
-        pass = "12345";
-        
-        room = new Room("De vliegende hollander", pass);
+        room = new Room("name", "password");
+        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        room.getTeamBlue().join(player);
     }
 
     /**
-     * Test of check method, of class Room.
+     * Tests the check method.
      */
     @Test
-    public void testCheckTrue() {
-        assertTrue(room.check(pass));
+    public void checkTest() {
+        assertTrue(room.check("password"));
+        assertFalse(room.check("wrong password"));
+    }
+
+    /**
+     * Tests get getHost method.
+     */
+    @Test
+    public void getHostTest() {
+        assertEquals(player, room.getHost());
+        room.getTeamBlue().leave(player);
+        assertNull(room.getHost());
+    }
+
+    /**
+     * Tests the getTeamRed method.
+     */
+    @Test
+    public void getTeamRedTest() {
+        assertEquals(TeamColour.RED, room.getTeamRed().getTeamColour());
+    }
+
+    /**
+     * Tests the getTeamBlue method.
+     */
+    @Test
+    public void getTeamBlueTest() {
+        assertEquals(TeamColour.BLUE, room.getTeamBlue().getTeamColour());
+    }
+
+    /**
+     * Tests the getAllPlayers method.
+     */
+    @Test
+    public void getAllPlayersTest() {
+        assertEquals(1, room.getAllPlayers().size());
     }
     
     /**
-     * Test of check method, of class Room.
+     * Tests the getName method.
      */
     @Test
-    public void testCheckFalse() {
-        assertFalse(room.check(""));
+    public void getNameTest() {
+        assertEquals("name", room.getName());
+    }
+    
+    /**
+     * Tests the getCapacity and setCapacity methods.
+     */
+    @Test
+    public void getCapacityAndSetCapacityTest() {
+        room.setCapacity(4);
+        assertEquals(4, room.getCapacity());
     }
 
 }
