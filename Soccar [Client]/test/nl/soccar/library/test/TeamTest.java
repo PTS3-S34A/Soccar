@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class TeamTest {
 
-    // Delcaration of test objects.
+    // Declaration of test objects.
     private Team team;
     private Player player;
 
