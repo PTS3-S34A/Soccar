@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import nl.soccar.library.Player;
+import nl.soccar.library.Room;
 import nl.soccar.library.Session;
 import nl.soccar.library.Soccar;
 import nl.soccar.ui.Main;
@@ -29,7 +30,7 @@ public class SessionViewFXMLController implements Initializable {
     private ListView lvPlayersRed;
     @FXML
     private ListView lvPlayersBlue;
-    @FXML 
+    @FXML
     private Button btnLeaveRoom;
     @FXML
     private Button btnLogOut;
@@ -40,49 +41,41 @@ public class SessionViewFXMLController implements Initializable {
     @FXML
     private Button btnStartGame;
     @FXML
-    
-    private Session currentSession; 
-    
+
+    private Session currentSession;
+
     private Player currentPlayer;
-    
-    private Soccar soccarInstance;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btnLogOut.setOnAction(e -> {
-            Main.getInstance().logOut();
-        });
-        
-        btnLeaveRoom.setOnAction(e -> {
-            leaveRoom();
-        });
-        
-        lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername()); 
-        
-        currentSession = Soccar.getInstance().getSessionController().getCurrentSession();
-        soccarInstance = Soccar.getInstance();
-        currentPlayer = Soccar.getInstance().getCurrentPlayer();
-        
+        Soccar soccar = Soccar.getInstance();
+        currentSession = soccar.getSessionController().getCurrentSession();
+        currentPlayer = soccar.getCurrentPlayer();
+
+        btnLogOut.setOnAction(e -> Main.getInstance().logOut());
+        btnLeaveRoom.setOnAction(e -> leaveRoom());
+
+        lblUsername.setText(currentPlayer.getUsername());
+
         setRoomInfo();
-    }    
-    
-    public void setRoomInfo() {
-        lblRoomName.setText("Room: " + currentSession.getRoom().getName());
-        
-        lvPlayersBlue.setItems(FXCollections.observableArrayList(currentSession.getRoom().getTeamBlue().getPlayers()));
-        lvPlayersRed.setItems(FXCollections.observableArrayList(currentSession.getRoom().getTeamRed().getPlayers()));
-        
-        lblOccupancy.setText("Occupancy: " + currentSession.getRoom().getAllPlayers().size() + "/" + currentSession.getRoom().getCapacity());
-        
-        if(currentSession.getRoom().getAllPlayers().size() == currentSession.getRoom().getCapacity()) {
-            btnStartGame.setDisable(false);
-        } else {
-            btnStartGame.setDisable(true);
-        }
     }
-    
+
+    public void setRoomInfo() {
+        Room room = currentSession.getRoom();
+        int roomSize = room.getAllPlayers().size();
+
+        lblRoomName.setText("Room: " + room.getName());
+        lblOccupancy.setText("Occupancy: " + (roomSize + "/" + room.getCapacity()));
+
+        lvPlayersBlue.setItems(FXCollections.observableArrayList(room.getTeamBlue().getPlayers()));
+        lvPlayersRed.setItems(FXCollections.observableArrayList(room.getTeamRed().getPlayers()));
+
+        btnStartGame.setDisable(roomSize != room.getCapacity());
+    }
+
     public void leaveRoom() {
         Soccar.getInstance().getSessionController().leave(currentSession, currentPlayer);
         Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU);
