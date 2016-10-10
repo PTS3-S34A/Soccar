@@ -61,15 +61,15 @@ public class SessionController {
         
         Team teamBlue = room.getTeamBlue();
         Team teamRed = room.getTeamRed();
-        List<Player> teamRedPlayers = room.getTeamRed().getPlayers();
-        List<Player> teamBluePlayers = room.getTeamBlue().getPlayers();
+        List<Player> teamRedPlayers = teamRed.getPlayers();
+        List<Player> teamBluePlayers = teamBlue.getPlayers();
         
         if (teamBluePlayers.size() < teamRedPlayers.size()) {
            teamBlue.join(player);
         } else if (teamBluePlayers.size() > teamRedPlayers.size()) {
             teamRed.join(player);
         } else {
-            if(rnd.nextInt(2) + 1 == 1) {
+            if (rnd.nextInt(2) + 1 == 1) {
                 teamBlue.join(player);
             } else {
                 teamRed.join(player);
