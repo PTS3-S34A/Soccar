@@ -3,6 +3,7 @@ package nl.soccar.library;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.util.MapUtilities;
 
@@ -21,19 +22,27 @@ public class Map {
     private List<Car> cars;
     private Ball ball;
     
-    public Map(Rectangle size) {
-        this(size, MapUtilities.getLeftGoal(), MapUtilities.getRightGoal());
+    /**
+     * Initiates a new Map Object.
+     * 
+     * @param size The size of this Map.
+     * @param ball The ball of this Map.
+     */
+    public Map(Rectangle size, Ball ball) {
+        this(size, ball, MapUtilities.getLeftGoal(), MapUtilities.getRightGoal());
     }
 
     /**
      * Constructor used for instantiation of a Map object.
      *
-     * @param size Size of the map.
+     * @param size The size of this map.
      * @param goalBlue Rectangle position of the blue goal.
      * @param goalRed Rectangle pisition of the red goal.
+     * @param ball The ball of this Map.
      */
-    public Map(Rectangle size, Rectangle goalBlue, Rectangle goalRed) {
+    public Map(Rectangle size, Ball ball, Rectangle goalBlue, Rectangle goalRed) {
         this.size = size;
+        this.ball = ball;
         this.goalBlue = goalBlue;
         this.goalRed = goalRed;
         type = MapType.GRASSLAND;
