@@ -112,9 +112,7 @@ public class SessionController {
      */
     public ObservableList<Room> getAllRooms() {
         ObservableList<Room> roomList = FXCollections.observableArrayList();
-        allSessions.forEach(s -> {
-            roomList.add(s.getRoom());
-        });
+        allSessions.forEach(s -> roomList.add(s.getRoom()));
         return roomList;
     }
 
