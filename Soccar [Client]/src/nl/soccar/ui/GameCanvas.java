@@ -3,8 +3,7 @@ package nl.soccar.ui;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
+import nl.soccar.ui.physics.GamePhysics;
 
 /**
  *
@@ -12,15 +11,7 @@ import org.jbox2d.dynamics.World;
  */
 public abstract class GameCanvas {
 
-    private static final Vec2 GRAVITY;
-    private static final boolean  DO_SLEEP;
-    
-    static {
-        GRAVITY = new Vec2(0.0F, 0.0F);
-        DO_SLEEP = true;
-    }
-    
-    private final World world;
+    private final GamePhysics physics;
     private final List<Drawable> drawables;
 
     /**
@@ -29,7 +20,7 @@ public abstract class GameCanvas {
      */
     public GameCanvas() {
         drawables = new ArrayList<>();
-        world = new World(GRAVITY, DO_SLEEP);
+        physics = new GamePhysics();
     }
 
     public abstract void start();
@@ -55,12 +46,12 @@ public abstract class GameCanvas {
     }
 
     /**
-     * Method that gets the world.
+     * Method that gets the physics.
      * 
-     * @return The world.
+     * @return The physics.
      */
-    public World getWorld() {
-        return world;
+    public final GamePhysics getPhysics() {
+        return physics;
     }
 
     /**

@@ -28,7 +28,7 @@ public abstract class DrawableFx<M> implements Drawable {
      * @return The canvas of this DrawableFx.
      */
     @Override
-    public GameCanvasFx getCanvas() {
+    public final GameCanvasFx getCanvas() {
         return canvas;
     }
 
