@@ -11,18 +11,25 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- *
+ * BallPhysics is a physics-model that keeps track of the physics of the Ball.
+ * 
  * @author PTS34A
  */
 public class BallPhysics implements WorldObject {
 
-    private final float DENSITY = 1.0F;
-    private final float FRICTION = 0.0F;
-    private final float RESTITUTION = 1.0F;
+    private static final float DENSITY = 1.0F;
+    private static final float FRICTION = 0.0F;
+    private static final float RESTITUTION = 1.0F;
 
     private final Body body;
     private final float radius;
 
+    /**
+     * Initiates a new BallPhysics Object using the given parameter.
+     * 
+     * @param ball The model to keep track of.
+     * @param world The world in which this model is placed.
+     */
     public BallPhysics(Ball ball, World world) {
         radius = ball.getRadius();
 

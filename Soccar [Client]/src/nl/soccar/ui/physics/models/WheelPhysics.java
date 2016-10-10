@@ -13,6 +13,8 @@ import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
 
 /**
+ * WheelPhysics is a utility class that keeps track of the physics of a Wheel,
+ * which is in turn connected to a Car physics-model.
  *
  * @author PTS34A
  */
@@ -31,6 +33,19 @@ public class WheelPhysics {
 
     private float acceleration = 0;
 
+    /**
+     * Initiates a new WheelPhysics Object using the given parameters.
+     *
+     * @param relPosX The x-coordinate, relative to the Car.
+     * @param relPosY The y-coordinate, relative to the Car.
+     * @param width The width of this Wheel.
+     * @param height The height of this Wheel.
+     * @param steerable Determines whether this wheel is used to steer the Car.
+     * @param powered Determines whether this wheel is used to power the Car.
+     * @param carBody The body (Box2D model) of the Car this wheel is connected
+     * to
+     * @param world The world in which this Wheel is placed in.
+     */
     public WheelPhysics(float relPosX, float relPosY, float width, float height, boolean steerable, boolean powered, Body carBody, World world) {
         this.width = width;
         this.height = height;
@@ -69,7 +84,7 @@ public class WheelPhysics {
         }
     }
 
-    public void updateFriction() {
+    void updateFriction() {
         // Lateral velocity
         Vec2 impulse = getLateralVelocity().mul(-body.getMass());
         body.applyLinearImpulse(impulse, body.getWorldCenter());
@@ -84,7 +99,7 @@ public class WheelPhysics {
         body.applyForce(currentForwardNormal.mul(dragForceMagnitude), body.getWorldCenter());
     }
 
-    public void updateDrive() {
+    void updateDrive() {
         Vec2 currentForwardNormal = body.getWorldVector(new Vec2(0, 1));
         float currentSpeed = Vec2.dot(getForwardVelocity(), currentForwardNormal);
 
@@ -100,7 +115,7 @@ public class WheelPhysics {
         body.applyForce(currentForwardNormal.mul(force), body.getWorldCenter());
     }
 
-    public void setAcceleration(ThrottleAction throttleAction) {
+    void setAcceleration(ThrottleAction throttleAction) {
         switch (throttleAction) {
             case ACCELERATE:
                 acceleration = PhysicsContants.CAR_MAX_SPEED * 10;
@@ -108,8 +123,8 @@ public class WheelPhysics {
             case REVERSE:
                 acceleration = -PhysicsContants.CAR_MAX_REVERSE_SPEED * 10;
                 break;
-            default:
             case IDLE:
+            default:
                 acceleration = 0;
                 break;
         }
@@ -117,8 +132,10 @@ public class WheelPhysics {
 
     /**
      * Sets wheel's angle relative to the car's body (in degrees).
+     *
+     * @param angle the new angle (not relative to the car) of this Wheel.
      */
-    public void setAngle(float angle) {
+    void setAngle(float angle) {
         body.m_sweep.a = carBody.getAngle() + angle;
     }
 
@@ -142,7 +159,7 @@ public class WheelPhysics {
     public boolean isPowered() {
         return powered;
     }
-    
+
     public float getX() {
         return body.getPosition().x;
     }
@@ -154,7 +171,7 @@ public class WheelPhysics {
     public float getDegree() {
         return body.getAngle();
     }
-    
+
     public float getWidth() {
         return width;
     }

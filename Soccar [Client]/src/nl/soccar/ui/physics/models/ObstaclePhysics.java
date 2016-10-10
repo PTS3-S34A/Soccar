@@ -1,6 +1,5 @@
 package nl.soccar.ui.physics.models;
 
-import nl.soccar.library.Game;
 import nl.soccar.library.Obstacle;
 import nl.soccar.ui.physics.WorldObject;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -10,18 +9,26 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- *
+ * ObstaclePhysics is a physics-model that keeps track of the physics of an 
+ * Obstacle.
+ * 
  * @author PTS34A
  */
 public class ObstaclePhysics implements WorldObject {
 
-    private final float FRICTION = 0.0F;
+    private static final float FRICTION = 0.0F;
 
     private final Body body;
 
     private float width;
     private float height;
 
+    /**
+     * Initiates a new ObstaclePhysics Object using the given parameters.
+     * 
+     * @param obstacle The model to keep track of.
+     * @param world The World in which this model is placed in.
+     */
     public ObstaclePhysics(Obstacle obstacle, World world) {
         BodyDef bd = new BodyDef();
         bd.position.set(obstacle.getX(), obstacle.getY());
