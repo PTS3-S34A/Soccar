@@ -1,16 +1,12 @@
 package nl.soccar.ui.fx.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -32,7 +28,7 @@ import nl.soccar.ui.fx.FXMLConstants;
 public class MainMenuFXMLController implements Initializable {
 
     private static final String NO_PASSWORD = "";
-    
+
     @FXML
     private Button btnCreateRoom;
     @FXML
@@ -63,25 +59,19 @@ public class MainMenuFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sessionController = Soccar.getInstance().getSessionController();
-        
+
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());
         lblCar.setText(Soccar.getInstance().getCurrentPlayer().getCarType().toString());
 
-        tbclName.setCellValueFactory(new PropertyValueFactory<SessionTableItem, String>("roomName"));
-        tbclOccupation.setCellValueFactory(new PropertyValueFactory<SessionTableItem, String>("occupancy"));
-        tbclOwner.setCellValueFactory(new PropertyValueFactory<SessionTableItem, String>("hostName"));
-        tbclPassword.setCellValueFactory(new PropertyValueFactory<SessionTableItem, String>("passwordAvailable"));
-        
-        btnCreateRoom.setOnAction(e -> {
-            Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM);
-        });
-        btnLogOut.setOnAction(e -> {
-            Main.getInstance().logOut();
-        });
-        
-        btnJoinRoom.setOnAction(e -> {
-            Main.getInstance().logOut();
-        });
+        tbclName.setCellValueFactory(new PropertyValueFactory<>("roomName"));
+        tbclOccupation.setCellValueFactory(new PropertyValueFactory<>("occupancy"));
+        tbclOwner.setCellValueFactory(new PropertyValueFactory<>("hostName"));
+        tbclPassword.setCellValueFactory(new PropertyValueFactory<>("passwordAvailable"));
+
+        btnLogOut.setOnAction(e -> Main.getInstance().logOut());
+
+        btnCreateRoom.setOnAction(e -> Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM));
+        btnJoinRoom.setOnAction(e -> Main.getInstance().logOut());
 
         tblSessionList.setRowFactory(tv -> {
             TableRow<SessionTableItem> row = new TableRow();
@@ -99,17 +89,16 @@ public class MainMenuFXMLController implements Initializable {
         tblSessionList.getItems().clear();
 
         ObservableList<SessionTableItem> sessionItems = FXCollections.observableArrayList();
-        for (Session s : Soccar.getInstance().getSessionController().getAllSessions()) {
-            sessionItems.add(new SessionTableItem(s));
-        }
+        Soccar.getInstance().getSessionController().getAllSessions().stream().map(s -> new SessionTableItem(s)).forEach(sessionItems::add);
+        
         tblSessionList.getItems().addAll(sessionItems);
     }
 
     public void joinRoom(TableRow row) {
         SessionTableItem rowData = (SessionTableItem) row.getItem();
-        
+
         Session selectedSession = rowData.getSession();
-        
+
         if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
             dialog.setTitle("Password locked room");
