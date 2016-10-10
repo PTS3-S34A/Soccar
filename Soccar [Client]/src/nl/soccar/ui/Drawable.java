@@ -27,4 +27,11 @@ public interface Drawable<M> {
      */
     M getModel();
     
+    /**
+     * Method that returns the game canvas on which this drawable is placed.
+     * 
+     * @return The game canvas.
+     */
+    GameCanvas getCanvas();
+    
 }

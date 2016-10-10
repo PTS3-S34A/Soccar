@@ -3,6 +3,7 @@ package nl.soccar.ui;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import nl.soccar.ui.physics.GamePhysics;
 
 /**
  *
@@ -10,6 +11,7 @@ import java.util.List;
  */
 public abstract class GameCanvas {
 
+    private final GamePhysics physics;
     private final List<Drawable> drawables;
 
     /**
@@ -18,6 +20,7 @@ public abstract class GameCanvas {
      */
     public GameCanvas() {
         drawables = new ArrayList<>();
+        physics = new GamePhysics();
     }
 
     public abstract void start();
@@ -40,6 +43,15 @@ public abstract class GameCanvas {
      */
     public final void removeDrawable(Drawable drawable) {
         drawables.remove(drawable);
+    }
+
+    /**
+     * Method that gets the physics.
+     * 
+     * @return The physics.
+     */
+    public final GamePhysics getPhysics() {
+        return physics;
     }
 
     /**

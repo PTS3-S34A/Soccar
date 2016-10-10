@@ -35,13 +35,6 @@ public class Car extends Entity {
         this.player = player;
     }
 
-    @Override
-    public void move(float x, float y, float degree) {
-        super.x = x;
-        super.y = y;
-        super.degree = degree;
-    }
-
     /**
      * Gets the width of this Car.
      *
