@@ -4,7 +4,9 @@ import java.awt.Rectangle;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import nl.soccar.library.Ball;
 import nl.soccar.library.Map;
+import nl.soccar.library.enumeration.BallType;
 import nl.soccar.util.MapUtilities;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +27,7 @@ public class MapUtilitiesTest {
      */
     @Before
     public void setUp() {
-        map = new Map(new Rectangle(0, 0, 10, 10));
+        map = new Map(new Rectangle(0, 0, 10, 10), new Ball(0, 0, 0, 0, BallType.HOCKEY));
     }
 
     /**
