@@ -44,6 +44,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         context.rotate(-Math.toDegrees(obstacle.getDegree())); // Set the angle of the rotation.
 
         switch (obstacle.getType()) {
+            default:
             case WALL:
                 context.setFill(WALL_COLOR);
                 context.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left.
