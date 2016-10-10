@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
  * @author PTS34A
  */
 public class SessionController {
-    
+
     private static Random rnd;
 
     private Session currentSession;
@@ -63,21 +63,22 @@ public class SessionController {
             // TODO implementatie foutmelding
             return null;
         }
-        
+
         Team teamBlue = room.getTeamBlue();
         Team teamRed = room.getTeamRed();
+
         List<Player> teamRedPlayers = teamRed.getPlayers();
         List<Player> teamBluePlayers = teamBlue.getPlayers();
-        
-        if (teamBluePlayers.size() < teamRedPlayers.size()) {
-           teamBlue.join(player);
-        } else if (teamBluePlayers.size() > teamRedPlayers.size()) {
-            teamRed.join(player);
-        } else if (rnd.nextInt(2) + 1 == 1) {
+
+        int bluePlayers = teamBluePlayers.size();
+        int redPlayers = teamRedPlayers.size();
+
+        if (bluePlayers < redPlayers || (bluePlayers == redPlayers && (rnd.nextInt(2) + 1 == 1))) {
             teamBlue.join(player);
         } else {
-            teamRed.join(player); 
+            teamRed.join(player);
         }
+
         return s;
     }
 
@@ -89,10 +90,10 @@ public class SessionController {
      */
     public void leave(Session session, Player player) {
         Room room = session.getRoom();
-        
+
         room.getTeamBlue().leave(player);
         room.getTeamRed().leave(player);
-        
+
         Soccar.getInstance().getSessionController().setCurrentSession(null);
     }
 
@@ -107,7 +108,7 @@ public class SessionController {
 
     /**
      * Method that gets a observable list of all rooms.
-     * 
+     *
      * @return Observablelist of all rooms.
      */
     public ObservableList<Room> getAllRooms() {
