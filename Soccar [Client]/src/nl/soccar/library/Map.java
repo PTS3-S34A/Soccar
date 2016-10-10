@@ -3,7 +3,6 @@ package nl.soccar.library;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
-import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.util.MapUtilities;
 
@@ -21,10 +20,10 @@ public class Map {
 
     private List<Car> cars;
     private Ball ball;
-    
+
     /**
      * Initiates a new Map Object.
-     * 
+     *
      * @param size The size of this Map.
      * @param ball The ball of this Map.
      */
@@ -98,7 +97,7 @@ public class Map {
 
     /**
      * Method that gets the type of this map.
-     * 
+     *
      * @return Map type of this map.
      */
     public MapType getMapType() {
@@ -107,8 +106,8 @@ public class Map {
 
     /**
      * Method that sets the type of this map.
-     * 
-     * @param type Map type that needs to be set. 
+     *
+     * @param type Map type that needs to be set.
      */
     public void setMapType(MapType type) {
         this.type = type;
