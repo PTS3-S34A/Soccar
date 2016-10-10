@@ -6,11 +6,10 @@ import java.util.List;
 import nl.soccar.ui.physics.GamePhysics;
 
 /**
- *
- * @author PTS34A
- * 
  * A canvas keeps track of Drawables. It updates them and provides a way to draw them.
  * It also keeps track of all Physics, the drawables (in turn) provide stepping methodes for the World (Physics).
+ * 
+ * @author PTS34A
  */
 public abstract class GameCanvas {
 

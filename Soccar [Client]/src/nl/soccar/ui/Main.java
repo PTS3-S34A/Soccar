@@ -13,10 +13,9 @@ import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.ui.fx.FXMLConstants;
 
 /**
- *
- * @author PTS34A
- * 
  * Entry point of the Soccar application. The Main class keeps track of the UI and provides a way to switch certain scenes.
+ * 
+ * @author PTS34A
  */
 public class Main extends Application {
 
