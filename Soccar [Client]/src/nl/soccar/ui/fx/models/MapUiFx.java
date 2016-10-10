@@ -69,6 +69,7 @@ public class MapUiFx extends DrawableFx<Map> {
 
     @Override
     public void update() {
+        //Map doesn't actually move or anything, so it doesn't have to be updated.
     }
 
     @Override
@@ -88,6 +89,7 @@ public class MapUiFx extends DrawableFx<Map> {
         double boxPositionY = (height / 2) - (DisplayConstants.BOX_HEIGHT / 2);
 
         switch (map.getMapType()) {
+            default:
             case GRASSLAND:
                 context.drawImage(TEXTURE_GRASS, x, y, width, height);
                 break;
