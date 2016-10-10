@@ -10,9 +10,9 @@ import nl.soccar.library.enumeration.EventType;
  */
 public class Event {
     
-    private EventType type;
-    private LocalDateTime time;
-    private Player player;
+    private final EventType type;
+    private final LocalDateTime time;
+    private final Player player;
 
     /**
      * Initiates a new Event Object.
