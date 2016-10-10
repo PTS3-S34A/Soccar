@@ -13,6 +13,8 @@ import javafx.collections.ObservableList;
  * @author PTS34A
  */
 public class SessionController {
+    
+    static Random rnd;
 
     private Session currentSession;
 
@@ -24,6 +26,7 @@ public class SessionController {
      */
     public SessionController() {
         allSessions = new ArrayList<>();
+        rnd = new Random();
     }
 
     /**
@@ -38,7 +41,7 @@ public class SessionController {
         Session session = new Session(name, password);
         allSessions.add(session);
 
-        join(name, password, player);
+        join(session, password, player);
         return session;
     }
 
@@ -50,27 +53,23 @@ public class SessionController {
      * @param player Player that needs to be added to this session.
      * @return Session that was joined.
      */
-    public Session join(String name, String password, Player player) {
-        for (Session s : allSessions) {
-            if (s.getRoom().getName().equals(name) && s.getRoom().check(password)) {
-                if (s.getRoom().getTeamRed().getPlayers().size() > s.getRoom().getTeamBlue().getPlayers().size()) {
-                    s.getRoom().getTeamBlue().join(player);
-                } else if (s.getRoom().getTeamRed().getPlayers().size() < s.getRoom().getTeamBlue().getPlayers().size()) {
-                    s.getRoom().getTeamRed().join(player);
-                } else {
-                    Random rnd = new Random();
-                    int random = rnd.nextInt(2) + 1;
-
-                    if (random == 1) {
-                        s.getRoom().getTeamBlue().join(player);
-                    } else {
-                        s.getRoom().getTeamRed().join(player);
-                    }
-                }
-                return s;
-            }
+    public Session join(Session s, String password, Player player) {
+        if (!s.getRoom().check(password)) {
+            return null;
         }
-        return null;
+        
+        if (s.getRoom().getTeamBlue().getPlayers().size() < s.getRoom().getTeamRed().getPlayers().size()) {
+            s.getRoom().getTeamBlue().join(player);
+        } else if (s.getRoom().getTeamBlue().getPlayers().size() > s.getRoom().getTeamRed().getPlayers().size()) {
+            s.getRoom().getTeamRed().join(player);
+        } else {
+            if(rnd.nextInt(2) + 1 == 1) {
+                s.getRoom().getTeamBlue().join(player);
+            } else {
+                s.getRoom().getTeamRed().join(player);
+            } 
+        }
+        return s;
     }
 
     /**
@@ -82,6 +81,8 @@ public class SessionController {
     public void leave(Session session, Player player) {
         session.getRoom().getTeamBlue().leave(player);
         session.getRoom().getTeamRed().leave(player);
+        
+        Soccar.getInstance().getSessionController().setCurrentSession(null);
     }
 
     /**
