@@ -9,8 +9,8 @@ import nl.soccar.library.enumeration.CarType;
  */
 public class Car extends Entity {
 
-    private float width;
-    private float height;
+    private final float width;
+    private final float height;
 
     private int booster;
     private CarType type;
