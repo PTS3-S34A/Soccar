@@ -23,7 +23,7 @@ public class SessionTableItem {
         
         Room room = s.getRoom();
         roomName = new SimpleStringProperty(room.getName());
-        occupancy = new SimpleStringProperty(room.getAllPlayers().size() + " / " + room.getCapacity());
+        occupancy = new SimpleStringProperty(String.format("%d/%d", room.getOccupancy(), room.getCapacity()));
         
         Player host = room.getHost();
         hostName = new SimpleStringProperty(host != null ? host.getUsername() : "No host available.");

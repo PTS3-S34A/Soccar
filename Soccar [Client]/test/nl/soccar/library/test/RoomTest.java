@@ -67,7 +67,7 @@ public class RoomTest {
      */
     @Test
     public void getAllPlayersTest() {
-        assertEquals(1, room.getAllPlayers().size());
+        assertEquals(1, room.getOccupancy());
     }
     
     /**

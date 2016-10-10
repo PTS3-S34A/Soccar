@@ -55,7 +55,7 @@ public class SessionController {
      */
     public Session join(Session s, String password, Player player) {
         Room room = s.getRoom();
-        if (room.getAllPlayers().size() >= room.getCapacity()) {
+        if (room.getOccupancy() >= room.getCapacity()) {
             // TODO implementatie foutmelding
             return null;
         }

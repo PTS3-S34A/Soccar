@@ -65,15 +65,16 @@ public class SessionViewFXMLController implements Initializable {
 
     public void setRoomInfo() {
         Room room = currentSession.getRoom();
-        int roomSize = room.getAllPlayers().size();
-
-        lblRoomName.setText("Room: " + room.getName());
-        lblOccupancy.setText("Occupancy: " + (roomSize + "/" + room.getCapacity()));
+        int occupancy = room.getOccupancy();
+        int capacity = room.getCapacity();
+        
+        lblRoomName.setText(String.format("Room: %s", room.getName()));
+        lblOccupancy.setText(String.format("Occupancy: %d/%d", occupancy, capacity));
 
         lvPlayersBlue.setItems(FXCollections.observableArrayList(room.getTeamBlue().getPlayers()));
         lvPlayersRed.setItems(FXCollections.observableArrayList(room.getTeamRed().getPlayers()));
 
-        btnStartGame.setDisable(roomSize != room.getCapacity());
+        btnStartGame.setDisable(occupancy != capacity);
     }
 
     public void leaveRoom() {
