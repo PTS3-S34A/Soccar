@@ -27,13 +27,6 @@ public class Ball extends Entity {
         this.type = type;
     }
 
-    @Override
-    public void move(float x, float y, float degree) {
-        super.x = x;
-        super.y = y;
-        super.degree = degree;
-    }
-
     /**
      * Gets the radius of this Ball.
      * 

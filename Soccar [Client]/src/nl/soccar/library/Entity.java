@@ -34,8 +34,12 @@ public abstract class Entity {
      * @param y The new y-position.
      * @param degree The new degree.
      */
-    public abstract void move(float x, float y, float degree);
-
+    public void move(float x, float y, float degree) {
+        this.x = x;
+        this.y = y;
+        this.degree = degree;
+    }
+    
     /**
      * Gets the x-position of this Entity.
      * 
