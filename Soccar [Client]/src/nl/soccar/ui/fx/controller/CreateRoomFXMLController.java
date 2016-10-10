@@ -2,6 +2,7 @@ package nl.soccar.ui.fx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,7 +12,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import nl.soccar.library.Session;
-import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.ui.Main;
@@ -46,12 +46,8 @@ public class CreateRoomFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btnLogOut.setOnAction(e -> {
-            Main.getInstance().logOut();
-        });
-        btnCancel.setOnAction(e -> {
-            Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU);
-        });
+        btnLogOut.setOnAction(e -> Main.getInstance().logOut());
+        btnCancel.setOnAction(e -> Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU));
         btnCreateRoom.setOnAction(e -> {
            if (!textFieldRoomName.getText().isEmpty()) {
                createRoom();
@@ -62,7 +58,9 @@ public class CreateRoomFXMLController implements Initializable {
         
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername()); 
         
-        cbMap.getItems().addAll(MapType.values());
+        ObservableList<MapType> list = cbMap.getItems();
+        list.addAll(MapType.values());
+        
         cbMap.setValue(MapType.GRASSLAND);
     }    
     
