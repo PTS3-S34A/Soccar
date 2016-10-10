@@ -69,7 +69,7 @@ public class MapUiFx extends DrawableFx<Map> {
 
     @Override
     public void update() {
-        //Map doesn't actually move or anything, so it doesn't have to be updated.
+        // Map doesn't actually move or anything, so it doesn't have to be updated.
     }
 
     @Override
