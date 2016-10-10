@@ -1,5 +1,3 @@
-package nl.soccar.ui.fx.controller;
-
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -19,12 +17,8 @@ import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
+import nl.soccar.ui.fx.controller.SessionTableItem;
 
-/**
- * FXML Controller class
- *
- * @author PTS34A
- */
 public class MainMenuFXMLController implements Initializable {
 
     private static final String NO_PASSWORD = "";
@@ -40,7 +34,7 @@ public class MainMenuFXMLController implements Initializable {
     @FXML
     private Label lblCar;
     @FXML
-    private TableView tblSessionList;
+    private TableView<SessionTableItem> tblSessionList;
     @FXML
     private TableColumn tbclName;
     @FXML
@@ -71,13 +65,13 @@ public class MainMenuFXMLController implements Initializable {
         btnLogOut.setOnAction(e -> Main.getInstance().logOut());
 
         btnCreateRoom.setOnAction(e -> Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM));
-        btnJoinRoom.setOnAction(e -> Main.getInstance().logOut());
+        btnJoinRoom.setOnAction(e -> joinRoom(tblSessionList.getSelectionModel().getSelectedItem()));
 
         tblSessionList.setRowFactory(tv -> {
             TableRow<SessionTableItem> row = new TableRow();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    joinRoom(row);
+                    joinRoom((SessionTableItem) row.getItem());
                 }
             });
             return row;
@@ -94,10 +88,8 @@ public class MainMenuFXMLController implements Initializable {
         tblSessionList.getItems().addAll(sessionItems);
     }
 
-    public void joinRoom(TableRow row) {
-        SessionTableItem rowData = (SessionTableItem) row.getItem();
-
-        Session selectedSession = rowData.getSession();
+    public void joinRoom(SessionTableItem selectedRow) {
+        Session selectedSession = selectedRow.getSession();
 
         if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
