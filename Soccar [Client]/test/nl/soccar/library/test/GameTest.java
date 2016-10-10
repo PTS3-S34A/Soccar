@@ -31,7 +31,7 @@ public class GameTest {
      */
     @Before
     public void setUp() {
-        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         event = new Event(EventType.GOAL, LocalDateTime.of(2016, 1, 1, 0, 0), player);
         game = new Game();
     }

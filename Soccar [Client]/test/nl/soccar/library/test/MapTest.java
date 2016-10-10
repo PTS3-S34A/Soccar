@@ -1,9 +1,11 @@
 package nl.soccar.library.test;
 
 import java.awt.Rectangle;
+import nl.soccar.library.Ball;
 import nl.soccar.library.Car;
 import nl.soccar.library.Map;
 import nl.soccar.library.Player;
+import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.library.enumeration.Privilege;
@@ -29,9 +31,9 @@ public class MapTest {
      */
     @Before
     public void setUp() {
-        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         car = new Car(0.0F, 0.0F, 0.0F, 10.0F, 10.0F, player.getCarType(), player);
-        map = new Map(new Rectangle(0, 0, 10, 10));
+        map = new Map(new Rectangle(0, 0, 10, 10), new Ball(0.0F, 0.0F, 0.0F, 0.0F, BallType.HOCKEY));
     }
 
     /**
