@@ -89,6 +89,8 @@ public class CreateRoomFXMLController implements Initializable {
             Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
             
         } catch (DuplicateValueException e) {
+            e.printStackTrace(System.err);
+            
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle(e.getTitle());
             alert.setHeaderText(e.getTitle());

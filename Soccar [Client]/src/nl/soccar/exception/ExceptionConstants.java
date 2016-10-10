@@ -19,4 +19,5 @@ public class ExceptionConstants {
     
     public static final String ROOM_FULL_TITLE = "Room is overcrowded";
     public static final String ROOM_FULL_MESSAGE = "The room you want to enter is full";
+    
 }

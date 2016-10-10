@@ -110,12 +110,14 @@ public class MainMenuFXMLController implements Initializable {
             sessionController.setCurrentSession(sessionController.join(selectedSession, password, Soccar.getInstance().getCurrentPlayer()));
             Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
         } catch (InvalidCredentialException | RoomException e) {
+            e.printStackTrace(System.err);
+            
             alert.setTitle(e.getTitle());
             alert.setHeaderText(e.getTitle());
             alert.setContentText(e.getMessage());
 
             alert.showAndWait();
         }
-
     }
+    
 }
