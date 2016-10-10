@@ -33,7 +33,7 @@ public class MapTest {
     public void setUp() {
         player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         car = new Car(0.0F, 0.0F, 0.0F, 10.0F, 10.0F, player.getCarType(), player);
-        map = new Map(new Rectangle(0, 0, 10, 10), new Ball(0, 0, 0, 0, BallType.HOCKEY));
+        map = new Map(new Rectangle(0, 0, 10, 10), new Ball(0.0F, 0.0F, 0.0F, 0.0F, BallType.HOCKEY));
     }
 
     /**
