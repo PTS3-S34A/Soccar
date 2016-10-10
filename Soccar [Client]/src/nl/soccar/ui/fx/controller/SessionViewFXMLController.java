@@ -63,7 +63,7 @@ public class SessionViewFXMLController implements Initializable {
         setRoomInfo();
     }
 
-    public void setRoomInfo() {
+    private void setRoomInfo() {
         Room room = currentSession.getRoom();
         int occupancy = room.getOccupancy();
         int capacity = room.getCapacity();
@@ -77,7 +77,7 @@ public class SessionViewFXMLController implements Initializable {
         btnStartGame.setDisable(occupancy != capacity);
     }
 
-    public void leaveRoom() {
+    private void leaveRoom() {
         Soccar.getInstance().getSessionController().leave(currentSession, currentPlayer);
         Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU);
     }

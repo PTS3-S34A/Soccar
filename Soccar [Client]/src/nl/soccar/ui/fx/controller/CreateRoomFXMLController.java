@@ -41,9 +41,6 @@ public class CreateRoomFXMLController implements Initializable {
     @FXML 
     private ComboBox cbMap;
     
-    /**
-     * Initialization of this controller class on current scene; Events get handled.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnLogOut.setOnAction(e -> Main.getInstance().logOut());

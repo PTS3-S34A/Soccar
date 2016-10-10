@@ -17,17 +17,18 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- *
+ * CarPhysics is a physics-model that keeps track of the physics of a Car.
+ * 
  * @author PTS34A
  */
 public class CarPhysics implements WorldObject {
 
-    private final float LINEAR_DAMPING = 0.15F;
-    private final float ANGULAR_DAMPING = 0.3F;
-    private final boolean BULLET = true;
-    private final float DENSITY = 1.0F;
-    private final float FRICTION = 0.0F;
-    private final float RESTITUTION = 1.0F;
+    private static final float LINEAR_DAMPING = 0.15F;
+    private static final float ANGULAR_DAMPING = 0.3F;
+    private static final boolean BULLET = true;
+    private static final float DENSITY = 1.0F;
+    private static final float FRICTION = 0.0F;
+    private static final float RESTITUTION = 1.0F;
 
     private final Body body;
 
@@ -41,6 +42,12 @@ public class CarPhysics implements WorldObject {
 
     private List<WheelPhysics> wheels;
 
+    /**
+     * Initiates a new CarPhysics Object using the given parameters.
+     * 
+     * @param car The car model to keep track of.
+     * @param world The world in which this model is placed.
+     */
     public CarPhysics(Car car, World world) {
         width = car.getWidth();
         height = car.getHeight();

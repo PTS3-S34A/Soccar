@@ -52,10 +52,6 @@ public class MainMenuFXMLController implements Initializable {
 
     private SessionController sessionController;
 
-    /**
-     * Initialization of this controller class on current scene; Events get
-     * handled.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sessionController = Soccar.getInstance().getSessionController();
@@ -82,19 +78,20 @@ public class MainMenuFXMLController implements Initializable {
             });
             return row;
         });
+        
         updateTable();
     }
 
-    public void updateTable() {
+    private void updateTable() {
         tblSessionList.getItems().clear();
 
         ObservableList<SessionTableItem> sessionItems = FXCollections.observableArrayList();
-        Soccar.getInstance().getSessionController().getAllSessions().stream().map(s -> new SessionTableItem(s)).forEach(sessionItems::add);
+        Soccar.getInstance().getSessionController().getAllSessions().stream().map(SessionTableItem::new).forEach(sessionItems::add);
         
         tblSessionList.getItems().addAll(sessionItems);
     }
 
-    public void joinRoom(TableRow row) {
+    private void joinRoom(TableRow row) {
         SessionTableItem rowData = (SessionTableItem) row.getItem();
 
         Session selectedSession = rowData.getSession();

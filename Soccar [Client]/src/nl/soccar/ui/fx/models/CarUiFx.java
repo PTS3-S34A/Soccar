@@ -16,7 +16,10 @@ import nl.soccar.ui.physics.models.WheelPhysics;
 import nl.soccar.util.PhysicsUtilities;
 
 /**
- *
+ * A CarUiFx object represents a JavaFX Drawable of a Car.
+ * It keeps track of the Car and CarPhysics models and provides methods to draw and
+ * update the models.
+ * 
  * @author PTS34A
  */
 public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
@@ -27,6 +30,13 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
         TEXTURE_CAR_RED = new Image(DisplayConstants.LOCATION_TEXTURE_CAR_RED);
     }
 
+    /**
+     * Initiates a new CarUiFx Object using the given parameters.
+     * 
+     * @param canvas The canvas on which this Car is placed.
+     * @param car The model to keep track of.
+     * @param physics The physics-model to keep track of.
+     */
     public CarUiFx(GameCanvasFx canvas, Car car, CarPhysics physics) {
         super(canvas, car, physics);
     }
