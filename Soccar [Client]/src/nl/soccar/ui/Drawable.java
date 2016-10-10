@@ -3,8 +3,11 @@ package nl.soccar.ui;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- *
- * @author PTS34A
+ * A Drawable is an Object that can be drawn on the screen. It keeps up with a model.
+ * The model represents an Object which is connected to this Drawable, such as a Car.
+ * 
+ * @author PTS34A 
+ * @param <M> The model connected to this Drawable.
  */
 public interface Drawable<M> {
     

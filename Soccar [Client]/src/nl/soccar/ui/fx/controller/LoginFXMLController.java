@@ -31,12 +31,6 @@ public class LoginFXMLController implements Initializable {
     
     private ToggleGroup toggleGroupCars;
     
-    /**
-     * Initialization of this controller class on current scene; Events get handled.
-     * 
-     * @param url
-     * @param rb 
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
         toggleGroupCars  = new ToggleGroup();

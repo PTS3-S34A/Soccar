@@ -81,21 +81,21 @@ public class MainMenuFXMLController implements Initializable {
             });
             return row;
         });
+        
         updateTable();
     }
 
-    public void updateTable() {
+    private void updateTable() {
         tblSessionList.getItems().clear();
 
         ObservableList<SessionTableItem> sessionItems = FXCollections.observableArrayList();
-        Soccar.getInstance().getSessionController().getAllSessions().stream().map(s -> new SessionTableItem(s)).forEach(sessionItems::add);
+        Soccar.getInstance().getSessionController().getAllSessions().stream().map(SessionTableItem::new).forEach(sessionItems::add);
 
         tblSessionList.getItems().addAll(sessionItems);
     }
 
     public void joinRoom(SessionTableItem selectedRow) {
         Session selectedSession = selectedRow.getSession();
-
         Alert alert = new Alert(Alert.AlertType.WARNING);
 
         if (selectedSession.getRoom().passwordAvailable()) {
