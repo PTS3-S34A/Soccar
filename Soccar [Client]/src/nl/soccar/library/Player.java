@@ -11,7 +11,6 @@ import nl.soccar.library.enumeration.CarType;
 public class Player {
     
     private final String username;
-    private final String password;
     private final Privilege privilege;
     private final CarType carType;
     private Statistics statistics;
@@ -20,13 +19,11 @@ public class Player {
      * Constructor used for instantiation of a Player object.
      * 
      * @param username Username of the player.
-     * @param password Password of the player.
      * @param privilege Privilege of the player that is used to maintain system rights.
      * @param carType Car type of the player.
      */
-    public Player(String username, String password, Privilege privilege, CarType carType) {
+    public Player(String username, Privilege privilege, CarType carType) {
         this.username = username;
-        this.password = password;
         this.privilege = privilege;
         this.carType = carType;
     }

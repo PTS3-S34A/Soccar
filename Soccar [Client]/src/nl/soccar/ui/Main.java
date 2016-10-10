@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.soccar.library.Player;
-import nl.soccar.library.Room;
 import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
@@ -41,7 +40,7 @@ public class Main extends Application {
     
     public void login(String loginName, CarType selectedCar) {
         //TODO Login handling (password, privilege)
-        Soccar.setInstance(new Player(loginName, "", Privilege.NORMAL, selectedCar));
+        Soccar.setInstance(new Player(loginName, Privilege.NORMAL, selectedCar));
         setScene(FXMLConstants.LOCATION_MAIN_MENU);
     }
     
