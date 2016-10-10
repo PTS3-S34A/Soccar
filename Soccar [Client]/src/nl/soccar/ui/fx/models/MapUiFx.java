@@ -14,6 +14,8 @@ import nl.soccar.ui.physics.models.ObstaclePhysics;
 import org.jbox2d.dynamics.World;
 
 /**
+ * A MapUiFx object represents a JavaFX Drawable of a Map. It keeps track of the
+ * Map model and provides methods to draw and update the model.
  *
  * @author PTS34A
  */
@@ -29,6 +31,12 @@ public class MapUiFx extends DrawableFx<Map> {
         TEXTURE_GRASS = new Image(DisplayConstants.LOCATION_TEXTURE_GRASS);
     }
 
+    /**
+     * Initiates a new MapUiFx Object using the given parameters.
+     *
+     * @param canvas The canvas on which this Map is drawn.
+     * @param model The model to keep track of.
+     */
     public MapUiFx(GameCanvasFx canvas, Map model) {
         super(canvas, model);
 
@@ -89,15 +97,15 @@ public class MapUiFx extends DrawableFx<Map> {
         double boxPositionY = (height / 2) - (DisplayConstants.BOX_HEIGHT / 2);
 
         switch (map.getMapType()) {
-            default:
-            case GRASSLAND:
-                context.drawImage(TEXTURE_GRASS, x, y, width, height);
-                break;
             case DESERT:
                 context.drawImage(TEXTURE_DESERT, x, y, width, height);
                 break;
             case MOON:
                 context.drawImage(TEXTURE_MOON, x, y, width, height);
+                break;
+            case GRASSLAND:
+            default:
+                context.drawImage(TEXTURE_GRASS, x, y, width, height);
                 break;
         }
 

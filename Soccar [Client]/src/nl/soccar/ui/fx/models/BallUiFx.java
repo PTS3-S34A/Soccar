@@ -9,13 +9,23 @@ import nl.soccar.ui.physics.models.BallPhysics;
 import nl.soccar.util.PhysicsUtilities;
 
 /**
- *
+ * A BallUiFx object represents a JavaFX Drawable of a Ball.
+ * It keeps track of the Ball and BallPhysics models and provides methods to draw and
+ * update the models.
+ * 
  * @author PTS34A
  */
 public class BallUiFx extends PhysicsDrawableFx<Ball, BallPhysics> {
 
     private static final Color COLOR = Color.BLACK;
 
+    /**
+     * Initializes a new BallUiFx Object using the given parameters.
+     * 
+     * @param canvas The canvas on which this Ball is drawn.
+     * @param ball The ball model to keep track of.
+     * @param physics The physics model to keep track of.
+     */
     public BallUiFx(GameCanvasFx canvas, Ball ball, BallPhysics physics) {
         super(canvas, ball, physics);
     }
