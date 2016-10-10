@@ -2,17 +2,12 @@ package nl.soccar.ui.fx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.ui.Main;
 
@@ -51,9 +46,7 @@ public class LoginFXMLController implements Initializable {
         btnSelectSportsCar.setToggleGroup(toggleGroupCars);
         
         btnSelectCasualCar.setSelected(true);
-        btnLogin.setOnAction(e -> {
-            login();
-        });
+        btnLogin.setOnAction(e -> login());
         
         
     }

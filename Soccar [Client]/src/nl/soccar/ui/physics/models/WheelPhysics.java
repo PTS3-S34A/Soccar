@@ -108,10 +108,8 @@ public class WheelPhysics {
             case REVERSE:
                 acceleration = -PhysicsContants.CAR_MAX_REVERSE_SPEED * 10;
                 break;
-            case IDLE:
-                acceleration = 0;
-                break;
             default:
+            case IDLE:
                 acceleration = 0;
                 break;
         }

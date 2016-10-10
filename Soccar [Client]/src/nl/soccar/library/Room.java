@@ -101,6 +101,15 @@ public class Room {
     public String getName() {
         return name;
     }
+    
+    /**
+     * Calculates the amount of players that are currently in this room.
+     * 
+     * @return The amount of players currently in this room.
+     */
+    public int getOccupancy() {
+        return teamRed.getPlayers().size() + teamBlue.getPlayers().size();
+    }
 
     /**
      * Method that gets the capicity of this room.
