@@ -31,6 +31,7 @@ import nl.soccar.ui.fx.FXMLConstants;
  */
 public class MainMenuFXMLController implements Initializable {
 
+    private static final String NO_PASSWORD = "";
     @FXML
     private Button btnCreateRoom;
     @FXML
@@ -105,17 +106,19 @@ public class MainMenuFXMLController implements Initializable {
 
     public void joinRoom(TableRow row) {
         SessionTableItem rowData = (SessionTableItem) row.getItem();
-        System.out.println(rowData.getSession().getRoom().getName());
-        if (rowData.getSession().getRoom().passwordAvailable()) {
+        
+        Session selectedSession = rowData.getSession();
+        
+        if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
             dialog.setTitle("Password locked room");
             dialog.setHeaderText("This room is locked!");
             dialog.setContentText("Please enter your password:");
 
             Optional<String> result = dialog.showAndWait();
-            result.ifPresent(password -> sessionController.setCurrentSession(sessionController.join(rowData.getSession(), password, Soccar.getInstance().getCurrentPlayer())));
+            result.ifPresent(password -> sessionController.setCurrentSession(sessionController.join(selectedSession, password, Soccar.getInstance().getCurrentPlayer())));
         } else {
-            sessionController.setCurrentSession(sessionController.join(rowData.getSession(), "", Soccar.getInstance().getCurrentPlayer()));
+            sessionController.setCurrentSession(sessionController.join(selectedSession, NO_PASSWORD, Soccar.getInstance().getCurrentPlayer()));
         }
 
         Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
