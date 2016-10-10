@@ -32,7 +32,7 @@ public class WheelPhysicsTest {
     @Before
     public void setUp() {
         gamePhysics = new GamePhysics();
-        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         car = new Car(0.0F, 0.0F, 0.0F, 10.0F, 10.0F, player.getCarType(), player);
         carPhysics = new CarPhysics(car, gamePhysics.getWorld());
         leftFrontWheel = carPhysics.getWheels().get(0);
