@@ -3,8 +3,10 @@ package nl.soccar.ui.fx;
 import nl.soccar.ui.Drawable;
 
 /**
- *
+ * This class is an extension to the Drawable interface. It provides an FXML implementation of a Canvas.
+ * 
  * @author PTS34A
+ * @param <M> The model that is connected to this Drawable.
  */
 public abstract class DrawableFx<M> implements Drawable {
 
