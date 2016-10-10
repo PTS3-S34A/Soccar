@@ -13,8 +13,8 @@ public class Room {
 
     private static final int DEFAULT_CAPACITY = 6;
 
-    private String name;
-    private String password;
+    private final String name;
+    private final String password;
     private int capacity;
 
     private Team teamRed;
@@ -55,7 +55,7 @@ public class Room {
         Player hostPlayer = null;
         List<Player> allPlayers = getAllPlayers();
         
-        if (allPlayers.size() != 0) {
+        if (!allPlayers.isEmpty()) {
             hostPlayer = allPlayers.get(0);
         }
         
@@ -120,6 +120,11 @@ public class Room {
         this.capacity = capacity;
     }
 
+    /**
+     * Method that checks if there is a password available of this room.
+     * 
+     * @return boolean is false if the password length is lower then 0. True if it's higher.
+     */
     public boolean passwordAvailable() {
         return password.length() > 0;
     }
