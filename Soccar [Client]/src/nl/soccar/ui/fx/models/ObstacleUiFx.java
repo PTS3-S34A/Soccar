@@ -9,7 +9,7 @@ import nl.soccar.ui.physics.models.ObstaclePhysics;
 import nl.soccar.util.PhysicsUtilities;
 
 /**
- * A Obstacle object represents a JavaFX Drawable of an Obstacle. It keeps track
+ * An ObstacleUiFx object represents a JavaFX Drawable of an Obstacle. It keeps track
  * of the Obstacle and ObstaclePhysics models and provides methods to draw and
  * update the models.
  *
@@ -26,7 +26,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
     /**
      * Initiates a new ObstacleUiFx Object using the given parameters.
      *
-     * @param canvas The canvas on which this Obstacle is drawn.
+     * @param canvas The canvas on which this Obstacle is placed.
      * @param obstacle The model to keep track of.
      * @param physics The physics-model to keep track of.
      */

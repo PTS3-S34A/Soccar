@@ -3,7 +3,7 @@ package nl.soccar.ui.fx;
 import nl.soccar.ui.physics.WorldObject;
 
 /**
- * This class is an extension on the regular Fx Drawable. On top of the regular implementation
+ * This class is an extension on top of the regular Fx Drawable. On top of the regular implementation
  * It also provides a model for a physics-object. For example a Car needs to be tracked by the World.
  * 
  * @author PTS34A
@@ -15,11 +15,11 @@ public abstract class PhysicsDrawableFx<M, P extends WorldObject> extends Drawab
     private P physicsModel;
 
     /**
-     * Initiates a new PhysicsDrawabkeFx
+     * Initiates a new PhysicsDrawableFx
      * 
      * @param canvas The canvas on which this Drawable is placed.
      * @param model The model of this Drawable.
-     * @param physicsModel The physics-model Drawable.
+     * @param physicsModel The physics-model of this Drawable.
      */
     public PhysicsDrawableFx(GameCanvasFx canvas, M model, P physicsModel) {
         super(canvas, model);

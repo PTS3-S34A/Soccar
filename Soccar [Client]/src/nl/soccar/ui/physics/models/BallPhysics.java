@@ -27,7 +27,7 @@ public class BallPhysics implements WorldObject {
     /**
      * Initiates a new BallPhysics Object using the given parameter.
      * 
-     * @param ball The model to keep track of.
+     * @param ball The ball model to keep track of.
      * @param world The world in which this model is placed.
      */
     public BallPhysics(Ball ball, World world) {

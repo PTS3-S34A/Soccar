@@ -20,8 +20,8 @@ import org.jbox2d.dynamics.joints.RevoluteJointDef;
  */
 public class WheelPhysics {
 
-    private final float DENSITY = 1.0F;
-    private final boolean IS_SENSOR = true; // Do not include wheels in collision system (for performance).
+    private static final float DENSITY = 1.0F;
+    private static final boolean IS_SENSOR = true; // Do not include wheels in collision system (for performance).
 
     private final Body body;
     private final Body carBody;

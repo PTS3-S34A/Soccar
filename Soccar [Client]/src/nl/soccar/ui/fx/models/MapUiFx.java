@@ -34,7 +34,7 @@ public class MapUiFx extends DrawableFx<Map> {
     /**
      * Initiates a new MapUiFx Object using the given parameters.
      *
-     * @param canvas The canvas on which this Map is drawn.
+     * @param canvas The canvas on which this Map is placed.
      * @param model The model to keep track of.
      */
     public MapUiFx(GameCanvasFx canvas, Map model) {

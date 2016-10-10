@@ -75,7 +75,7 @@ public final class PhysicsUtilities {
     }
 
     /**
-     * Calculate relative wheel height based on given car width
+     * Calculates relative wheel height based on given car width
      * 
      * @param wheelWidth The wheel width to calculate the wheel height from.
      * @return The calculated wheel height.
