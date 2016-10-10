@@ -14,6 +14,8 @@ public class SessionTableItem {
     private final SimpleStringProperty roomName;
     private final SimpleStringProperty occupancy;
     private final SimpleStringProperty hostName;
+    private final SimpleStringProperty passwordAvailable;
+    
     private final Session session;
 
     public SessionTableItem(Session s) {
@@ -24,11 +26,9 @@ public class SessionTableItem {
         occupancy = new SimpleStringProperty(room.getAllPlayers().size() + " / " + room.getCapacity());
         
         Player host = room.getHost();
-        if (host != null) {
-            hostName = new SimpleStringProperty(host.getUsername());
-        } else {
-            hostName = new SimpleStringProperty("No host available");
-        }
+        hostName = new SimpleStringProperty(host != null ? host.getUsername() : "No host available.");
+        
+        passwordAvailable = new SimpleStringProperty(room.passwordAvailable() ? "Yes" : "No");
     }
 
     public String getRoomName() {
@@ -47,4 +47,7 @@ public class SessionTableItem {
         return hostName.get();
     }
 
+    public String getPasswordAvailable() {
+        return passwordAvailable.get();
+    }
 }
