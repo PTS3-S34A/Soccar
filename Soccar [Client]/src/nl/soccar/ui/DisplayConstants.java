@@ -1,10 +1,9 @@
 package nl.soccar.ui;
 
 /**
- *
- * @author PTS34A
- * 
  * This class will keep up with all constants regarding the UI. 
+ * 
+ * @author PTS34A
  */
 public final class DisplayConstants {
 
