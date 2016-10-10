@@ -4,8 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jdk.jfr.events.ThrowablesEvent;
+import nl.soccar.exception.DuplicateValueException;
+import nl.soccar.exception.ExceptionConstants;
+import nl.soccar.exception.InvalidCredentialException;
+import nl.soccar.exception.RoomException;
 
 /**
  * Class that represents the SessionController model.
@@ -36,12 +43,24 @@ public class SessionController {
      * @param password Password of the room that is nested inside this session.
      * @param player Player that creates the session.
      * @return Session that was created.
+     * @throws nl.soccar.exception.DuplicateValueException When Roomname has already been used.
      */
-    public Session create(String name, String password, Player player) {
+    public Session create(String name, String password, Player player) throws DuplicateValueException {
+        for (Session s : allSessions) {
+            if (s.getRoom().getName().equals(name)) {
+                throw new DuplicateValueException(ExceptionConstants.DUPLICATE_ROOM_TITLE, ExceptionConstants.DUPLICATE_ROOM_MESSAGE);
+            }
+        }
+
         Session session = new Session(name, password);
         allSessions.add(session);
 
-        join(session, password, player);
+        try {
+            join(session, password, player);
+        } catch (InvalidCredentialException | RoomException e) {
+            // Should never happen: password is always equal, room is never full.
+            e.printStackTrace(System.err);
+        }
         return session;
     }
 
@@ -52,16 +71,16 @@ public class SessionController {
      * @param password Password of the room that is nested inside this session.
      * @param player Player that needs to be added to this session.
      * @return Session that was joined.
+     * @throws nl.soccar.exception.InvalidCredentialException When Password is not correct.
+     * @throws nl.soccar.exception.RoomException When Room capacity is smaller then current playercount.
      */
-    public Session join(Session s, String password, Player player) {
+    public Session join(Session s, String password, Player player) throws InvalidCredentialException, RoomException {
         Room room = s.getRoom();
         if (room.getOccupancy() >= room.getCapacity()) {
-            // TODO implementatie foutmelding
-            return null;
+            throw new RoomException(ExceptionConstants.ROOM_FULL_TITLE, ExceptionConstants.ROOM_FULL_MESSAGE);
         }
         if (!room.check(password)) {
-            // TODO implementatie foutmelding
-            return null;
+            throw new InvalidCredentialException(ExceptionConstants.WRONG_PASSWORD_TITLE, ExceptionConstants.WRONG_PASSWORD_MESSAGE);
         }
 
         Team teamBlue = room.getTeamBlue();
