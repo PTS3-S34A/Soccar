@@ -32,6 +32,7 @@ import nl.soccar.ui.fx.FXMLConstants;
 public class MainMenuFXMLController implements Initializable {
 
     private static final String NO_PASSWORD = "";
+    
     @FXML
     private Button btnCreateRoom;
     @FXML

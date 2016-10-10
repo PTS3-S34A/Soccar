@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
  */
 public class SessionController {
     
-    static Random rnd;
+    private static Random rnd;
 
     private Session currentSession;
 
@@ -54,19 +54,25 @@ public class SessionController {
      * @return Session that was joined.
      */
     public Session join(Session s, String password, Player player) {
-        if (!s.getRoom().check(password)) {
+        Room room = s.getRoom();
+        if (room.check(password)) {
             return null;
         }
         
-        if (s.getRoom().getTeamBlue().getPlayers().size() < s.getRoom().getTeamRed().getPlayers().size()) {
-            s.getRoom().getTeamBlue().join(player);
-        } else if (s.getRoom().getTeamBlue().getPlayers().size() > s.getRoom().getTeamRed().getPlayers().size()) {
-            s.getRoom().getTeamRed().join(player);
+        Team teamBlue = room.getTeamBlue();
+        Team teamRed = room.getTeamRed();
+        List<Player> teamRedPlayers = room.getTeamRed().getPlayers();
+        List<Player> teamBluePlayers = room.getTeamBlue().getPlayers();
+        
+        if (teamBluePlayers.size() < teamRedPlayers.size()) {
+           teamBlue.join(player);
+        } else if (teamBluePlayers.size() > teamRedPlayers.size()) {
+            teamRed.join(player);
         } else {
             if(rnd.nextInt(2) + 1 == 1) {
-                s.getRoom().getTeamBlue().join(player);
+                teamBlue.join(player);
             } else {
-                s.getRoom().getTeamRed().join(player);
+                teamRed.join(player);
             } 
         }
         return s;
@@ -79,8 +85,10 @@ public class SessionController {
      * @param player Player that needs to be removed from this session.
      */
     public void leave(Session session, Player player) {
-        session.getRoom().getTeamBlue().leave(player);
-        session.getRoom().getTeamRed().leave(player);
+        Room room = session.getRoom();
+        
+        room.getTeamBlue().leave(player);
+        room.getTeamRed().leave(player);
         
         Soccar.getInstance().getSessionController().setCurrentSession(null);
     }
