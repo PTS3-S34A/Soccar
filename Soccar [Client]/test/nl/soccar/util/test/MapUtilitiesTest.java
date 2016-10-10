@@ -27,7 +27,7 @@ public class MapUtilitiesTest {
      */
     @Before
     public void setUp() {
-        map = new Map(new Rectangle(0, 0, 10, 10), new Ball(0, 0, 0, 0, BallType.HOCKEY));
+        map = new Map(new Rectangle(0, 0, 10, 10), new Ball(0.0F, 0.0F, 0.0F, 0.0F, BallType.HOCKEY));
     }
 
     /**
