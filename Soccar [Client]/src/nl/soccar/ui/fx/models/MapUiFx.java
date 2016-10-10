@@ -11,6 +11,7 @@ import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.DrawableFx;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.physics.models.ObstaclePhysics;
+import org.jbox2d.dynamics.World;
 
 /**
  *
@@ -30,7 +31,7 @@ public class MapUiFx extends DrawableFx<Map> {
 
     public MapUiFx(GameCanvasFx canvas, Map model) {
         super(canvas, model);
-        
+
         addWalls();
     }
 
@@ -43,16 +44,17 @@ public class MapUiFx extends DrawableFx<Map> {
         float margin = DisplayConstants.FIELD_MARGIN;
 
         GameCanvasFx canvas = super.getCanvas();
+        World world = canvas.getPhysics().getWorld();
 
         Obstacle westWall = new Obstacle(0, 0, 0, margin, height, ObstacleType.WALL);
         Obstacle eastWall = new Obstacle(width - margin, 0, 0, margin, height, ObstacleType.WALL);
         Obstacle northWall = new Obstacle(0, 0, 0, width, margin, ObstacleType.WALL);
         Obstacle southWall = new Obstacle(0, height - margin, 0, width, margin, ObstacleType.WALL);
 
-        ObstaclePhysics westWallPhysics = new ObstaclePhysics(westWall, canvas.getWorld());
-        ObstaclePhysics eastWallPhysics = new ObstaclePhysics(eastWall, canvas.getWorld());
-        ObstaclePhysics northWallPhysics = new ObstaclePhysics(northWall, canvas.getWorld());
-        ObstaclePhysics southWallPhysics = new ObstaclePhysics(southWall, canvas.getWorld());
+        ObstaclePhysics westWallPhysics = new ObstaclePhysics(westWall, world);
+        ObstaclePhysics eastWallPhysics = new ObstaclePhysics(eastWall, world);
+        ObstaclePhysics northWallPhysics = new ObstaclePhysics(northWall, world);
+        ObstaclePhysics southWallPhysics = new ObstaclePhysics(southWall, world);
 
         ObstacleUiFx westWallUi = new ObstacleUiFx(canvas, westWall, westWallPhysics);
         ObstacleUiFx eastWallUi = new ObstacleUiFx(canvas, eastWall, eastWallPhysics);
