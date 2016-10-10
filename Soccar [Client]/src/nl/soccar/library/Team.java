@@ -12,7 +12,7 @@ import nl.soccar.library.enumeration.TeamColour;
  */
 public class Team {
 
-    private TeamColour colour;
+    private final TeamColour colour;
     private List<Player> players;
 
     /**

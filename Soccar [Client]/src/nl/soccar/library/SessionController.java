@@ -48,14 +48,19 @@ public class SessionController {
     /**
      * Method that adds a player to a session.
      *
-     * @param name Name of the room that is nested inside this session.
+     * @param s Session that the player wants to join.
      * @param password Password of the room that is nested inside this session.
      * @param player Player that needs to be added to this session.
      * @return Session that was joined.
      */
     public Session join(Session s, String password, Player player) {
         Room room = s.getRoom();
-        if (room.check(password)) {
+        if (room.getAllPlayers().size() >= room.getCapacity()) {
+            // TODO implementatie foutmelding
+            return null;
+        }
+        if (!room.check(password)) {
+            // TODO implementatie foutmelding
             return null;
         }
         
@@ -68,12 +73,10 @@ public class SessionController {
            teamBlue.join(player);
         } else if (teamBluePlayers.size() > teamRedPlayers.size()) {
             teamRed.join(player);
+        } else if (rnd.nextInt(2) + 1 == 1) {
+            teamBlue.join(player);
         } else {
-            if (rnd.nextInt(2) + 1 == 1) {
-                teamBlue.join(player);
-            } else {
-                teamRed.join(player);
-            } 
+            teamRed.join(player); 
         }
         return s;
     }
@@ -102,13 +105,15 @@ public class SessionController {
         return Collections.unmodifiableList(allSessions);
     }
 
+    /**
+     * Method that gets a observable list of all rooms.
+     * 
+     * @return Observablelist of all rooms.
+     */
     public ObservableList<Room> getAllRooms() {
         ObservableList<Room> roomList = FXCollections.observableArrayList();
-        for (Session s : allSessions) {
-            roomList.add(s.getRoom());
-        }
+        allSessions.forEach(s -> roomList.add(s.getRoom()));
         return roomList;
-        //return Collections.unmodifiableList(allSessions);
     }
 
     /**
