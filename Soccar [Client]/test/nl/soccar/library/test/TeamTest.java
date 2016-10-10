@@ -25,7 +25,7 @@ public class TeamTest {
      */
     @Before
     public void setUp() {
-        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         team = new Team(TeamColour.BLUE);
     }
 

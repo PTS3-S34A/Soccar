@@ -31,10 +31,10 @@ public class SessionControllerTest {
     public void setUp() {
         sessionController = new SessionController();
         session = new Session("name", "password"); 
-        player1 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
-        player2 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
-        player3 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
-        player4 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player1 = new Player("username", Privilege.NORMAL, CarType.CASUAL);
+        player2 = new Player("username", Privilege.NORMAL, CarType.CASUAL);
+        player3 = new Player("username", Privilege.NORMAL, CarType.CASUAL);
+        player4 = new Player("username", Privilege.NORMAL, CarType.CASUAL);
     }
 
     /**
@@ -51,12 +51,11 @@ public class SessionControllerTest {
      */
     @Test
     public void joinTest() {
-        sessionController.create("name", "password", player1);
-        assertNotNull(sessionController.join("name", "password", player2));
-        assertNotNull(sessionController.join("name", "password", player3));
-        assertNotNull(sessionController.join("name", "password", player4));
-        assertNull(sessionController.join("name", "wrong password", player1));
-        assertNull(sessionController.join("wrong name", "password", player1));
+        Session createdSession = sessionController.create("name", "password", player1);
+        assertNotNull(sessionController.join(createdSession, "password", player2));
+        assertNotNull(sessionController.join(createdSession, "password", player3));
+        assertNotNull(sessionController.join(createdSession, "password", player4));
+        assertNull(sessionController.join(createdSession, "wrong password", player1));
     }
 
     /**

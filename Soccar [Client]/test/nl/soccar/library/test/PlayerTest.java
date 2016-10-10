@@ -24,7 +24,7 @@ public class PlayerTest {
      */
     @Before
     public void setUp() {
-        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         statistics = new Statistics(0, 0, 0, 0, 0);
     }
     

@@ -23,7 +23,7 @@ public class RoomTest {
     @Before
     public void setUp() {
         room = new Room("name", "password");
-        player = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         room.getTeamBlue().join(player);
     }
 
