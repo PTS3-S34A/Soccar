@@ -1,5 +1,8 @@
-package nl.soccar.library;
+package nl.soccar.library.test;
 
+import nl.soccar.library.Player;
+import nl.soccar.library.Session;
+import nl.soccar.library.SessionController;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
 import org.junit.Before;
@@ -27,11 +30,11 @@ public class SessionControllerTest {
     @Before
     public void setUp() {
         sessionController = new SessionController();
-        session = new Session("name", "password");
+        session = new Session("name", "password"); 
         player1 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
-        player2 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
-        player3 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
-        player4 = new Player("password", "password", Privilege.NORMAL, CarType.CASUAL);
+        player2 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player3 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
+        player4 = new Player("username", "password", Privilege.NORMAL, CarType.CASUAL);
     }
 
     /**

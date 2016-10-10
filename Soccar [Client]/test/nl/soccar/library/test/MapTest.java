@@ -1,6 +1,9 @@
-package nl.soccar.library;
+package nl.soccar.library.test;
 
 import java.awt.Rectangle;
+import nl.soccar.library.Car;
+import nl.soccar.library.Map;
+import nl.soccar.library.Player;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.library.enumeration.Privilege;

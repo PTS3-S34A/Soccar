@@ -1,5 +1,6 @@
-package nl.soccar.library;
+package nl.soccar.library.test;
 
+import nl.soccar.library.Ball;
 import nl.soccar.library.enumeration.BallType;
 import org.junit.Before;
 import org.junit.Test;

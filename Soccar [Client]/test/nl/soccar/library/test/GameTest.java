@@ -1,6 +1,9 @@
-package nl.soccar.library;
+package nl.soccar.library.test;
 
 import java.time.LocalDateTime;
+import nl.soccar.library.Event;
+import nl.soccar.library.Game;
+import nl.soccar.library.Player;
 import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Duration;

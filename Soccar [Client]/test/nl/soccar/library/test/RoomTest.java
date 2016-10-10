@@ -1,5 +1,7 @@
-package nl.soccar.library;
+package nl.soccar.library.test;
 
+import nl.soccar.library.Player;
+import nl.soccar.library.Room;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.library.enumeration.TeamColour;

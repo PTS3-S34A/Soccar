@@ -1,5 +1,7 @@
-package nl.soccar.library;
+package nl.soccar.library.test;
 
+import nl.soccar.library.Player;
+import nl.soccar.library.Team;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.library.enumeration.TeamColour;
@@ -14,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class TeamTest {
 
-    // Delcaration of test objects.
+    // Declaration of test objects.
     private Team team;
     private Player player;
 
