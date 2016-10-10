@@ -51,10 +51,6 @@ public class MainMenuFXMLController implements Initializable {
 
     private SessionController sessionController;
 
-    /**
-     * Initialization of this controller class on current scene; Events get
-     * handled.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sessionController = Soccar.getInstance().getSessionController();
@@ -81,7 +77,7 @@ public class MainMenuFXMLController implements Initializable {
             });
             return row;
         });
-        
+
         updateTable();
     }
 
@@ -89,6 +85,7 @@ public class MainMenuFXMLController implements Initializable {
         tblSessionList.getItems().clear();
 
         ObservableList<SessionTableItem> sessionItems = FXCollections.observableArrayList();
+
         Soccar.getInstance().getSessionController().getAllSessions().stream().map(SessionTableItem::new).forEach(sessionItems::add);
 
         tblSessionList.getItems().addAll(sessionItems);
@@ -97,7 +94,8 @@ public class MainMenuFXMLController implements Initializable {
     public void joinRoom(SessionTableItem selectedRow) {
         Session selectedSession = selectedRow.getSession();
         Alert alert = new Alert(Alert.AlertType.WARNING);
-
+        String password = NO_PASSWORD;
+        
         if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
             dialog.setTitle("Password locked room");
@@ -105,25 +103,18 @@ public class MainMenuFXMLController implements Initializable {
             dialog.setContentText("Please enter your password:");
 
             Optional<String> result = dialog.showAndWait();
+            password = result.get();
+        }
 
-            String password;
+        try {
+            sessionController.setCurrentSession(sessionController.join(selectedSession, password, Soccar.getInstance().getCurrentPlayer()));
+            Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
+        } catch (InvalidCredentialException | RoomException e) {
+            alert.setTitle(e.getTitle());
+            alert.setHeaderText(e.getTitle());
+            alert.setContentText(e.getMessage());
 
-            if (result.isPresent()) {
-                password = result.get();
-            } else {
-                password = NO_PASSWORD;
-            }
-
-            try {
-                sessionController.setCurrentSession(sessionController.join(selectedSession, password, Soccar.getInstance().getCurrentPlayer()));
-                Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
-            } catch (InvalidCredentialException | RoomException e) {
-                alert.setTitle(e.getTitle());
-                alert.setHeaderText(e.getTitle());
-                alert.setContentText(e.getMessage());
-
-                alert.showAndWait();
-            }
+            alert.showAndWait();
         }
 
     }
