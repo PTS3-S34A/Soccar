@@ -58,16 +58,14 @@ public class MainMenuFXMLController implements Initializable {
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());
         lblCar.setText(Soccar.getInstance().getCurrentPlayer().getCarType().toString());
 
+        btnLogOut.setOnAction(e -> Main.getInstance().logOut());
+        btnCreateRoom.setOnAction(e -> Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM));
+        btnJoinRoom.setOnAction(e -> joinRoom(tblSessionList.getSelectionModel().getSelectedItem()));
+
         tbclName.setCellValueFactory(new PropertyValueFactory<>("roomName"));
         tbclOccupation.setCellValueFactory(new PropertyValueFactory<>("occupancy"));
         tbclOwner.setCellValueFactory(new PropertyValueFactory<>("hostName"));
         tbclPassword.setCellValueFactory(new PropertyValueFactory<>("passwordAvailable"));
-
-        btnLogOut.setOnAction(e -> Main.getInstance().logOut());
-
-        btnCreateRoom.setOnAction(e -> Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM));
-        btnJoinRoom.setOnAction(e -> joinRoom(tblSessionList.getSelectionModel().getSelectedItem()));
-
         tblSessionList.setRowFactory(tv -> {
             TableRow<SessionTableItem> row = new TableRow();
             row.setOnMouseClicked(event -> {
@@ -82,20 +80,17 @@ public class MainMenuFXMLController implements Initializable {
     }
 
     private void updateTable() {
-        tblSessionList.getItems().clear();
-
         ObservableList<SessionTableItem> sessionItems = FXCollections.observableArrayList();
-
         Soccar.getInstance().getSessionController().getAllSessions().stream().map(SessionTableItem::new).forEach(sessionItems::add);
-
+        
+        tblSessionList.getItems().clear();
         tblSessionList.getItems().addAll(sessionItems);
     }
 
     public void joinRoom(SessionTableItem selectedRow) {
-        Session selectedSession = selectedRow.getSession();
-        Alert alert = new Alert(Alert.AlertType.WARNING);
         String password = NO_PASSWORD;
-        
+
+        Session selectedSession = selectedRow.getSession();
         if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
             dialog.setTitle("Password locked room");
@@ -111,7 +106,8 @@ public class MainMenuFXMLController implements Initializable {
             Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
         } catch (InvalidCredentialException | RoomException e) {
             e.printStackTrace(System.err);
-            
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle(e.getTitle());
             alert.setHeaderText(e.getTitle());
             alert.setContentText(e.getMessage());
@@ -119,5 +115,5 @@ public class MainMenuFXMLController implements Initializable {
             alert.showAndWait();
         }
     }
-    
+
 }
