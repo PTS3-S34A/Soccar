@@ -11,6 +11,9 @@ import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.ui.fx.FXMLConstants;
+import org.apache.log4j.BasicConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Entry point of the Soccar application. The Main class keeps track of the UI and provides a way to switch certain scenes.
@@ -19,6 +22,8 @@ import nl.soccar.ui.fx.FXMLConstants;
  */
 public class Main extends Application {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+    
     private static Main mainClass;
     
     private Stage primaryStage;
@@ -46,6 +51,8 @@ public class Main extends Application {
      * @param args The command line arguments to pass into the application.
      */
     public static void main(String[] args) {
+        BasicConfigurator.configure();
+        
         launch(args);
     }
     
@@ -84,7 +91,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace(System.err);
+            LOGGER.error("An error occurred while changing a scene.", e);
         }
     }
 }
