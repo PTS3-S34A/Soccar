@@ -43,7 +43,7 @@ public class SessionController {
      * @param password Password of the room that is nested inside this session.
      * @param player Player that creates the session.
      * @return Session that was created.
-     * @throws nl.soccar.exception.DuplicateValueException When Roomname has already been used.
+     * @throws nl.soccar.exception.DuplicateValueException When Roomname has already been used (ignoring capital characters). 
      */
     public Session create(String name, String password, Player player) throws DuplicateValueException {
         if (allSessions.stream().map(s -> s.getRoom().getName()).anyMatch(name::equalsIgnoreCase)) {
