@@ -10,6 +10,8 @@ import nl.soccar.exception.DuplicateValueException;
 import nl.soccar.exception.ExceptionConstants;
 import nl.soccar.exception.InvalidCredentialException;
 import nl.soccar.exception.RoomException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class that represents the SessionController model.
@@ -18,7 +20,8 @@ import nl.soccar.exception.RoomException;
  */
 public class SessionController {
 
-    private static Random rnd;
+    private static final Logger LOGGER = LoggerFactory.getLogger(SessionController.class);
+    private static final Random RANDOM = new Random();
 
     private Session currentSession;
 
@@ -30,7 +33,6 @@ public class SessionController {
      */
     public SessionController() {
         allSessions = new ArrayList<>();
-        rnd = new Random();
     }
 
     /**
@@ -56,7 +58,7 @@ public class SessionController {
             join(session, password, player);
         } catch (InvalidCredentialException | RoomException e) {
             // Should never happen: password is always equal, room is never full.
-            e.printStackTrace(System.err);
+            LOGGER.error("An error occurred while joining a session", e);
         }
         return session;
     }
@@ -89,7 +91,7 @@ public class SessionController {
         int bluePlayers = teamBluePlayers.size();
         int redPlayers = teamRedPlayers.size();
 
-        if (bluePlayers < redPlayers || (bluePlayers == redPlayers && (rnd.nextInt(2) + 1 == 1))) {
+        if (bluePlayers < redPlayers || (bluePlayers == redPlayers && (RANDOM.nextInt(2) + 1 == 1))) {
             teamBlue.join(player);
         } else {
             teamRed.join(player);
@@ -129,7 +131,7 @@ public class SessionController {
      */
     public ObservableList<Room> getAllRooms() {
         ObservableList<Room> roomList = FXCollections.observableArrayList();
-        allSessions.forEach(s -> roomList.add(s.getRoom()));
+        allSessions.stream().map(s -> s.getRoom()).forEach(roomList::add);
         return roomList;
     }
 
