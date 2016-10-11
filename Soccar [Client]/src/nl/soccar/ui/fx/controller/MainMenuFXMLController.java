@@ -22,10 +22,11 @@ import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
-import nl.soccar.ui.fx.controller.SessionTableItem;
+import org.apache.log4j.Logger;
 
 public class MainMenuFXMLController implements Initializable {
 
+    private static final Logger LOGGER = Logger.getLogger(MainMenuFXMLController.class);
     private static final String NO_PASSWORD = "";
 
     @FXML
@@ -105,7 +106,7 @@ public class MainMenuFXMLController implements Initializable {
             sessionController.setCurrentSession(sessionController.join(selectedSession, password, Soccar.getInstance().getCurrentPlayer()));
             Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
         } catch (InvalidCredentialException | RoomException e) {
-            e.printStackTrace(System.err);
+            LOGGER.error("An error occurred while joining a room.", e);
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle(e.getTitle());
