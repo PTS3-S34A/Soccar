@@ -2,8 +2,6 @@ package nl.soccar.ui.fx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +19,8 @@ import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * FXML Controller class
@@ -29,6 +29,8 @@ import nl.soccar.ui.fx.FXMLConstants;
  */
 public class CreateRoomFXMLController implements Initializable {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CreateRoomFXMLController.class);
+    
     @FXML
     private Button btnLogOut;
     @FXML
@@ -46,10 +48,6 @@ public class CreateRoomFXMLController implements Initializable {
     @FXML
     private ComboBox cbMap;
 
-    /**
-     * Initialization of this controller class on current scene; Events get
-     * handled.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnLogOut.setOnAction(e -> Main.getInstance().logOut());
@@ -85,11 +83,11 @@ public class CreateRoomFXMLController implements Initializable {
         try {
             newSession = Soccar.getInstance().getSessionController().create(textFieldRoomName.getText(), password, Soccar.getInstance().getCurrentPlayer());
             newSession.getRoom().setCapacity((int) sliderCapacity.getValue());
+            
             Soccar.getInstance().getSessionController().setCurrentSession(newSession);
             Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
-            
         } catch (DuplicateValueException e) {
-            e.printStackTrace(System.err);
+            LOGGER.error("An error occurred while creating a room.", e);
             
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle(e.getTitle());
