@@ -10,6 +10,7 @@ import nl.soccar.exception.DuplicateValueException;
 import nl.soccar.exception.ExceptionConstants;
 import nl.soccar.exception.InvalidCredentialException;
 import nl.soccar.exception.RoomException;
+import nl.soccar.exception.UIException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +57,7 @@ public class SessionController {
 
         try {
             join(session, password, player);
-        } catch (InvalidCredentialException | RoomException e) {
+        } catch (UIException e) {
             // Should never happen: password is always equal, room is never full.
             LOGGER.error("An error occurred while joining a session", e);
         }
@@ -73,7 +74,7 @@ public class SessionController {
      * @throws nl.soccar.exception.InvalidCredentialException When Password is not correct.
      * @throws nl.soccar.exception.RoomException When Room capacity is smaller then current playercount.
      */
-    public Session join(Session s, String password, Player player) throws InvalidCredentialException, RoomException {
+    public Session join(Session s, String password, Player player) throws UIException {
         Room room = s.getRoom();
         if (room.getOccupancy() >= room.getCapacity()) {
             throw new RoomException(ExceptionConstants.ROOM_FULL_TITLE, ExceptionConstants.ROOM_FULL_MESSAGE);

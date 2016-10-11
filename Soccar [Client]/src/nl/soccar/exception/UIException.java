@@ -8,7 +8,7 @@ package nl.soccar.exception;
  */
 public class UIException extends Exception {
 
-    private String title;
+    private final String title;
 
     /**
      * Initiates a new UIException object.

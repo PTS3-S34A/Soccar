@@ -15,8 +15,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
-import nl.soccar.exception.InvalidCredentialException;
-import nl.soccar.exception.RoomException;
+import nl.soccar.exception.UIException;
 import nl.soccar.library.Session;
 import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
@@ -24,6 +23,11 @@ import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
 import org.apache.log4j.Logger;
 
+/**
+ * FXML Controller class
+ * 
+ * @author PTS34A
+ */
 public class MainMenuFXMLController implements Initializable {
 
     private static final Logger LOGGER = Logger.getLogger(MainMenuFXMLController.class);
@@ -88,7 +92,7 @@ public class MainMenuFXMLController implements Initializable {
         tblSessionList.getItems().addAll(sessionItems);
     }
 
-    public void joinRoom(SessionTableItem selectedRow) {
+    private void joinRoom(SessionTableItem selectedRow) {
         String password = NO_PASSWORD;
 
         Session selectedSession = selectedRow.getSession();
@@ -105,7 +109,7 @@ public class MainMenuFXMLController implements Initializable {
         try {
             sessionController.setCurrentSession(sessionController.join(selectedSession, password, Soccar.getInstance().getCurrentPlayer()));
             Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
-        } catch (InvalidCredentialException | RoomException e) {
+        } catch (UIException e) {
             LOGGER.error("An error occurred while joining a room.", e);
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
