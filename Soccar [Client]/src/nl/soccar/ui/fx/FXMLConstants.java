@@ -7,7 +7,7 @@ package nl.soccar.ui.fx;
 
 /**
  *
- * @author Luuk
+ * @author PTS34A
  */
 public final class FXMLConstants {
     
@@ -15,6 +15,7 @@ public final class FXMLConstants {
     public static final String LOCATION_LOGIN = "resources/fxml/LoginFXML.fxml";
     public static final String LOCATION_CREATE_ROOM = "resources/fxml/CreateRoomFXML.fxml";
     public static final String LOCATION_SESSION_VIEW = "resources/fxml/SessionViewFXML.fxml";
+    public static final String LOCATION_GAME_VIEW = "resources/fxml/GameViewFXML.fxml";
     
     private FXMLConstants() {
     }

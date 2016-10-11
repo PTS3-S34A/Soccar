@@ -57,6 +57,7 @@ public class SessionViewFXMLController implements Initializable {
 
         btnLogOut.setOnAction(e -> Main.getInstance().logOut());
         btnLeaveRoom.setOnAction(e -> leaveRoom());
+        btnStartGame.setOnAction(e -> startGame());
 
         lblUsername.setText(currentPlayer.getUsername());
 
@@ -67,18 +68,24 @@ public class SessionViewFXMLController implements Initializable {
         Room room = currentSession.getRoom();
         int occupancy = room.getOccupancy();
         int capacity = room.getCapacity();
-        
+
         lblRoomName.setText(String.format("Room: %s", room.getName()));
         lblOccupancy.setText(String.format("Occupancy: %d/%d", occupancy, capacity));
 
         lvPlayersBlue.setItems(FXCollections.observableArrayList(room.getTeamBlue().getPlayers()));
         lvPlayersRed.setItems(FXCollections.observableArrayList(room.getTeamRed().getPlayers()));
 
-        btnStartGame.setDisable(occupancy != capacity);
+        // btnStartGame.setDisable(occupancy != capacity);
     }
 
     public void leaveRoom() {
         Soccar.getInstance().getSessionController().leave(currentSession, currentPlayer);
         Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU);
+    }
+
+    public void startGame() {
+        Main main = Main.getInstance();
+        main.setScene(FXMLConstants.LOCATION_GAME_VIEW);
+        main.setFullScreen(true);
     }
 }
