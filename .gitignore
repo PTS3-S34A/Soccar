@@ -9,6 +9,7 @@
 *.ear
 
 # Netbeans #
+nbproject/project.properties
 nbproject/private/
 build/
 nbbuild/
