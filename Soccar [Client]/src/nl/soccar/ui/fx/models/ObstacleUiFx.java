@@ -17,7 +17,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
     private static final Color WALL_COLOR;
     
     static {
-        WALL_COLOR = Color.BLACK;
+        WALL_COLOR = Color.RED;
     }
     
     public ObstacleUiFx(GameCanvasFx canvas, Obstacle obstacle, ObstaclePhysics physics) {
@@ -41,13 +41,14 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         context.save(); // Save the canvas so we can draw a rotated rectangle.
 
         context.translate(x, y); // Set the origin point of the rotation.
-        context.rotate(-Math.toDegrees(obstacle.getDegree())); // Set the angle of the rotation.
-
+        context.rotate(-obstacle.getDegree()); // Set the angle of the rotation.
+        
         switch (obstacle.getType()) {
             default:
             case WALL:
+                // TODO: remove drawing implementation of the wall after testing.
                 context.setFill(WALL_COLOR);
-                context.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left.
+                context.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left
                 break;
         }
 

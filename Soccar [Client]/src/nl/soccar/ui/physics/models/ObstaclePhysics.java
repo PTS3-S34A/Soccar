@@ -1,6 +1,5 @@
 package nl.soccar.ui.physics.models;
 
-import nl.soccar.library.Game;
 import nl.soccar.library.Obstacle;
 import nl.soccar.ui.physics.WorldObject;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -19,20 +18,23 @@ public class ObstaclePhysics implements WorldObject {
 
     private final Body body;
 
-    private float width;
-    private float height;
+    private final float width;
+    private final float height;
 
     public ObstaclePhysics(Obstacle obstacle, World world) {
+        width = obstacle.getWidth();
+        height = obstacle.getHeight();
+
         BodyDef bd = new BodyDef();
         bd.position.set(obstacle.getX(), obstacle.getY());
         bd.angle = (float) Math.toRadians(obstacle.getDegree());
 
-        PolygonShape ps = new PolygonShape();
-        ps.setAsBox(width / 2, height / 2);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width / 2, height / 2);
 
         FixtureDef fd = new FixtureDef();
         fd.friction = FRICTION;
-        fd.shape = ps;
+        fd.shape = shape;
 
         body = world.createBody(bd);
         body.createFixture(fd);
