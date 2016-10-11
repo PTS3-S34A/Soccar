@@ -1,8 +1,8 @@
 package nl.soccar.exception;
 
 /**
- * An DuplicateValueException is a Exception that is thrown when the user
- * fillsout a value that allready excists; For example: Duplicate room-name.
+ * A DuplicateValueException is an Exception that is thrown when the user
+ * fills out a value that allready excists; For example: Duplicate room-name.
  *
  * @author PTS34A
  */

@@ -1,7 +1,7 @@
 package nl.soccar.exception;
 
 /**
- * An RoomException is a Exception that is thrown when something's wrong with
+ * A RoomException is an Exception that is thrown when something's wrong with
  * the room; For example; Room is full.
  *
  * @author PTS34A

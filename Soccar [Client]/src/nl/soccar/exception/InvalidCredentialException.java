@@ -1,8 +1,8 @@
 package nl.soccar.exception;
 
 /**
- * An InvalidCredentialException is a Exception that is thrown when the user
- * fills-out the wrong credentials; For example: Wrong password for a room.
+ * A InvalidCredentialException is an Exception that is thrown when the user
+ * fills out the wrong credentials; For example: Wrong password for a room.
  *
  * @author PTS34A
  */
