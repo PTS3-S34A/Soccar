@@ -41,7 +41,7 @@
                         <Font name="Segoe UI" size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnLogOut" layoutX="1108.0" layoutY="27.0" mnemonicParsing="false" text="Log out">
+                  <Button fx:id="btnLogOut" focusTraversable="false" layoutX="1108.0" layoutY="27.0" mnemonicParsing="false" text="Log out">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
@@ -102,7 +102,7 @@
             </AnchorPane>
          </children>
       </HBox>
-      <Button fx:id="btnCancel" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="btnCancel" focusTraversable="false" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" text="Cancel">
          <font>
             <Font name="Segoe UI" size="17.0" />
          </font>
