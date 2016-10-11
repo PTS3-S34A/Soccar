@@ -62,4 +62,9 @@ public class Main extends Application {
             e.printStackTrace(System.err);
         }
     }
+    
+    public void setFullScreen(boolean fullScreen) {
+        primaryStage.setMaximized(fullScreen);
+        primaryStage.setFullScreen(fullScreen);
+    }
 }
