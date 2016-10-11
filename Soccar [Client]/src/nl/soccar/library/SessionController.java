@@ -46,10 +46,8 @@ public class SessionController {
      * @throws nl.soccar.exception.DuplicateValueException When Roomname has already been used.
      */
     public Session create(String name, String password, Player player) throws DuplicateValueException {
-        for (Session s : allSessions) {
-            if (s.getRoom().getName().equals(name)) {
-                throw new DuplicateValueException(ExceptionConstants.DUPLICATE_ROOM_TITLE, ExceptionConstants.DUPLICATE_ROOM_MESSAGE);
-            }
+        if (allSessions.stream().map(s -> s.getRoom().getName()).anyMatch(name::equalsIgnoreCase)) {
+            throw new DuplicateValueException(ExceptionConstants.DUPLICATE_ROOM_TITLE, ExceptionConstants.DUPLICATE_ROOM_MESSAGE);
         }
 
         Session session = new Session(name, password);
