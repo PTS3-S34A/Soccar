@@ -11,6 +11,7 @@ import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.ui.fx.FXMLConstants;
+import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +51,8 @@ public class Main extends Application {
      * @param args The command line arguments to pass into the application.
      */
     public static void main(String[] args) {
+        BasicConfigurator.configure();
+        
         launch(args);
     }
     
