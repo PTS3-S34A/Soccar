@@ -4,14 +4,19 @@ import javafx.scene.shape.Rectangle;
 import nl.soccar.ui.DisplayConstants;
 
 /**
- * Class that containts static utility methods that are used for calculations on the map.
+ * Utility class that provides methods regarding the Map. It provides methods 
+ * for calculating goal placement and sizes.
  * 
  * @author PTS34A
  */
 public final class MapUtilities {
 
+    private MapUtilities() {
+    }
+
     /**
-     * Method that calculates and returns the rectangle of the left goal of the map.
+     * Method that calculates and returns the rectangle of the left goal of the
+     * map.
      *
      * @return Rectangle The rectangle of the the left goal of the map.
      */
@@ -23,7 +28,8 @@ public final class MapUtilities {
     }
 
     /**
-     * Method that calculates and returns the rectangle of the right goal of the map.
+     * Method that calculates and returns the rectangle of the right goal of the
+     * map.
      *
      * @return Rectangle The rectangle of the right goal of the map.
      */
@@ -31,6 +37,7 @@ public final class MapUtilities {
         double goalPositionY = (DisplayConstants.MAP_HEIGHT / 2) + (DisplayConstants.GOAL_HEIGHT / 2);
 
         return new Rectangle(DisplayConstants.MAP_WIDTH - DisplayConstants.FIELD_MARGIN, (int) goalPositionY,
+
                 DisplayConstants.GOAL_WIDTH, (int) DisplayConstants.GOAL_HEIGHT);
     }
 
@@ -52,9 +59,6 @@ public final class MapUtilities {
      */
     public static double getCentreY(Rectangle rectangle) {
         return rectangle.getY() + rectangle.getHeight() / 2;
-    }
-
-    private MapUtilities() {
     }
 
 }

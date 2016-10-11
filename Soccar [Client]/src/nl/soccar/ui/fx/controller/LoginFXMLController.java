@@ -2,6 +2,7 @@ package nl.soccar.ui.fx.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,31 +29,25 @@ public class LoginFXMLController implements Initializable {
     private ToggleButton btnSelectPickup;
     @FXML
     private ToggleButton btnSelectSportsCar;
-    
+
     private ToggleGroup toggleGroupCars;
-    
-    /**
-     * Initialization of this controller class on current scene; Events get handled.
-     * 
-     * @param url
-     * @param rb 
-     */
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {  
-        toggleGroupCars  = new ToggleGroup();
-        
+    public void initialize(URL url, ResourceBundle rb) {
+        toggleGroupCars = new ToggleGroup();
+
         btnSelectPickup.setToggleGroup(toggleGroupCars);
         btnSelectCasualCar.setToggleGroup(toggleGroupCars);
         btnSelectSportsCar.setToggleGroup(toggleGroupCars);
-        
         btnSelectCasualCar.setSelected(true);
+        
+        txtFieldName.setOnAction(e -> login());
         btnLogin.setOnAction(e -> login());
-        
-        
     }
 
     /**
-     * Handler for login-button; Uses current selected car, username and optional password.
+     * Handler for login-button; Uses current selected car, username and
+     * optional password.
      */
     public void login() {
         CarType selectedCar = CarType.CASUAL;
@@ -63,7 +58,7 @@ public class LoginFXMLController implements Initializable {
         } else if (btnSelectSportsCar.isSelected()) {
             selectedCar = CarType.SPORTSCAR;
         }
-        
+
         if (!txtFieldName.getText().isEmpty()) {
             Main.getInstance().login(txtFieldName.getText(), selectedCar);
         } else {

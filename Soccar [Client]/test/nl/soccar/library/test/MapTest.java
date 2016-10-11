@@ -1,6 +1,6 @@
 package nl.soccar.library.test;
 
-import java.awt.Rectangle;
+import javafx.scene.shape.Rectangle;
 import nl.soccar.library.Ball;
 import nl.soccar.library.Car;
 import nl.soccar.library.Map;

@@ -12,7 +12,8 @@ import nl.soccar.ui.input.Keyboard;
 import nl.soccar.ui.physics.PhysicsContants;
 
 /**
- *
+ * This class is an extension to the GameCanvas class, it provides a way to run the game loop using JavaFX classes.
+ * 
  * @author PTS34A
  */
 public class GameCanvasFx extends GameCanvas {
@@ -20,6 +21,11 @@ public class GameCanvasFx extends GameCanvas {
     private GraphicsContext context;
     private Timeline gameTimer;
 
+    /**
+     * Initiates a new GameCanvasFx object using the given parameters.
+     * 
+     * @param context The context which can be used by Drawables to actually draw on a Canvas.
+     */
     public GameCanvasFx(GraphicsContext context) {
         this.context = context;
 

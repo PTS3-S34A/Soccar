@@ -9,17 +9,27 @@ import nl.soccar.ui.physics.models.ObstaclePhysics;
 import nl.soccar.util.PhysicsUtilities;
 
 /**
+ * An ObstacleUiFx object represents a JavaFX Drawable of an Obstacle. It keeps track
+ * of the Obstacle and ObstaclePhysics models and provides methods to draw and
+ * update the models.
  *
  * @author PTS34A
  */
 public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
     private static final Color WALL_COLOR;
-    
+
     static {
         WALL_COLOR = Color.RED;
     }
-    
+
+    /**
+     * Initiates a new ObstacleUiFx Object using the given parameters.
+     *
+     * @param canvas The canvas on which this Obstacle is placed.
+     * @param obstacle The model to keep track of.
+     * @param physics The physics-model to keep track of.
+     */
     public ObstacleUiFx(GameCanvasFx canvas, Obstacle obstacle, ObstaclePhysics physics) {
         super(canvas, obstacle, physics);
     }
@@ -43,7 +53,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         context.translate(x, y); // Set the origin point of the rotation.
         context.rotate(-obstacle.getDegree()); // Set the angle of the rotation.
         
-        switch (obstacle.getType()) {
+        switch (obstacle.getType()) {            
             default:
             case WALL:
                 // TODO: remove drawing implementation of the wall after testing.

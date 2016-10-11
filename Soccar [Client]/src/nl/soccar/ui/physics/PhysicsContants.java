@@ -4,7 +4,9 @@ import nl.soccar.ui.DisplayConstants;
 import org.jbox2d.common.Vec2;
 
 /**
- *
+ * Constants class to define all kinds of variables which are used by physics-
+ * models.
+ * 
  * @author PTS34A
  */
 public final class PhysicsContants {

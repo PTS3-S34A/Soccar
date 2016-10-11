@@ -6,7 +6,8 @@ import nl.soccar.library.Room;
 import nl.soccar.library.Session;
 
 /**
- *
+ * A table-item represents one single row inside a (JavaFX) TableView.
+ * 
  * @author PTS34A
  */
 public class SessionTableItem {
@@ -18,6 +19,11 @@ public class SessionTableItem {
     
     private final Session session;
 
+    /**
+     * Initiates a new SesionTableItem using the given session.
+     * 
+     * @param s The session of which values will be retreived from.
+     */
     public SessionTableItem(Session s) {
         this.session = s;
         
@@ -47,7 +53,7 @@ public class SessionTableItem {
         return hostName.get();
     }
 
-    public String getPasswordAvailable() {
+    public String isPasswordAvailable() {
         return passwordAvailable.get();
     }
 }

@@ -16,6 +16,8 @@ import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.dynamics.World;
 
 /**
+ * A MapUiFx object represents a JavaFX Drawable of a Map. It keeps track of the
+ * Map model and provides methods to draw and update the model.
  *
  * @author PTS34A
  */
@@ -31,6 +33,12 @@ public class MapUiFx extends DrawableFx<Map> {
         TEXTURE_GRASS = new Image(DisplayConstants.LOCATION_TEXTURE_GRASS);
     }
 
+    /**
+     * Initiates a new MapUiFx Object using the given parameters.
+     *
+     * @param canvas The canvas on which this Map is placed.
+     * @param model The model to keep track of.
+     */
     public MapUiFx(GameCanvasFx canvas, Map model) {
         super(canvas, model);
     }

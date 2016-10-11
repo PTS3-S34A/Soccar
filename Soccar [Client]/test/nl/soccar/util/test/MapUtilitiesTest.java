@@ -1,9 +1,9 @@
 package nl.soccar.util.test;
 
-import java.awt.Rectangle;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import javafx.scene.shape.Rectangle;
 import nl.soccar.library.Ball;
 import nl.soccar.library.Map;
 import nl.soccar.library.enumeration.BallType;
