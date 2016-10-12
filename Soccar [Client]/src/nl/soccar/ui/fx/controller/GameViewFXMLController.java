@@ -41,15 +41,14 @@ public class GameViewFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        float width = (float) screenSize.getWidth();
-        float height = (float) screenSize.getHeight();
-        // TODO: use the width and height of the users screen.
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        float width = (float) dimension.getWidth();
+        float height = (float) dimension.getHeight();
 
-        anchorPane.setPrefWidth(DisplayConstants.SCREEN_WIDTH);
-        anchorPane.setPrefHeight(DisplayConstants.SCREEN_HEIGHT);
-        canvas.setWidth(DisplayConstants.SCREEN_WIDTH);
-        canvas.setHeight(DisplayConstants.SCREEN_HEIGHT);
+        anchorPane.setPrefWidth(width);
+        anchorPane.setPrefHeight(height);
+        canvas.setWidth(width);
+        canvas.setHeight(height);
         canvas.setFocusTraversable(true);
 
         /**
@@ -69,9 +68,9 @@ public class GameViewFXMLController implements Initializable {
         /**
          * Create the domain models.
          */
-        Ball ball = new Ball(DisplayConstants.MAP_WIDTH / 2, DisplayConstants.MAP_HEIGHT / 2, 0, 5, ballType);
+        Ball ball = new Ball(DisplayConstants.MAP_WIDTH / 2, DisplayConstants.MAP_HEIGHT / 2, 0.0F, DisplayConstants.BALL_RADIUS, ballType);
         Map map = new Map(new Rectangle(0, 0, DisplayConstants.MAP_WIDTH, DisplayConstants.MAP_HEIGHT), ball);
-        Car car = new Car(60, 60, 0, DisplayConstants.CAR_WIDTH, PhysicsUtilities.calculateCarHeight(DisplayConstants.CAR_WIDTH), carType, player);
+        Car car = new Car(60.0F, 60.0F, 0.0F, DisplayConstants.CAR_WIDTH, PhysicsUtilities.calculateCarHeight(DisplayConstants.CAR_WIDTH), carType, player);
 
         map.setMapType(MapType.GRASSLAND); // TODO: set the map type that the user selected in the session view.
 

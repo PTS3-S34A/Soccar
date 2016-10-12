@@ -102,5 +102,16 @@ public class Main extends Application {
     public void setFullScreen(boolean fullScreen) {
         primaryStage.setMaximized(fullScreen);
         primaryStage.setFullScreen(fullScreen);
+        primaryStage.setResizable(!fullScreen);
     }
+    
+    /**
+     * Method that gets the width of the primary stage.
+     * 
+     * @return The width of the primary stage.
+     */
+    public float getStageWidth() {
+        return (float) primaryStage.getWidth();
+    }
+    
 }

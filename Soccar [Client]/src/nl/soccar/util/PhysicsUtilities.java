@@ -1,6 +1,8 @@
 package nl.soccar.util;
 
+import nl.soccar.library.Map;
 import nl.soccar.ui.DisplayConstants;
+import nl.soccar.ui.Main;
 import nl.soccar.ui.physics.PhysicsContants;
 
 /**
@@ -21,7 +23,7 @@ public final class PhysicsUtilities {
      * @return The JavaFX x-coordinate.
      */
     public static float toPixelX(float x) {
-        return x * PhysicsContants.PIXELS_PER_METER;
+        return x * getPixelsPerMeter();
     }
 
     /**
@@ -31,7 +33,7 @@ public final class PhysicsUtilities {
      * @return The JavaFX y-coordinate.
      */
     public static float toPixelY(float y) {
-        return (DisplayConstants.MAP_HEIGHT - y) * PhysicsContants.PIXELS_PER_METER;
+        return (DisplayConstants.MAP_HEIGHT - y) * getPixelsPerMeter();
     }
 
     /**
@@ -41,7 +43,7 @@ public final class PhysicsUtilities {
      * @return The JavaFX pixel-width.
      */
     public static float toPixelWidth(float width) {
-        return width * PhysicsContants.PIXELS_PER_METER;
+        return width * getPixelsPerMeter();
     }
 
     /**
@@ -51,7 +53,7 @@ public final class PhysicsUtilities {
      * @return The JavaFX pixel-height.
      */
     public static float toPixelHeight(float height) {
-        return height * PhysicsContants.PIXELS_PER_METER;
+        return height * getPixelsPerMeter();
     }
 
     /**
@@ -83,5 +85,12 @@ public final class PhysicsUtilities {
     public static float calculateWheelHeight(float wheelWidth) {
         return wheelWidth * 2;
     }
-
+    
+    /**
+     * Method that calculates the number of pixels per meter based on the screen width of the user and the width of the map.
+     * @return The number of pixels per meter based on the screen width of the user and the width of the map.
+     */
+    private static float getPixelsPerMeter() {
+        return Main.getInstance().getStageWidth() / DisplayConstants.MAP_WIDTH;
+    }
 }
