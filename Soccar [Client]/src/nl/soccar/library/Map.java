@@ -113,4 +113,13 @@ public class Map {
         this.type = type;
     }
 
+    /**
+     * Method that gets the ball of this map.
+     * 
+     * @return The ball of this map.
+     */
+    public Ball getBall() {
+        return ball;
+    }
+
 }
