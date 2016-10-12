@@ -38,7 +38,6 @@ public class MapUiFx extends DrawableFx<Map> {
         CORNER_SIZE = 15.0F;
     }
 
-    private final GameCanvasFx canvas;
     private final World world;
     private final Map map;
     private final Ball ball;
@@ -58,9 +57,7 @@ public class MapUiFx extends DrawableFx<Map> {
     public MapUiFx(GameCanvasFx canvas, Map model) {
         super(canvas, model);
 
-        this.canvas = canvas;
         world = canvas.getPhysics().getWorld();
-
         map = model;
         ball = map.getBall();
         ballWidth = PhysicsUtilities.toPixelWidth(ball.getRadius());
@@ -110,6 +107,7 @@ public class MapUiFx extends DrawableFx<Map> {
      * @param mapHeight The height of the map.
      */
     private void addWestWalls(float mapHeight) {
+        GameCanvasFx canvas = super.getCanvas();
         Rectangle leftGoal = map.getGoalBlue();
         float leftGoalY = (float) leftGoal.getY();
 
@@ -140,6 +138,7 @@ public class MapUiFx extends DrawableFx<Map> {
      * @param mapHeight The height of the map.
      */
     private void addEastWalls(float mapWidth, float mapHeight) {
+        GameCanvasFx canvas = super.getCanvas();
         Rectangle rightGoal = map.getGoalRed();
         float rightGoalY = (float) rightGoal.getY();
 
@@ -170,6 +169,7 @@ public class MapUiFx extends DrawableFx<Map> {
      * @param mapHeight The height of the map.
      */
     private void addNorthAndSouthWalls(float mapWidth, float mapHeight) {
+        GameCanvasFx canvas = super.getCanvas();
         ObstacleUiFx northWallUi = new ObstacleBuilder(canvas, world)
                 .x(mapWidth / 2).y(mapHeight - (WALL_WIDTH / 2)).degree(0)
                 .width(mapWidth).height(WALL_WIDTH)
@@ -191,6 +191,7 @@ public class MapUiFx extends DrawableFx<Map> {
      * @param mapHeight The height of the map.
      */
     private void addCornerWalls(float mapWidth, float mapHeight) {
+        GameCanvasFx canvas = super.getCanvas();
         ObstacleUiFx northWestWallUi = new ObstacleBuilder(canvas, world)
                 .x(0).y(mapHeight).degree(45)
                 .width(CORNER_SIZE).height(CORNER_SIZE)

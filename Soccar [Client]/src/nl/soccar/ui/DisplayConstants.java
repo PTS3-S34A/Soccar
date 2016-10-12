@@ -1,8 +1,8 @@
 package nl.soccar.ui;
 
 /**
- * This class will keep up with all constants regarding the UI. 
- * 
+ * This class will keep up with all constants regarding the UI.
+ *
  * @author PTS34A
  */
 public final class DisplayConstants {
@@ -14,10 +14,15 @@ public final class DisplayConstants {
     public static final float SCREEN_HEIGHT = 800.0F;
 
     /**
+     * Ball constants in JBox2D units
+     */
+    public static final float BALL_RADIUS = 3.0F;
+
+    /**
      * Car constants in JBox2D units
      */
     public static final float CAR_WIDTH = 5.0F;
-    
+
     /**
      * Map constants in JBox2D units
      */
@@ -31,7 +36,7 @@ public final class DisplayConstants {
     public static final float BOX_HEIGHT = 32.5F;
     public static final float GOAL_WIDTH = 3.5F;
     public static final float GOAL_HEIGHT = BOX_HEIGHT / 1.5F;
-    
+
     /**
      * Map image constants
      */
