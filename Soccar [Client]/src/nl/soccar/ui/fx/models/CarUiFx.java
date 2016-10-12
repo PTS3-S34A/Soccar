@@ -25,10 +25,14 @@ import nl.soccar.util.PhysicsUtilities;
  */
 public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
+    private static final Font PLAYER_FONT;
     private static final Image TEXTURE_CAR_RED;
-
+    private static final Color WHEEL_COLOR;
+    
     static {
         TEXTURE_CAR_RED = new Image(DisplayConstants.LOCATION_TEXTURE_CAR_RED);
+        PLAYER_FONT = new Font("Ariel", 20);
+        WHEEL_COLOR = Color.BLACK;
     }
 
     /**
@@ -95,7 +99,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
         gc.restore(); // Restore canvas to display a rotated image.
         
         gc.setTextAlign(TextAlignment.CENTER);
-        gc.setFont(new Font("Ariel", 20));
+        gc.setFont(PLAYER_FONT);
         gc.setFill(Color.WHITE);
         gc.fillText(car.getPlayer().getUsername(), x, y - height / 1.5); // Draw playername.
 
@@ -111,7 +115,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
         gc.translate(x, y); // Set the origin point of the rotation.
         gc.rotate(Math.toDegrees(-wheel.getDegree())); // Set the angle of the rotation.
-        gc.setFill(Color.BLACK);
+        gc.setFill(WHEEL_COLOR);
         gc.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left.
 
         gc.restore();
