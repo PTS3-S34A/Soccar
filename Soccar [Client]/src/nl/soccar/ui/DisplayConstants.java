@@ -10,8 +10,8 @@ public final class DisplayConstants {
     /**
      * Screen constants in pixels
      */
-    public static final float SCREEN_WIDTH = 1200;
-    public static final float SCREEN_HEIGHT = 800;
+    public static final float SCREEN_WIDTH = 1200.0F;
+    public static final float SCREEN_HEIGHT = 800.0F;
 
     /**
      * Car constants in JBox2D units

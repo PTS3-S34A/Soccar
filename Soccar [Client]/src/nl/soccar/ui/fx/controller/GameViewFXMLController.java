@@ -34,14 +34,11 @@ import nl.soccar.util.PhysicsUtilities;
 public class GameViewFXMLController implements Initializable {
 
     @FXML
-    AnchorPane anchorPane;
+    private AnchorPane anchorPane;
 
     @FXML
-    Canvas canvas;
+    private Canvas canvas;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

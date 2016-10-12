@@ -47,8 +47,8 @@ public final class MapUtilities {
      * @param rectangle The rectangle of which the center X-coordinate needs to be calculated.
      * @return The center X-coordinate of the given rectangle.
      */
-    public static double getCentreX(Rectangle rectangle) {
-        return rectangle.getX() + rectangle.getWidth() / 2;
+    public static float getCentreX(Rectangle rectangle) {
+        return (float) (rectangle.getX() + rectangle.getWidth() / 2);
     }
 
     /**
@@ -57,8 +57,8 @@ public final class MapUtilities {
      * @param rectangle The rectangle of which the center Y-coordinate needs to be calculated.
      * @return The center Y-coordinate of the given rectangle.
      */
-    public static double getCentreY(Rectangle rectangle) {
-        return rectangle.getY() + rectangle.getHeight() / 2;
+    public static float getCentreY(Rectangle rectangle) {
+        return (float) (rectangle.getY() + rectangle.getHeight() / 2);
     }
 
 }

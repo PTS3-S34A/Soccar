@@ -95,6 +95,10 @@ public class Main extends Application {
         }
     }
     
+    /**
+     * Sets the application window to full screen mode.
+     * @param fullScreen 
+     */
     public void setFullScreen(boolean fullScreen) {
         primaryStage.setMaximized(fullScreen);
         primaryStage.setFullScreen(fullScreen);

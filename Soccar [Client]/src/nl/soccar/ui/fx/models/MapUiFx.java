@@ -43,15 +43,18 @@ public class MapUiFx extends DrawableFx<Map> {
         super(canvas, model);
     }
 
+    /**
+     * Method that adds wall obstacles to the map.
+     */
     public void addWalls() {
         Map map = super.getModel();
         Rectangle size = map.getSize();
 
         float mapWidth = (float) size.getWidth();
         float mapHeight = (float) size.getHeight();
-        float wallWidth = 2;
+        float wallWidth = 2.0F;
         
-        float cornerSize = 15;
+        float cornerSize = 15.0F;
 
         GameCanvasFx canvas = super.getCanvas();
         World world = canvas.getPhysics().getWorld();
@@ -103,8 +106,8 @@ public class MapUiFx extends DrawableFx<Map> {
         Map map = super.getModel();
         Rectangle size = map.getSize();
         
-        double centreX = PhysicsUtilities.toPixelX((float) MapUtilities.getCentreX(size));
-        double centreY = PhysicsUtilities.toPixelY((float) MapUtilities.getCentreY(size));
+        double centreX = PhysicsUtilities.toPixelX(MapUtilities.getCentreX(size));
+        double centreY = PhysicsUtilities.toPixelY(MapUtilities.getCentreY(size));
         double width = PhysicsUtilities.toPixelWidth((float) size.getWidth());
         double height = PhysicsUtilities.toPixelHeight((float) size.getHeight());
 
