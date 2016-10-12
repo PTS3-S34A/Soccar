@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import nl.soccar.library.Car;
 import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
@@ -16,23 +18,26 @@ import nl.soccar.ui.physics.models.WheelPhysics;
 import nl.soccar.util.PhysicsUtilities;
 
 /**
- * A CarUiFx object represents a JavaFX Drawable of a Car.
- * It keeps track of the Car and CarPhysics models and provides methods to draw and
- * update the models.
- * 
+ * A CarUiFx object represents a JavaFX Drawable of a Car. It keeps track of the
+ * Car and CarPhysics models and provides methods to draw and update the models.
+ *
  * @author PTS34A
  */
 public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
+    private static final Font PLAYER_FONT;
     private static final Image TEXTURE_CAR_RED;
-
+    private static final Color WHEEL_COLOR;
+    
     static {
         TEXTURE_CAR_RED = new Image(DisplayConstants.LOCATION_TEXTURE_CAR_RED);
+        PLAYER_FONT = new Font("Ariel", 20);
+        WHEEL_COLOR = Color.BLACK;
     }
 
     /**
      * Initiates a new CarUiFx Object using the given parameters.
-     * 
+     *
      * @param canvas The canvas on which this Car is placed.
      * @param car The model to keep track of.
      * @param physics The physics-model to keep track of.
@@ -88,9 +93,16 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
         gc.translate(x, y); // Set the origin point of the rotation.
         gc.rotate(-Math.toDegrees(car.getDegree())); // Set the angle of the rotation.
+
         gc.drawImage(TEXTURE_CAR_RED, -width / 2, -height / 2, width, height);
 
         gc.restore(); // Restore canvas to display a rotated image.
+        
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.setFont(PLAYER_FONT);
+        gc.setFill(Color.WHITE);
+        gc.fillText(car.getPlayer().getUsername(), x, y - height / 1.5); // Draw playername.
+
     }
 
     private void drawWheel(WheelPhysics wheel, GraphicsContext gc) {
@@ -103,7 +115,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
         gc.translate(x, y); // Set the origin point of the rotation.
         gc.rotate(Math.toDegrees(-wheel.getDegree())); // Set the angle of the rotation.
-        gc.setFill(Color.GREY);
+        gc.setFill(WHEEL_COLOR);
         gc.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left.
 
         gc.restore();
