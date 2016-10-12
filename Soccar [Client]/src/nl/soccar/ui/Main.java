@@ -94,4 +94,13 @@ public class Main extends Application {
             LOGGER.error("An error occurred while changing a scene.", e);
         }
     }
+    
+    /**
+     * Sets the application window to full screen mode.
+     * @param fullScreen 
+     */
+    public void setFullScreen(boolean fullScreen) {
+        primaryStage.setMaximized(fullScreen);
+        primaryStage.setFullScreen(fullScreen);
+    }
 }

@@ -1,5 +1,6 @@
 package nl.soccar.ui.physics;
 
+import nl.soccar.ui.DisplayConstants;
 import org.jbox2d.common.Vec2;
 
 /**
@@ -13,7 +14,7 @@ public final class PhysicsContants {
     /**
      * Scaling ratio
      */
-    public static final int PIXELS_PER_METER = 10;
+    public static final float PIXELS_PER_METER = DisplayConstants.SCREEN_WIDTH / DisplayConstants.MAP_WIDTH;
 
     /**
      * Refresh rate

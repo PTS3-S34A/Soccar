@@ -8,29 +8,32 @@ package nl.soccar.ui;
 public final class DisplayConstants {
 
     /**
-     * Screen properties
+     * Screen constants in pixels
      */
-    public static final int SCREEN_WIDTH = DisplayConstants.MAP_WIDTH + DisplayConstants.FIELD_MARGIN;
-    public static final int SCREEN_HEIGHT = DisplayConstants.MAP_HEIGHT + DisplayConstants.FIELD_MARGIN;
+    public static final float SCREEN_WIDTH = 1200.0F;
+    public static final float SCREEN_HEIGHT = 800.0F;
 
-    public static final float CAR_WIDTH = 6.0F;
-    
     /**
-     * Map properties
+     * Car constants in JBox2D units
      */
-    public static final int MAP_WIDTH = 1200;
-    public static final int MAP_HEIGHT = 800;
-    public static final int LINE_WIDTH = 2;
-    public static final double CENTRE_CIRCLE_SIZE = 137.5;
-    public static final int CENTRE_SPOT_SIZE = 15;
-    public static final int FIELD_MARGIN = 50;
-    public static final int BOX_WIDTH = 125;
-    public static final int BOX_HEIGHT = 325;
-    public static final int GOAL_WIDTH = 35;
-    public static final double GOAL_HEIGHT = BOX_HEIGHT / 1.5;
+    public static final float CAR_WIDTH = 5.0F;
     
     /**
-     * Map images properties
+     * Map constants in JBox2D units
+     */
+    public static final float MAP_WIDTH = 160.0F;
+    public static final float MAP_HEIGHT = 90.0F;
+    public static final float LINE_WIDTH = 0.2F;
+    public static final float CENTRE_CIRCLE_SIZE = 13.75F;
+    public static final float CENTRE_SPOT_SIZE = 1.5F;
+    public static final float FIELD_MARGIN = 5.0F;
+    public static final float BOX_WIDTH = 12.5F;
+    public static final float BOX_HEIGHT = 32.5F;
+    public static final float GOAL_WIDTH = 3.5F;
+    public static final float GOAL_HEIGHT = BOX_HEIGHT / 1.5F;
+    
+    /**
+     * Map image constants
      */
     public static final String LOCATION_TEXTURE_MOON = "resources/images/moon_texture.jpg";
     public static final String LOCATION_TEXTURE_DESERT = "resources/images/desert_texture.jpg";

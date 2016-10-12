@@ -1,8 +1,8 @@
 package nl.soccar.library;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.shape.Rectangle;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.util.MapUtilities;
 

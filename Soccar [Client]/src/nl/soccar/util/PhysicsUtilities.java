@@ -15,7 +15,7 @@ public final class PhysicsUtilities {
     }
 
     /**
-     * Converts a JBox2D x-coordinate to a JavaFX pixel x-coordinate.
+     * Convert a JBox2D X-coordinate to a JavaFX pixel X-coordinate.
      *
      * @param x the JBox2D x-coodinate to convert.
      * @return The JavaFX x-coordinate.
@@ -25,13 +25,13 @@ public final class PhysicsUtilities {
     }
 
     /**
-     * Converts a JBox2D y-coordinate to a JavaFX pixel y-coordinate
+     * Convert a JBox2D Y-coordinate to a JavaFX pixel Y-coordinate.
      *
      * @param y the JBox2D y-coordinate to convert.
      * @return The JavaFX y-coordinate.
      */
     public static float toPixelY(float y) {
-        return DisplayConstants.MAP_HEIGHT - (y * PhysicsContants.PIXELS_PER_METER);
+        return (DisplayConstants.MAP_HEIGHT - y) * PhysicsContants.PIXELS_PER_METER;
     }
 
     /**

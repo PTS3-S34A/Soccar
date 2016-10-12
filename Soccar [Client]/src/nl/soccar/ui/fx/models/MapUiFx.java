@@ -1,9 +1,9 @@
 package nl.soccar.ui.fx.models;
 
-import java.awt.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import nl.soccar.library.Map;
 import nl.soccar.library.Obstacle;
 import nl.soccar.library.enumeration.ObstacleType;
@@ -11,6 +11,8 @@ import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.DrawableFx;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.physics.models.ObstaclePhysics;
+import nl.soccar.util.MapUtilities;
+import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.dynamics.World;
 
 /**
@@ -39,40 +41,59 @@ public class MapUiFx extends DrawableFx<Map> {
      */
     public MapUiFx(GameCanvasFx canvas, Map model) {
         super(canvas, model);
-
-        addWalls();
     }
 
-    private void addWalls() {
+    /**
+     * Method that adds wall obstacles to the map.
+     */
+    public void addWalls() {
         Map map = super.getModel();
         Rectangle size = map.getSize();
 
-        float width = (float) size.getWidth();
-        float height = (float) size.getHeight();
-        float margin = DisplayConstants.FIELD_MARGIN;
+        float mapWidth = (float) size.getWidth();
+        float mapHeight = (float) size.getHeight();
+        float wallWidth = 2.0F;
+        
+        float cornerSize = 15.0F;
 
         GameCanvasFx canvas = super.getCanvas();
         World world = canvas.getPhysics().getWorld();
 
-        Obstacle westWall = new Obstacle(0, 0, 0, margin, height, ObstacleType.WALL);
-        Obstacle eastWall = new Obstacle(width - margin, 0, 0, margin, height, ObstacleType.WALL);
-        Obstacle northWall = new Obstacle(0, 0, 0, width, margin, ObstacleType.WALL);
-        Obstacle southWall = new Obstacle(0, height - margin, 0, width, margin, ObstacleType.WALL);
+        Obstacle westWall = new Obstacle(wallWidth / 2, mapHeight / 2, 0, wallWidth, mapHeight, ObstacleType.WALL);
+        Obstacle eastWall = new Obstacle(mapWidth - (wallWidth / 2), mapHeight / 2, 0, wallWidth, mapHeight, ObstacleType.WALL);
+        Obstacle northWall = new Obstacle(mapWidth / 2, mapHeight - (wallWidth / 2), 0, mapWidth, wallWidth, ObstacleType.WALL);
+        Obstacle southWall = new Obstacle(mapWidth / 2, wallWidth / 2, 0, mapWidth, wallWidth, ObstacleType.WALL);
+        Obstacle northWestWall = new Obstacle(0, mapHeight, 45, cornerSize, cornerSize, ObstacleType.WALL);
+        Obstacle nortEastWall = new Obstacle(mapWidth, mapHeight, 45, cornerSize, cornerSize, ObstacleType.WALL);
+        Obstacle southWestWall = new Obstacle(0, 0, 45, cornerSize, cornerSize, ObstacleType.WALL);
+        Obstacle southEastWall = new Obstacle(mapWidth, 0, 45, cornerSize, cornerSize, ObstacleType.WALL);
 
         ObstaclePhysics westWallPhysics = new ObstaclePhysics(westWall, world);
         ObstaclePhysics eastWallPhysics = new ObstaclePhysics(eastWall, world);
         ObstaclePhysics northWallPhysics = new ObstaclePhysics(northWall, world);
         ObstaclePhysics southWallPhysics = new ObstaclePhysics(southWall, world);
+        ObstaclePhysics northWestWallPhysics = new ObstaclePhysics(northWestWall, world);
+        ObstaclePhysics northEastWallPhysics = new ObstaclePhysics(nortEastWall, world);
+        ObstaclePhysics southWestWallPhysics = new ObstaclePhysics(southWestWall, world);
+        ObstaclePhysics southEastWallPhysics = new ObstaclePhysics(southEastWall, world);
 
         ObstacleUiFx westWallUi = new ObstacleUiFx(canvas, westWall, westWallPhysics);
         ObstacleUiFx eastWallUi = new ObstacleUiFx(canvas, eastWall, eastWallPhysics);
         ObstacleUiFx northWallUi = new ObstacleUiFx(canvas, northWall, northWallPhysics);
         ObstacleUiFx southWallUi = new ObstacleUiFx(canvas, southWall, southWallPhysics);
+        ObstacleUiFx northWestWallUi = new ObstacleUiFx(canvas, northWestWall, northWestWallPhysics);
+        ObstacleUiFx northEastWallUi = new ObstacleUiFx(canvas, nortEastWall, northEastWallPhysics);
+        ObstacleUiFx southWestWallUi = new ObstacleUiFx(canvas, southWestWall, southWestWallPhysics);
+        ObstacleUiFx SouthEastWallUi = new ObstacleUiFx(canvas, southEastWall, southEastWallPhysics);
 
         canvas.addDrawable(westWallUi);
         canvas.addDrawable(eastWallUi);
         canvas.addDrawable(northWallUi);
         canvas.addDrawable(southWallUi);
+        canvas.addDrawable(northWestWallUi);
+        canvas.addDrawable(northEastWallUi);
+        canvas.addDrawable(southWestWallUi);
+        canvas.addDrawable(SouthEastWallUi);
     }
 
     @Override
@@ -84,55 +105,107 @@ public class MapUiFx extends DrawableFx<Map> {
     public void draw(GraphicsContext context) {
         Map map = super.getModel();
         Rectangle size = map.getSize();
+        
+        double centreX = PhysicsUtilities.toPixelX(MapUtilities.getCentreX(size));
+        double centreY = PhysicsUtilities.toPixelY(MapUtilities.getCentreY(size));
+        double width = PhysicsUtilities.toPixelWidth((float) size.getWidth());
+        double height = PhysicsUtilities.toPixelHeight((float) size.getHeight());
 
-        double x = size.getX();
-        double y = size.getY();
+        double lineWidth = PhysicsUtilities.toPixelWidth(DisplayConstants.LINE_WIDTH);
+        double fieldMargin = PhysicsUtilities.toPixelWidth(DisplayConstants.FIELD_MARGIN);
 
-        double centreX = size.getCenterX();
-        double centreY = size.getCenterY();
+        double centreCircleSize = PhysicsUtilities.toPixelWidth(DisplayConstants.CENTRE_CIRCLE_SIZE);
+        double centreSpotSize = PhysicsUtilities.toPixelWidth(DisplayConstants.CENTRE_SPOT_SIZE);
+        
+        double boxPositionY = PhysicsUtilities.toPixelY((float) (size.getHeight() / 2) + (DisplayConstants.BOX_HEIGHT / 2));
+        double boxWidth = PhysicsUtilities.toPixelWidth(DisplayConstants.BOX_WIDTH);
+        double boxHeight = PhysicsUtilities.toPixelHeight(DisplayConstants.BOX_HEIGHT);
 
-        double width = size.getWidth();
-        double height = size.getHeight();
+        Rectangle leftGoal = map.getGoalBlue();
+        double leftGoalX = PhysicsUtilities.toPixelX((float) leftGoal.getX());
+        double leftGoalY = PhysicsUtilities.toPixelY((float) leftGoal.getY());
+        double leftGoalWidth = PhysicsUtilities.toPixelWidth((float) leftGoal.getWidth());
+        double leftGoalHeight = PhysicsUtilities.toPixelHeight((float) leftGoal.getHeight());
 
-        double boxPositionY = (height / 2) - (DisplayConstants.BOX_HEIGHT / 2);
+        Rectangle rightGoal = map.getGoalRed();
+        double rightGoalX = PhysicsUtilities.toPixelX((float) rightGoal.getX());
+        double rightGoalY = PhysicsUtilities.toPixelY((float) rightGoal.getY());
+        double rightGoalWidth = PhysicsUtilities.toPixelWidth((float) rightGoal.getWidth());
+        double rightGoalHeight = PhysicsUtilities.toPixelHeight((float) rightGoal.getHeight());
 
         switch (map.getMapType()) {
             case DESERT:
-                context.drawImage(TEXTURE_DESERT, x, y, width, height);
+                context.drawImage(TEXTURE_DESERT, 0, 0, width, height);
                 break;
             case MOON:
-                context.drawImage(TEXTURE_MOON, x, y, width, height);
+                context.drawImage(TEXTURE_MOON, 0, 0, width, height);
                 break;
-            case GRASSLAND:
             default:
-                context.drawImage(TEXTURE_GRASS, x, y, width, height);
+            case GRASSLAND:
+                context.drawImage(TEXTURE_GRASS, 0, 0, width, height);
                 break;
         }
 
+        // Line color
         context.setStroke(Color.WHITE);
         context.setFill(Color.WHITE);
-        context.setLineWidth(DisplayConstants.LINE_WIDTH);
 
-        context.strokeLine(centreX, y + DisplayConstants.FIELD_MARGIN, centreX, height - DisplayConstants.FIELD_MARGIN); // Baseline
+        // Line width
+        context.setLineWidth(lineWidth);
 
-        context.strokeOval(centreX - (DisplayConstants.CENTRE_CIRCLE_SIZE / 2), centreY - (DisplayConstants.CENTRE_CIRCLE_SIZE / 2),
-                DisplayConstants.CENTRE_CIRCLE_SIZE, DisplayConstants.CENTRE_CIRCLE_SIZE); // Centre circle
-        context.fillOval(centreX - (DisplayConstants.CENTRE_SPOT_SIZE / 2), centreY - (DisplayConstants.CENTRE_SPOT_SIZE / 2),
-                DisplayConstants.CENTRE_SPOT_SIZE, DisplayConstants.CENTRE_SPOT_SIZE); // Centre spot
+        // Baseline
+        context.strokeLine(
+                centreX,
+                fieldMargin,
+                centreX,
+                height - fieldMargin
+        );
 
-        context.strokeRect(DisplayConstants.FIELD_MARGIN, DisplayConstants.FIELD_MARGIN,
-                width - (2 * DisplayConstants.FIELD_MARGIN), height - (2 * DisplayConstants.FIELD_MARGIN)); // Field
+        // Centre circle
+        context.strokeOval(
+                centreX - (centreCircleSize / 2),
+                centreY - (centreCircleSize / 2),
+                centreCircleSize,
+                centreCircleSize
+        );
 
-        context.strokeRect(DisplayConstants.FIELD_MARGIN, boxPositionY, DisplayConstants.BOX_WIDTH,
-                DisplayConstants.BOX_HEIGHT); // Box left
-        context.strokeRect(width - DisplayConstants.FIELD_MARGIN - DisplayConstants.BOX_WIDTH,
-                boxPositionY, DisplayConstants.BOX_WIDTH, DisplayConstants.BOX_HEIGHT); // Box right
+        // Centre spot
+        context.fillOval(
+                centreX - (centreSpotSize / 2),
+                centreY - (centreSpotSize / 2),
+                centreSpotSize,
+                centreSpotSize
+        );
 
-        Rectangle leftGoal = map.getGoalBlue();
-        context.strokeRect(leftGoal.getX(), leftGoal.getY(), leftGoal.getWidth(), leftGoal.getHeight()); // Goal left
+        // Field
+        context.strokeRect(
+                fieldMargin,
+                fieldMargin,
+                width - (2 * fieldMargin),
+                height - (2 * fieldMargin)
+        );
 
-        Rectangle rightGoal = map.getGoalRed();
-        context.strokeRect(rightGoal.getX(), rightGoal.getY(), rightGoal.getWidth(), rightGoal.getHeight()); // Goal left
+        // Box left
+        context.strokeRect(
+                fieldMargin,
+                boxPositionY,
+                boxWidth,
+                boxHeight
+        );
+
+        // Box right
+        context.strokeRect(
+                width - fieldMargin - boxWidth,
+                boxPositionY,
+                boxWidth,
+                boxHeight
+        );
+
+        // Left goal
+        context.strokeRect(leftGoalX, leftGoalY, leftGoalWidth, leftGoalHeight);
+
+        // Right goal
+        context.strokeRect(rightGoalX, rightGoalY, rightGoalWidth, rightGoalHeight);
     }
 
 }

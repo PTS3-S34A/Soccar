@@ -46,9 +46,6 @@ public class SessionViewFXMLController implements Initializable {
 
     private Player currentPlayer;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Soccar soccar = Soccar.getInstance();
@@ -57,28 +54,44 @@ public class SessionViewFXMLController implements Initializable {
 
         btnLogOut.setOnAction(e -> Main.getInstance().logOut());
         btnLeaveRoom.setOnAction(e -> leaveRoom());
+        btnStartGame.setOnAction(e -> startGame());
 
         lblUsername.setText(currentPlayer.getUsername());
 
         setRoomInfo();
     }
 
+    /**
+     * Method that display the current settings of the room on the session view.
+     */
     private void setRoomInfo() {
         Room room = currentSession.getRoom();
         int occupancy = room.getOccupancy();
         int capacity = room.getCapacity();
-        
+
         lblRoomName.setText(String.format("Room: %s", room.getName()));
         lblOccupancy.setText(String.format("Occupancy: %d/%d", occupancy, capacity));
 
         lvPlayersBlue.setItems(FXCollections.observableArrayList(room.getTeamBlue().getPlayers()));
         lvPlayersRed.setItems(FXCollections.observableArrayList(room.getTeamRed().getPlayers()));
 
-        btnStartGame.setDisable(occupancy != capacity);
+        // TODO: btnStartGame.setDisable(occupancy != capacity);
     }
 
+    /**
+     * Method that removes the player from the current session and navigates to the main menu view.
+     */
     private void leaveRoom() {
         Soccar.getInstance().getSessionController().leave(currentSession, currentPlayer);
         Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU);
+    }
+
+    /**
+     * Method that navigates to the game view and set the application window to full screen mode.
+     */
+    public void startGame() {
+        Main main = Main.getInstance();
+        main.setScene(FXMLConstants.LOCATION_GAME_VIEW);
+        main.setFullScreen(true);
     }
 }

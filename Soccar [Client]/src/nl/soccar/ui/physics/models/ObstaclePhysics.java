@@ -20,8 +20,8 @@ public class ObstaclePhysics implements WorldObject {
 
     private final Body body;
 
-    private float width;
-    private float height;
+    private final float width;
+    private final float height;
 
     /**
      * Initiates a new ObstaclePhysics Object using the given parameters.
@@ -30,16 +30,19 @@ public class ObstaclePhysics implements WorldObject {
      * @param world The World in which this model is placed in.
      */
     public ObstaclePhysics(Obstacle obstacle, World world) {
+        width = obstacle.getWidth();
+        height = obstacle.getHeight();
+
         BodyDef bd = new BodyDef();
         bd.position.set(obstacle.getX(), obstacle.getY());
         bd.angle = (float) Math.toRadians(obstacle.getDegree());
 
-        PolygonShape ps = new PolygonShape();
-        ps.setAsBox(width / 2, height / 2);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width / 2, height / 2);
 
         FixtureDef fd = new FixtureDef();
         fd.friction = FRICTION;
-        fd.shape = ps;
+        fd.shape = shape;
 
         body = world.createBody(bd);
         body.createFixture(fd);
