@@ -2,7 +2,6 @@ package nl.soccar.ui.fx.models;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -10,9 +9,6 @@ import nl.soccar.library.Car;
 import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
-import nl.soccar.ui.input.Keyboard;
-import nl.soccar.ui.physics.enumeration.SteerAction;
-import nl.soccar.ui.physics.enumeration.ThrottleAction;
 import nl.soccar.ui.physics.models.CarPhysics;
 import nl.soccar.ui.physics.models.WheelPhysics;
 import nl.soccar.util.PhysicsUtilities;
@@ -27,12 +23,13 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
     private static final Font PLAYER_FONT;
     private static final Image TEXTURE_CAR_RED;
-    private static final Color WHEEL_COLOR;
-    
+    private static final Color COLOR_WHEEL;
+
+
     static {
         TEXTURE_CAR_RED = new Image(DisplayConstants.LOCATION_TEXTURE_CAR_RED);
+        COLOR_WHEEL = Color.grayRgb(50);
         PLAYER_FONT = new Font("Ariel", 20);
-        WHEEL_COLOR = Color.BLACK;
     }
 
     /**
@@ -49,27 +46,9 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
     @Override
     public void update() {
         CarPhysics physics = super.getPhysicsModel();
-
-        Keyboard keyboard = Keyboard.getInstance();
-        if (keyboard.isPressed(KeyCode.W)) {
-            physics.setThrottleAction(ThrottleAction.ACCELERATE);
-        } else if (keyboard.isPressed(KeyCode.S)) {
-            physics.setThrottleAction(ThrottleAction.REVERSE);
-        } else {
-            physics.setThrottleAction(ThrottleAction.IDLE);
-        }
-
-        if (keyboard.isPressed(KeyCode.A)) {
-            physics.setSteerAction(SteerAction.STEER_LEFT);
-        } else if (keyboard.isPressed(KeyCode.D)) {
-            physics.setSteerAction(SteerAction.STEER_RIGHT);
-        } else {
-            physics.setSteerAction(SteerAction.NONE);
-        }
+        Car car = super.getModel();
 
         physics.step();
-
-        Car car = super.getModel();
         car.move(physics.getX(), physics.getY(), physics.getDegree());
     }
 
@@ -92,12 +71,11 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
         gc.save(); // Save the canvas so we can draw a rotated rectangle.
 
         gc.translate(x, y); // Set the origin point of the rotation.
-        gc.rotate(-Math.toDegrees(car.getDegree())); // Set the angle of the rotation.
-
-        gc.drawImage(TEXTURE_CAR_RED, -width / 2, -height / 2, width, height);
+        gc.rotate(-car.getDegree()); // Set the angle of the rotation.
+        gc.drawImage(TEXTURE_CAR_RED, -width / 2, -height / 2, width, height); // TODO: Find a solution for anti-aliasing
 
         gc.restore(); // Restore canvas to display a rotated image.
-        
+
         gc.setTextAlign(TextAlignment.CENTER);
         gc.setFont(PLAYER_FONT);
         gc.setFill(Color.WHITE);
@@ -114,8 +92,8 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
         gc.save();
 
         gc.translate(x, y); // Set the origin point of the rotation.
-        gc.rotate(Math.toDegrees(-wheel.getDegree())); // Set the angle of the rotation.
-        gc.setFill(WHEEL_COLOR);
+        gc.rotate(-wheel.getDegree()); // Set the angle of the rotation.
+        gc.setFill(COLOR_WHEEL);
         gc.fillRect(-width / 2, -height / 2, width, height); // Draw the rectangle from the top left.
 
         gc.restore();
