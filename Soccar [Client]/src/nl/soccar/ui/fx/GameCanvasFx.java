@@ -38,8 +38,8 @@ public class GameCanvasFx extends GameCanvas {
         }));
 
         Canvas canvas = context.getCanvas();
-        canvas.setOnKeyPressed(e -> Keyboard.getInstance().setKeyPressed(e.getCode()));
-        canvas.setOnKeyReleased(e -> Keyboard.getInstance().setKeyReleased(e.getCode()));
+        canvas.setOnKeyPressed(e -> Keyboard.setKeyPressed(e.getCode()));
+        canvas.setOnKeyReleased(e -> Keyboard.setKeyReleased(e.getCode()));
     }
 
     @Override
