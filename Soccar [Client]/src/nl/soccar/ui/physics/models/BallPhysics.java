@@ -17,9 +17,12 @@ import org.jbox2d.dynamics.World;
  */
 public class BallPhysics implements WorldObject {
 
-    private static final float DENSITY = 1.0F;
-    private static final float FRICTION = 0.0F;
-    private static final float RESTITUTION = 1.0F;
+    private static final float DENSITY = 0.01F;
+    private static final float FRICTION = 1.0F;
+    private static final float RESTITUTION = 0.8F;
+
+    private static final float LINEAR_DAMPING = 1.0F;
+    private static final float ANGULAR_DAMPING = 1.0F;
 
     private final Body body;
     private final float radius;
@@ -36,6 +39,8 @@ public class BallPhysics implements WorldObject {
         BodyDef bd = new BodyDef();
         bd.type = BodyType.DYNAMIC;
         bd.position.set(ball.getX(), ball.getY());
+        bd.linearDamping = LINEAR_DAMPING;
+        bd.angularDamping = ANGULAR_DAMPING;
 
         CircleShape cs = new CircleShape();
         cs.m_radius = radius;
@@ -43,7 +48,7 @@ public class BallPhysics implements WorldObject {
         FixtureDef fd = new FixtureDef();
         fd.density = DENSITY;
         fd.friction = FRICTION;
-        fd.density = RESTITUTION;
+        fd.restitution = RESTITUTION;
         fd.shape = cs;
 
         body = world.createBody(bd);
@@ -53,11 +58,11 @@ public class BallPhysics implements WorldObject {
     @Override
     public void step() {
         // Lateral velocity
-        Vec2 impulse = body.getLinearVelocity().mul(-1.0F);
-        body.applyLinearImpulse(impulse, body.getWorldCenter());
-
-        // Angular velocity
-        body.applyAngularImpulse(0.1F * body.getInertia() * -body.getAngularVelocity());
+//        Vec2 impulse = body.getLinearVelocity().mul(-1.0F);
+//        body.applyLinearImpulse(impulse, body.getWorldCenter());
+//
+//        // Angular velocity
+//        body.applyAngularImpulse(0.1F * body.getInertia() * -body.getAngularVelocity());
     }
 
     @Override
@@ -72,6 +77,11 @@ public class BallPhysics implements WorldObject {
 
     @Override
     public float getDegree() {
-        return body.m_sweep.a;
+        return (float) Math.toDegrees(body.getAngle());
+    }
+
+    @Override
+    public Body getBody() {
+        return body;
     }
 }

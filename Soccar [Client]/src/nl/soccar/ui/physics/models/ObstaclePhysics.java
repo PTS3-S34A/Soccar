@@ -67,4 +67,9 @@ public class ObstaclePhysics implements WorldObject {
     public float getDegree() {
         return body.m_sweep.a;
     }
+
+    @Override
+    public Body getBody() {
+        return body;
+    }
 }
