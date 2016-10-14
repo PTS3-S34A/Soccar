@@ -57,12 +57,7 @@ public class BallPhysics implements WorldObject {
 
     @Override
     public void step() {
-        // Lateral velocity
-//        Vec2 impulse = body.getLinearVelocity().mul(-1.0F);
-//        body.applyLinearImpulse(impulse, body.getWorldCenter());
-//
-//        // Angular velocity
-//        body.applyAngularImpulse(0.1F * body.getInertia() * -body.getAngularVelocity());
+        // The step method is not implemented because Box2D handles all necessary updates.
     }
 
     @Override
@@ -78,10 +73,5 @@ public class BallPhysics implements WorldObject {
     @Override
     public float getDegree() {
         return (float) Math.toDegrees(body.getAngle());
-    }
-
-    @Override
-    public Body getBody() {
-        return body;
     }
 }
