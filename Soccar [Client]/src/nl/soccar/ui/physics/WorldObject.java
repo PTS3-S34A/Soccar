@@ -36,10 +36,8 @@ public interface WorldObject {
      * Gets the angle of this physics-model, relative to the map it is placed
      * in.
      *
-     * @return the angle of this WorldObject.
+     * @return The angle of this WorldObject.
      */
     float getDegree();
-
-    Body getBody();
 
 }
