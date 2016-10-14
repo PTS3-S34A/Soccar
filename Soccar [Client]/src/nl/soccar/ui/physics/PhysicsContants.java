@@ -25,15 +25,18 @@ public final class PhysicsContants {
     /**
      * Car attributes
      */
-    public static final int CAR_MAX_SPEED = 10;
-    public static final int CAR_MAX_REVERSE_SPEED = 10;
-    public static final int CAR_POWER = 25;
+    public static final int CAR_MAX_SPEED = 6;
+    public static final int CAR_MAX_REVERSE_SPEED = 4;
+    public static final int CAR_POWER = 16;
+    public static final int CAR_NORMAL_SLIDE = 2;
+    public static final int CAR_HANDBRAKE_SLIDE = 16;
 
     /**
      * Car wheel attributes
      */
     public static final int WHEEL_MAX_STEER_ANGLE = 25;
-    public static final int WHEEL_MAX_TURN_IN_MS = 0;
+    public static final int WHEEL_MAX_TURN_IN_MS = 1;
+
 
     /**
      * World properties
