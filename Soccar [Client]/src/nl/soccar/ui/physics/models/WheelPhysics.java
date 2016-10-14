@@ -1,15 +1,12 @@
 package nl.soccar.ui.physics.models;
 
 import nl.soccar.ui.physics.PhysicsContants;
+import nl.soccar.ui.physics.WorldObject;
 import nl.soccar.ui.physics.enumeration.HandbrakeAction;
 import nl.soccar.ui.physics.enumeration.ThrottleAction;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.*;
 import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
 
@@ -19,10 +16,10 @@ import org.jbox2d.dynamics.joints.RevoluteJointDef;
  *
  * @author PTS34A
  */
-public class WheelPhysics {
+public class WheelPhysics implements WorldObject {
 
-    private static final float LINEAR_DAMPING = 0.2F;
-    private static final float ANGULAR_DAMPING = 0.2F;
+    private static final float LINEAR_DAMPING = 1.0F;
+    private static final float ANGULAR_DAMPING = 1.0F;
     private static final float DENSITY = 1.0F;
     private static final boolean IS_SENSOR = true; // Do not include wheels in collision system (for performance).
 
@@ -41,15 +38,17 @@ public class WheelPhysics {
     /**
      * Initiates a new WheelPhysics Object using the given parameters.
      *
-     * @param relPosX The x-coordinate, relative to the Car.
-     * @param relPosY The y-coordinate, relative to the Car.
-     * @param width The width of this Wheel.
-     * @param height The height of this Wheel.
+     * @param relPosX   The x-coordinate, relative to the Car.
+     * @param relPosY   The y-coordinate, relative to the Car.
+     * @param width     The width of this Wheel.
+     * @param height    The height of this Wheel.
      * @param steerable Determines whether this wheel is used to steer the Car.
-     * @param powered Determines whether this wheel is used to power the Car.
-     * @param world The world in which this Wheel is placed in.
+     * @param powered   Determines whether this wheel is used to power the Car.
+     * @param car       The CarPhysics object.
+     * @param world     The world in which this Wheel is placed in.
      */
     public WheelPhysics(float relPosX, float relPosY, float width, float height, boolean steerable, boolean powered, CarPhysics car, World world) {
+
         this.car = car;
         this.carBody = car.getBody();
 
@@ -91,24 +90,9 @@ public class WheelPhysics {
         }
     }
 
-    public void updateFriction() {
-
-        float massDiv = (car.getHandbrakeAction() == HandbrakeAction.ACTIVE ? 12 : 2);
-
-        // Lateral velocity
-        Vec2 impulse = getLateralVelocity().mul(-body.getMass() / massDiv);
-        body.applyLinearImpulse(impulse, body.getWorldCenter());
-
-        // Angular velocity
-        body.applyAngularImpulse(0.1f * body.getInertia() * -body.getAngularVelocity());
-
-        // Forward velocity
-        Vec2 currentForwardNormal = getForwardVelocity();
-        float currentForwardSpeed = currentForwardNormal.normalize();
-        float dragForceMagnitude = -2 * currentForwardSpeed;
-        body.applyForce(currentForwardNormal.mul(dragForceMagnitude), body.getWorldCenter());
-    }
-
+    /**
+     * Apply force on the wheel based on the power of the car and the desired speed.
+     */
     public void updateDrive() {
 
         Vec2 currentForwardNormal = body.getWorldVector(new Vec2(0, 1));
@@ -116,14 +100,36 @@ public class WheelPhysics {
         float currentSpeed = Vec2.dot(getForwardVelocity(), currentForwardNormal);
         float force = PhysicsContants.CAR_POWER * 10;
 
-        System.out.println(String.format("Current speed: %s, Desired speed: %s", currentSpeed, desiredSpeed));
-
         if (desiredSpeed < currentSpeed) force *= -1; // Negative force
         if (desiredSpeed == currentSpeed) return; // Don't do anything
 
         body.applyForce(currentForwardNormal.mul(force), body.getWorldCenter());
     }
 
+    /**
+     * Eliminates sideways velocity.
+     */
+    public void eliminateLateralVelocity() {
+
+        float massDiv;
+
+        if (car.getHandbrakeAction() == HandbrakeAction.ACTIVE) {
+            massDiv = PhysicsContants.CAR_HANDBRAKE_SLIDE;
+        } else {
+            massDiv = PhysicsContants.CAR_NORMAL_SLIDE;
+        }
+
+        // Lateral velocity
+        Vec2 impulse = getLateralVelocity().mul(-body.getMass() / massDiv);
+        body.applyLinearImpulse(impulse, body.getWorldCenter());
+    }
+
+    /**
+     * Sets the speed the car should go towards. This is based on the ThrottleAction.
+     * The car will move towards this speed in the UpdateDrive method.
+     *
+     * @param throttleAction The throttle action.
+     */
     public void setDesiredSpeed(ThrottleAction throttleAction) {
         switch (throttleAction) {
             case ACCELERATE:
@@ -161,22 +167,33 @@ public class WheelPhysics {
         return currentRightNormal.mul(Vec2.dot(currentRightNormal, body.getLinearVelocity()));
     }
 
-    public boolean isSteerable() {
-        return steerable;
+    @Override
+    public void step() {
+
+        eliminateLateralVelocity();
+
+        if (isSteerable()) {
+            setAngle(car.getSteerAngle());
+        }
+
+        if (isPowered()) {
+            setDesiredSpeed(car.getThrottleAction());
+            updateDrive();
+        }
+
     }
 
-    public boolean isPowered() {
-        return powered;
-    }
-
+    @Override
     public float getX() {
         return body.getPosition().x;
     }
 
+    @Override
     public float getY() {
         return body.getPosition().y;
     }
 
+    @Override
     public float getDegree() {
         return (float) Math.toDegrees(body.getAngle());
     }
@@ -187,6 +204,14 @@ public class WheelPhysics {
 
     public float getHeight() {
         return height;
+    }
+
+    public boolean isSteerable() {
+        return steerable;
+    }
+
+    public boolean isPowered() {
+        return powered;
     }
 
 }
