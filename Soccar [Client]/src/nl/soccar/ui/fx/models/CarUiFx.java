@@ -35,8 +35,8 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
     /**
      * Initiates a new CarUiFx Object using the given parameters.
      *
-     * @param canvas The canvas on which this Car is placed.
-     * @param car The model to keep track of.
+     * @param canvas  The canvas on which this Car is placed.
+     * @param car     The model to keep track of.
      * @param physics The physics-model to keep track of.
      */
     public CarUiFx(GameCanvasFx canvas, Car car, CarPhysics physics) {

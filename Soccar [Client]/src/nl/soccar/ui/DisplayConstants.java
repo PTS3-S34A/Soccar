@@ -16,7 +16,7 @@ public final class DisplayConstants {
     /**
      * Ball constants in JBox2D units
      */
-    public static final float BALL_RADIUS = 3.0F;
+    public static final float BALL_RADIUS = 2.5F;
 
     /**
      * Car constants in JBox2D units

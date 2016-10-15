@@ -6,7 +6,6 @@ import nl.soccar.ui.physics.enumeration.SteerAction;
 import nl.soccar.ui.physics.enumeration.ThrottleAction;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,23 +15,48 @@ import java.util.List;
  */
 public final class Keyboard {
 
-    private static List<KeyCode> PRESSED_KEYS;
+    // Stores the keys that are being pressed at any time.
+    private static final List<KeyCode> PRESSED_KEYS;
 
-    private static final KeyCode[] ACCELERATE;
-    private static final KeyCode[] REVERSE;
-    private static final KeyCode[] STEER_LEFT;
-    private static final KeyCode[] STEER_RIGHT;
-    private static final KeyCode[] HANDBRAKE;
-
+    // Stores the key binds.
+    private static final List<KeyCode> ACCELERATE;
+    private static final List<KeyCode> REVERSE;
+    private static final List<KeyCode> STEER_LEFT;
+    private static final List<KeyCode> STEER_RIGHT;
+    private static final List<KeyCode> HANDBRAKE;
 
     static {
         PRESSED_KEYS = new ArrayList<>();
 
-        ACCELERATE = new KeyCode[]{KeyCode.W, KeyCode.UP};
-        REVERSE = new KeyCode[]{KeyCode.S, KeyCode.DOWN};
-        STEER_LEFT = new KeyCode[]{KeyCode.A, KeyCode.LEFT};
-        STEER_RIGHT = new KeyCode[]{KeyCode.D, KeyCode.RIGHT};
-        HANDBRAKE = new KeyCode[]{KeyCode.SPACE};
+        // Accelerate binds
+        ACCELERATE = new ArrayList<>();
+        ACCELERATE.add(KeyCode.W);
+        ACCELERATE.add(KeyCode.UP);
+
+        // Reverse binds
+        REVERSE = new ArrayList<>();
+        REVERSE.add(KeyCode.S);
+        REVERSE.add(KeyCode.DOWN);
+
+        // Steer left binds
+        STEER_LEFT = new ArrayList<>();
+        STEER_LEFT.add(KeyCode.A);
+        STEER_LEFT.add(KeyCode.LEFT);
+
+        // Steer right binds
+        STEER_RIGHT = new ArrayList<>();
+        STEER_RIGHT.add(KeyCode.D);
+        STEER_RIGHT.add(KeyCode.RIGHT);
+
+        // Handbrake binds
+        HANDBRAKE = new ArrayList<>();
+        HANDBRAKE.add(KeyCode.SPACE);
+    }
+
+    /**
+     * Constructor
+     */
+    private Keyboard() {
     }
 
     /**
@@ -78,11 +102,11 @@ public final class Keyboard {
         // The last pressed key
         for (KeyCode pressedKey : PRESSED_KEYS) {
 
-            if (Arrays.asList(ACCELERATE).contains(pressedKey)) {
+            if (ACCELERATE.contains(pressedKey)) {
                 return ThrottleAction.ACCELERATE;
             }
 
-            if (Arrays.asList(REVERSE).contains(pressedKey)) {
+            if (REVERSE.contains(pressedKey)) {
                 return ThrottleAction.REVERSE;
             }
 
@@ -100,11 +124,11 @@ public final class Keyboard {
 
         for (KeyCode pressedKey : PRESSED_KEYS) {
 
-            if (Arrays.asList(STEER_LEFT).contains(pressedKey)) {
+            if (STEER_LEFT.contains(pressedKey)) {
                 return SteerAction.STEER_LEFT;
             }
 
-            if (Arrays.asList(STEER_RIGHT).contains(pressedKey)) {
+            if (STEER_RIGHT.contains(pressedKey)) {
                 return SteerAction.STEER_RIGHT;
             }
 
@@ -122,15 +146,12 @@ public final class Keyboard {
 
         for (KeyCode pressedKey : PRESSED_KEYS) {
 
-            if (Arrays.asList(HANDBRAKE).contains(pressedKey)) {
+            if (HANDBRAKE.contains(pressedKey)) {
                 return HandbrakeAction.ACTIVE;
             }
 
         }
 
         return HandbrakeAction.INACTIVE;
-    }
-
-    private Keyboard() {
     }
 }

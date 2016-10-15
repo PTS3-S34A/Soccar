@@ -2,12 +2,10 @@ package nl.soccar.ui.fx.models;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import nl.soccar.library.Ball;
 import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
-import nl.soccar.ui.physics.PhysicsContants;
 import nl.soccar.ui.physics.models.BallPhysics;
 import nl.soccar.util.PhysicsUtilities;
 
@@ -15,7 +13,7 @@ import nl.soccar.util.PhysicsUtilities;
  * A BallUiFx object represents a JavaFX Drawable of a Ball.
  * It keeps track of the Ball and BallPhysics models and provides methods to draw and
  * update the models.
- * 
+ *
  * @author PTS34A
  */
 public class BallUiFx extends PhysicsDrawableFx<Ball, BallPhysics> {
@@ -28,9 +26,9 @@ public class BallUiFx extends PhysicsDrawableFx<Ball, BallPhysics> {
 
     /**
      * Initiates a new BallUiFx Object using the given parameters.
-     * 
-     * @param canvas The canvas on which this Ball is placed.
-     * @param ball The ball model to keep track of.
+     *
+     * @param canvas  The canvas on which this Ball is placed.
+     * @param ball    The ball model to keep track of.
      * @param physics The physics model to keep track of.
      */
     public BallUiFx(GameCanvasFx canvas, Ball ball, BallPhysics physics) {

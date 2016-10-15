@@ -32,7 +32,7 @@ public class WheelPhysics implements WorldObject {
     private boolean steerable;
     private boolean powered;
 
-    private float desiredSpeed = 0;
+    private float desiredSpeed = 0.0F;
 
 
     /**
@@ -100,8 +100,15 @@ public class WheelPhysics implements WorldObject {
         float currentSpeed = Vec2.dot(getForwardVelocity(), currentForwardNormal);
         float force = PhysicsContants.CAR_POWER * 10;
 
-        if (desiredSpeed < currentSpeed) force *= -1; // Negative force
-        if (desiredSpeed == currentSpeed) return; // Don't do anything
+        // Negative force
+        if (desiredSpeed < currentSpeed) {
+            force *= -1;
+        }
+
+        // Don't do anything
+        if (desiredSpeed == currentSpeed) {
+            return;
+        }
 
         body.applyForce(currentForwardNormal.mul(force), body.getWorldCenter());
     }
@@ -133,10 +140,10 @@ public class WheelPhysics implements WorldObject {
     public void setDesiredSpeed(ThrottleAction throttleAction) {
         switch (throttleAction) {
             case ACCELERATE:
-                desiredSpeed = PhysicsContants.CAR_MAX_SPEED * 10;
+                desiredSpeed = PhysicsContants.CAR_MAX_SPEED;
                 break;
             case REVERSE:
-                desiredSpeed = -PhysicsContants.CAR_MAX_REVERSE_SPEED * 10;
+                desiredSpeed = -PhysicsContants.CAR_MAX_REVERSE_SPEED;
                 break;
             default:
             case IDLE:

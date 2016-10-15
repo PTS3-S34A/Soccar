@@ -1,5 +1,4 @@
 package nl.soccar.ui.physics;
-import org.jbox2d.dynamics.Body;
 
 /**
  * A WorldObject represents a physics-model which are eventually tracked by

@@ -26,9 +26,9 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
     /**
      * Initiates a new ObstacleUiFx Object using the given parameters.
      *
-     * @param canvas The canvas on which this Obstacle is placed.
+     * @param canvas   The canvas on which this Obstacle is placed.
      * @param obstacle The model to keep track of.
-     * @param physics The physics-model to keep track of.
+     * @param physics  The physics-model to keep track of.
      */
     private ObstacleUiFx(GameCanvasFx canvas, Obstacle obstacle, ObstaclePhysics physics) {
         super(canvas, obstacle, physics);
@@ -116,6 +116,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
             ObstacleUiFx obstacleUiFx = new ObstacleUiFx(canvas, obstacle, obstaclePhysics);
             return obstacleUiFx;
         }
-        
+
     }
+
 }

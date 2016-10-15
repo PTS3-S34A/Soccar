@@ -6,7 +6,7 @@ import org.jbox2d.common.Vec2;
 /**
  * Constants class to define all kinds of variables which are used by physics-
  * models.
- * 
+ *
  * @author PTS34A
  */
 public final class PhysicsContants {
@@ -25,9 +25,9 @@ public final class PhysicsContants {
     /**
      * Car attributes
      */
-    public static final int CAR_MAX_SPEED = 6;
-    public static final int CAR_MAX_REVERSE_SPEED = 4;
-    public static final int CAR_POWER = 16;
+    public static final int CAR_MAX_SPEED = 50;
+    public static final int CAR_MAX_REVERSE_SPEED = 50;
+    public static final int CAR_POWER = 10;
     public static final int CAR_NORMAL_SLIDE = 2;
     public static final int CAR_HANDBRAKE_SLIDE = 16;
 
@@ -41,14 +41,14 @@ public final class PhysicsContants {
     /**
      * World properties
      */
-    public static final Vec2 GRAVITY_ANGLE = new Vec2(0.0F, 0.0F); 
-    
+    public static final Vec2 GRAVITY_ANGLE = new Vec2(0.0F, 0.0F);
+
     /**
      * World step properties
      */
     public static final int VELOCITY_ITERATIONS = 6;
     public static final int POSITION_ITERATIONS = 3;
-    
+
     private PhysicsContants() {
     }
 

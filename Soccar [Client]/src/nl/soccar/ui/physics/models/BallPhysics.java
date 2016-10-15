@@ -3,16 +3,11 @@ package nl.soccar.ui.physics.models;
 import nl.soccar.library.Ball;
 import nl.soccar.ui.physics.WorldObject;
 import org.jbox2d.collision.shapes.CircleShape;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.*;
 
 /**
  * BallPhysics is a physics-model that keeps track of the physics of the Ball.
- * 
+ *
  * @author PTS34A
  */
 public class BallPhysics implements WorldObject {
@@ -29,8 +24,8 @@ public class BallPhysics implements WorldObject {
 
     /**
      * Initiates a new BallPhysics Object using the given parameter.
-     * 
-     * @param ball The ball model to keep track of.
+     *
+     * @param ball  The ball model to keep track of.
      * @param world The world in which this model is placed.
      */
     public BallPhysics(Ball ball, World world) {
@@ -74,4 +69,5 @@ public class BallPhysics implements WorldObject {
     public float getDegree() {
         return (float) Math.toDegrees(body.getAngle());
     }
+
 }
