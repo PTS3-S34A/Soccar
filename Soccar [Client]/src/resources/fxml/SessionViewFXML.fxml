@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
@@ -10,23 +11,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.SessionViewFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #080931;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.SessionViewFXMLController">
    <children>
       <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="88.0" prefWidth="1210.0">
+            <AnchorPane prefHeight="97.0" prefWidth="1159.0" style="-fx-background-color: white;">
                <children>
-                  <Label layoutX="806.0" layoutY="32.0" text="Logged in user:">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/logo.png" />
+                        <Image url="@../images/logo_small.png" />
                      </image>
                   </ImageView>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="11.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1210.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -36,70 +32,91 @@
                         </LinearGradient>
                      </fill>
                   </Rectangle>
-                  <Label fx:id="lblUsername" layoutX="923.0" layoutY="32.0" text="maatwerkException()">
-                     <font>
-                        <Font name="Segoe UI" size="16.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnLogOut" layoutX="1108.0" layoutY="27.0" mnemonicParsing="false" text="Log out">
-                     <font>
-                        <Font name="Segoe UI" size="15.0" />
-                     </font>
-                  </Button>
                </children>
             </AnchorPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="86.0" prefHeight="540.0" prefWidth="1210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+      <HBox alignment="CENTER" layoutY="86.0" prefHeight="617.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
          <children>
-            <AnchorPane prefHeight="645.0" prefWidth="881.0">
+            <AnchorPane prefHeight="569.0" prefWidth="881.0">
                <children>
-                  <Label fx:id="lblRoomName" alignment="CENTER" layoutX="218.0" layoutY="22.0" text="Room: " AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                  <Label fx:id="lblRoomName" alignment="CENTER" layoutX="218.0" layoutY="81.0" text="roomNamePlaceholder" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
                      <font>
-                        <Font name="Segoe UI" size="19.0" />
+                        <Font name="Century Gothic" size="36.0" />
                      </font>
                   </Label>
-                  <Label layoutX="118.0" layoutY="104.0" text="Blue Team:">
+                  <Label layoutX="171.0" layoutY="160.0" text="TEAM BLUE" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI" size="15.0" />
+                        <Font name="Century Gothic" size="19.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="lvPlayersRed" layoutX="25.0" layoutY="137.0" prefHeight="234.0" prefWidth="258.0" />
-                  <Label layoutX="424.0" layoutY="104.0" text="Map:">
+                  <ListView id="list" fx:id="lvPlayersRed" layoutX="8.0" layoutY="192.0" prefHeight="258.0" prefWidth="424.0" stylesheets="@../css/Style.css" />
+                  <Label fx:id="lblRoomStatus" alignment="CENTER" layoutX="105.0" layoutY="466.0" text="STATUS: WAITING FOR OTHER PLAYERS" textFill="WHITE" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="95.0">
                      <font>
-                        <Font name="Segoe UI" size="15.0" />
+                        <Font name="Century Gothic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblRoomStatus" alignment="CENTER" layoutX="365.0" layoutY="46.0" text="Status: waiting for players " AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                  <ListView id="list" fx:id="lvPlayersBlue" layoutX="452.0" layoutY="192.0" prefHeight="258.0" prefWidth="424.0" stylesheets="@../css/Style.css" />
+                  <Label layoutX="619.0" layoutY="160.0" text="TEAM RED" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI" size="13.0" />
+                        <Font name="Century Gothic" size="19.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="153.0" fitWidth="252.0" layoutX="315.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
-                  <ListView fx:id="lvPlayersBlue" layoutX="593.0" layoutY="135.0" prefHeight="234.0" prefWidth="258.0" />
-                  <Label layoutX="687.0" layoutY="104.0" text="Red Team:">
+                  <Label fx:id="lblOccupancy" alignment="CENTER" layoutX="96.0" layoutY="499.0" text="OCCUPANCY: 1/2" textFill="WHITE" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="104.0">
                      <font>
-                        <Font name="Segoe UI" size="15.0" />
+                        <Font name="Century Gothic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblOccupancy" alignment="CENTER" layoutX="100.0" layoutY="400.0" text="Occupancy:" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                  <Button id="button" fx:id="btnStartGame" layoutX="392.0" layoutY="539.0" mnemonicParsing="false" prefHeight="66.0" stylesheets="@../css/Style.css" text="START" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI" size="15.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnStartGame" layoutX="384.0" layoutY="468.0" mnemonicParsing="false" text="Start Game">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
+                        <Font name="Century Gothic" size="24.0" />
                      </font>
                   </Button>
+                  <Label alignment="CENTER" layoutX="382.0" layoutY="35.0" text="ROOM" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="36.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
       </HBox>
-      <Button fx:id="btnLeaveRoom" layoutX="52.0" layoutY="577.0" mnemonicParsing="false" text="Leave">
+      <Button id="button" fx:id="btnLogOut" layoutX="1050.0" layoutY="6.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="144.0" stylesheets="@../css/Style.css" text="LOG OUT" textFill="WHITE">
          <font>
-            <Font name="Segoe UI" size="17.0" />
+            <Font name="Century Gothic" size="24.0" />
          </font>
       </Button>
+      <Label layoutX="26.0" layoutY="724.0" text="LOGGED IN USER:" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUsername" layoutX="212.0" layoutY="724.0" text="userNamePlaceHolder" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="756.0" text="SELECTED CAR:" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCar" layoutX="212.0" layoutY="758.0" text="carPlaceHolder" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_RIGHT" layoutX="466.0" layoutY="703.0" prefHeight="97.0" prefWidth="734.0">
+         <padding>
+            <Insets right="7.0" />
+         </padding>
+         <children>
+            <Button id="button" fx:id="btnLeaveRoom" mnemonicParsing="false" prefHeight="66.0" prefWidth="144.0" stylesheets="@../css/Style.css" text="LEAVE" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

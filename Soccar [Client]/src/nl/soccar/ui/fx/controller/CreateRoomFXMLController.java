@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import nl.soccar.exception.DuplicateValueException;
+import nl.soccar.library.Player;
 import nl.soccar.library.Session;
 import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.MapType;
@@ -40,6 +41,8 @@ public class CreateRoomFXMLController implements Initializable {
     @FXML
     private Label lblUsername;
     @FXML
+    private Label lblCar;
+    @FXML
     private TextField textFieldRoomName;
     @FXML
     private PasswordField textFieldPassword;
@@ -56,11 +59,13 @@ public class CreateRoomFXMLController implements Initializable {
             if (!textFieldRoomName.getText().isEmpty()) {
                 createRoom();
             } else {
-                textFieldRoomName.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
+                textFieldRoomName.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");
             }
         });
 
-        lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());
+        Player player = Soccar.getInstance().getCurrentPlayer();
+        lblUsername.setText(player.getUsername());
+        lblCar.setText(player.getCarType().toString());
         textFieldRoomName.setOnAction(e -> createRoom());
 
         ObservableList<MapType> list = cbMap.getItems();

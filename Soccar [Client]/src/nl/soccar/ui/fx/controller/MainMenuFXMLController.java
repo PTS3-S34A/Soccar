@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 
 /**
  * FXML Controller class
- * 
+ *
  * @author PTS34A
  */
 public class MainMenuFXMLController implements Initializable {
@@ -60,6 +60,9 @@ public class MainMenuFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         sessionController = Soccar.getInstance().getSessionController();
 
+        // Overwrite the standard placeholder text with an empty String.
+        tblSessionList.setPlaceholder(new Label(""));
+        
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());
         lblCar.setText(Soccar.getInstance().getCurrentPlayer().getCarType().toString());
 
@@ -87,7 +90,7 @@ public class MainMenuFXMLController implements Initializable {
     private void updateTable() {
         ObservableList<SessionTableItem> sessionItems = FXCollections.observableArrayList();
         Soccar.getInstance().getSessionController().getAllSessions().stream().map(SessionTableItem::new).forEach(sessionItems::add);
-        
+
         tblSessionList.getItems().clear();
         tblSessionList.getItems().addAll(sessionItems);
     }
@@ -98,9 +101,9 @@ public class MainMenuFXMLController implements Initializable {
         Session selectedSession = selectedRow.getSession();
         if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
-            dialog.setTitle("Password locked room");
-            dialog.setHeaderText("This room is locked!");
-            dialog.setContentText("Please enter your password:");
+            dialog.setTitle("Room Locked");
+            dialog.setHeaderText("Room Locked");
+            dialog.setContentText("Enter the room password:");
 
             Optional<String> result = dialog.showAndWait();
             password = result.get();

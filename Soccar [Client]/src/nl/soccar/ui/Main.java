@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import nl.soccar.library.Player;
 import nl.soccar.library.Soccar;
@@ -17,49 +18,48 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Entry point of the Soccar application. The Main class keeps track of the UI and provides a way to switch certain scenes.
- * 
+ *
  * @author PTS34A
  */
 public class Main extends Application {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
-    
+
     private static Main mainClass;
-    
+
     private Stage primaryStage;
-    
+
     @Override
     public void start(Stage primaryStage) {
         mainClass = this;
         this.primaryStage = primaryStage;
-        
+
         setScene(FXMLConstants.LOCATION_LOGIN);
     }
 
     /**
      * Gets an instance of this class (singleton).
-     * 
+     *
      * @return A singleton instance of this class.
      */
     public static Main getInstance() {
-      return mainClass;
+        return mainClass;
     }
-     
+
     /**
      * Starts the application.
-     * 
+     *
      * @param args The command line arguments to pass into the application.
      */
     public static void main(String[] args) {
         BasicConfigurator.configure();
-        
+
         launch(args);
     }
-    
+
     /**
-     * Handles a login request. On success: adjusts the current player and changes the scene to the main menu.
-     * On fail: throws an exception and displays an error message to the end user.
-     * 
+     * Handles a login request. On success: adjusts the current player and changes the scene to the main menu. On fail: throws an exception and displays an error message to the end user.
+     *
      * @param username The username of the player.
      * @param selectedCar The selected car of the player.
      */
@@ -68,7 +68,7 @@ public class Main extends Application {
         Soccar.setInstance(new Player(username, Privilege.NORMAL, selectedCar));
         setScene(FXMLConstants.LOCATION_MAIN_MENU);
     }
-    
+
     /**
      * Logs out the current user and changes the scene to the login menu.
      */
@@ -76,10 +76,10 @@ public class Main extends Application {
         Soccar.setInstance(null);
         setScene(FXMLConstants.LOCATION_LOGIN);
     }
-    
+
     /**
      * Changes the scene by giving a name. The actual file is resolved by combining a predefined String and the given name.
-     * 
+     *
      * @param sceneName The name of the scene.
      */
     public void setScene(String sceneName) {
@@ -89,29 +89,32 @@ public class Main extends Application {
 
             primaryStage.setTitle(Soccar.APPLICATION_NAME);
             primaryStage.setScene(scene);
+            primaryStage.getIcons().add(new Image(DisplayConstants.LOCATION_STAGE_ICON));
+
             primaryStage.show();
         } catch (IOException e) {
             LOGGER.error("An error occurred while changing a scene.", e);
         }
     }
-    
+
     /**
      * Sets the application window to full screen mode.
-     * @param fullScreen 
+     *
+     * @param fullScreen
      */
     public void setFullScreen(boolean fullScreen) {
         primaryStage.setMaximized(fullScreen);
         primaryStage.setFullScreen(fullScreen);
         primaryStage.setResizable(!fullScreen);
     }
-    
+
     /**
      * Method that gets the width of the primary stage.
-     * 
+     *
      * @return The width of the primary stage.
      */
     public float getStageWidth() {
         return (float) primaryStage.getWidth();
     }
-    
+
 }

@@ -50,6 +50,11 @@ public final class DisplayConstants {
     public static final String LOCATION_TEXTURE_BALL = "resources/images/ball_texture.png";
     public static final String LOCATION_TEXTURE_CAR_RED = "resources/images/casual_car_texture.png";
 
+    /**
+     * Stage constants
+     */
+    public static final String LOCATION_STAGE_ICON = "resources/images/icon.png";
+
     private DisplayConstants() {
     }
 }
