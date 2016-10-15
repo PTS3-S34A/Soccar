@@ -44,7 +44,13 @@ public final class DisplayConstants {
     public static final String LOCATION_TEXTURE_DESERT = "resources/images/desert_texture.jpg";
     public static final String LOCATION_TEXTURE_GRASS = "resources/images/grass_texture.jpg";
     public static final String LOCATION_TEXTURE_CAR_RED = "resources/images/car_red.png";
+    
+    /**
+     * Stage constants
+     */
+    public static final String LOCATION_STAGE_ICON = "resources/images/icon.png";
 
+    
     private DisplayConstants() {
     }
 }
