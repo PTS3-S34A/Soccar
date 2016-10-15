@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -10,20 +11,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="556.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.LoginFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #080931;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.soccar.ui.fx.controller.LoginFXMLController">
    <children>
-      <HBox alignment="CENTER" layoutX="70.0" layoutY="33.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="33.0">
+      <HBox alignment="CENTER" layoutX="70.0" prefHeight="180.0" prefWidth="1200.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="110.0" fitWidth="405.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/images/logo.png" />
                </image>
             </ImageView>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="169.0" prefHeight="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="169.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="11.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0" HBox.hgrow="ALWAYS">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1200.0" HBox.hgrow="ALWAYS">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -32,36 +33,48 @@
                      </stops>
                   </LinearGradient>
                </fill>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </Rectangle>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="70.0" layoutY="186.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="186.0">
+      <HBox alignment="CENTER" layoutX="6.0" layoutY="260.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="240.0">
          <children>
-            <AnchorPane prefHeight="341.0" prefWidth="460.0">
+            <AnchorPane prefHeight="293.0" prefWidth="460.0">
                <children>
-                  <Label layoutX="176.0" layoutY="105.0" text="Select your car:">
+                  <Label layoutX="145.0" layoutY="173.0" text="SELECT YOUR CAR" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI Light" size="17.0" />
+                        <Font name="Century Gothic" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="64.0" layoutY="36.0" text="Playername:">
+                  <Label layoutX="81.0" layoutY="14.0" text="CHOOSE YOUR PLAYERNAME" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI Light" size="17.0" />
+                        <Font name="Century Gothic" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtFieldName" layoutX="208.0" layoutY="34.0">
+                  <TextField fx:id="txtFieldName" alignment="CENTER" layoutX="1.0" layoutY="80.0" prefHeight="60.0" prefWidth="497.0" promptText="PLAYERNAME">
                      <font>
-                        <Font name="Segoe UI" size="15.0" />
+                        <Font name="Century Gothic" size="24.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="btnLogin" layoutX="186.0" layoutY="321.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="88.0" text="Play">
+                  <Button id="button" fx:id="btnLogin" layoutX="156.0" layoutY="398.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="187.0" stylesheets="@../css/Style.css" text="PLAY" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Century Gothic" size="48.0" />
                      </font>
                   </Button>
-                  <ToggleButton fx:id="btnSelectCasualCar" layoutX="70.0" layoutY="149.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Casual Car" />
-                  <ToggleButton fx:id="btnSelectPickup" layoutX="192.0" layoutY="149.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Pickup" />
-                  <ToggleButton fx:id="btnSelectSportsCar" layoutX="317.0" layoutY="149.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="76.0" text="Sports Car" />
+                  <ToggleButton id="button" fx:id="btnSelectCasualCar" layoutY="231.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="144.0" stylesheets="@../css/Style.css" text="CASUAL" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="24.0" />
+                     </font></ToggleButton>
+                  <ToggleButton id="button" fx:id="btnSelectPickup" layoutX="177.0" layoutY="231.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="144.0" stylesheets="@../css/Style.css" text="PICKUP" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="24.0" />
+                     </font></ToggleButton>
+                  <ToggleButton id="button" fx:id="btnSelectSportsCar" layoutX="353.0" layoutY="231.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="144.0" stylesheets="@../css/Style.css" text="SPORTS" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="24.0" />
+                     </font></ToggleButton>
                </children>
             </AnchorPane>
          </children>

@@ -39,16 +39,15 @@ public class LoginFXMLController implements Initializable {
         btnSelectCasualCar.setToggleGroup(toggleGroupCars);
         btnSelectSportsCar.setToggleGroup(toggleGroupCars);
         btnSelectCasualCar.setSelected(true);
-        
+
         txtFieldName.setOnAction(e -> login());
         btnLogin.setOnAction(e -> login());
     }
 
     /**
-     * Handler for login-button; Uses current selected car, username and
-     * optional password.
+     * Handler for login-button; Uses current selected car, username and optional password.
      */
-    public void login() {
+    private void login() {
         CarType selectedCar = CarType.CASUAL;
         if (btnSelectCasualCar.isSelected()) {
             selectedCar = CarType.CASUAL;
@@ -61,7 +60,7 @@ public class LoginFXMLController implements Initializable {
         if (!txtFieldName.getText().isEmpty()) {
             Main.getInstance().login(txtFieldName.getText(), selectedCar);
         } else {
-            txtFieldName.setStyle("-fx-text-box-border: red ; -fx-focus-color: red ;");
+            txtFieldName.setStyle("-fx-border-color: red; -fx-border-width: 3;");
         }
     }
 }
