@@ -59,7 +59,7 @@ public class CreateRoomFXMLController implements Initializable {
             if (!textFieldRoomName.getText().isEmpty()) {
                 createRoom();
             } else {
-                textFieldRoomName.setStyle("-fx-border-color: red; -fx-border-width: 3;");
+                textFieldRoomName.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");
             }
         });
 

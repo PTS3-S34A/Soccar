@@ -60,7 +60,7 @@ public class LoginFXMLController implements Initializable {
         if (!txtFieldName.getText().isEmpty()) {
             Main.getInstance().login(txtFieldName.getText(), selectedCar);
         } else {
-            txtFieldName.setStyle("-fx-border-color: red; -fx-border-width: 3;");
+            txtFieldName.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");
         }
     }
 }
