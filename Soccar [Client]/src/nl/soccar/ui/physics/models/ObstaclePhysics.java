@@ -9,9 +9,9 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /**
- * ObstaclePhysics is a physics-model that keeps track of the physics of an 
+ * ObstaclePhysics is a physics-model that keeps track of the physics of an
  * Obstacle.
- * 
+ *
  * @author PTS34A
  */
 public class ObstaclePhysics implements WorldObject {
@@ -25,9 +25,9 @@ public class ObstaclePhysics implements WorldObject {
 
     /**
      * Initiates a new ObstaclePhysics Object using the given parameters.
-     * 
+     *
      * @param obstacle The model to keep track of.
-     * @param world The World in which this model is placed in.
+     * @param world    The World in which this model is placed in.
      */
     public ObstaclePhysics(Obstacle obstacle, World world) {
         width = obstacle.getWidth();
@@ -67,4 +67,5 @@ public class ObstaclePhysics implements WorldObject {
     public float getDegree() {
         return body.m_sweep.a;
     }
+
 }

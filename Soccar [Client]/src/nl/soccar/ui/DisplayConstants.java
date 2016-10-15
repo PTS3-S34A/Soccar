@@ -16,12 +16,12 @@ public final class DisplayConstants {
     /**
      * Ball constants in JBox2D units
      */
-    public static final float BALL_RADIUS = 3.0F;
+    public static final float BALL_RADIUS = 2.5F;
 
     /**
      * Car constants in JBox2D units
      */
-    public static final float CAR_WIDTH = 5.0F;
+    public static final float CAR_WIDTH = 3.0F;
 
     /**
      * Map constants in JBox2D units
@@ -43,14 +43,18 @@ public final class DisplayConstants {
     public static final String LOCATION_TEXTURE_MOON = "resources/images/moon_texture.jpg";
     public static final String LOCATION_TEXTURE_DESERT = "resources/images/desert_texture.jpg";
     public static final String LOCATION_TEXTURE_GRASS = "resources/images/grass_texture.jpg";
-    public static final String LOCATION_TEXTURE_CAR_RED = "resources/images/car_red.png";
-    
+
+    /**
+     * Entity images properties
+     */
+    public static final String LOCATION_TEXTURE_BALL = "resources/images/ball_texture.png";
+    public static final String LOCATION_TEXTURE_CAR_RED = "resources/images/casual_car_texture.png";
+
     /**
      * Stage constants
      */
     public static final String LOCATION_STAGE_ICON = "resources/images/icon.png";
 
-    
     private DisplayConstants() {
     }
 }

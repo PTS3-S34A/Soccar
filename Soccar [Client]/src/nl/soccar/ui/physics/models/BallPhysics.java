@@ -3,31 +3,29 @@ package nl.soccar.ui.physics.models;
 import nl.soccar.library.Ball;
 import nl.soccar.ui.physics.WorldObject;
 import org.jbox2d.collision.shapes.CircleShape;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.*;
 
 /**
  * BallPhysics is a physics-model that keeps track of the physics of the Ball.
- * 
+ *
  * @author PTS34A
  */
 public class BallPhysics implements WorldObject {
 
-    private static final float DENSITY = 1.0F;
-    private static final float FRICTION = 0.0F;
-    private static final float RESTITUTION = 1.0F;
+    private static final float DENSITY = 0.01F;
+    private static final float FRICTION = 1.0F;
+    private static final float RESTITUTION = 0.8F;
+
+    private static final float LINEAR_DAMPING = 1.0F;
+    private static final float ANGULAR_DAMPING = 1.0F;
 
     private final Body body;
     private final float radius;
 
     /**
      * Initiates a new BallPhysics Object using the given parameter.
-     * 
-     * @param ball The ball model to keep track of.
+     *
+     * @param ball  The ball model to keep track of.
      * @param world The world in which this model is placed.
      */
     public BallPhysics(Ball ball, World world) {
@@ -36,6 +34,8 @@ public class BallPhysics implements WorldObject {
         BodyDef bd = new BodyDef();
         bd.type = BodyType.DYNAMIC;
         bd.position.set(ball.getX(), ball.getY());
+        bd.linearDamping = LINEAR_DAMPING;
+        bd.angularDamping = ANGULAR_DAMPING;
 
         CircleShape cs = new CircleShape();
         cs.m_radius = radius;
@@ -43,7 +43,7 @@ public class BallPhysics implements WorldObject {
         FixtureDef fd = new FixtureDef();
         fd.density = DENSITY;
         fd.friction = FRICTION;
-        fd.density = RESTITUTION;
+        fd.restitution = RESTITUTION;
         fd.shape = cs;
 
         body = world.createBody(bd);
@@ -52,12 +52,7 @@ public class BallPhysics implements WorldObject {
 
     @Override
     public void step() {
-        // Lateral velocity
-        Vec2 impulse = body.getLinearVelocity().mul(-1.0F);
-        body.applyLinearImpulse(impulse, body.getWorldCenter());
-
-        // Angular velocity
-        body.applyAngularImpulse(0.1F * body.getInertia() * -body.getAngularVelocity());
+        // The step method is not implemented because Box2D handles all necessary updates.
     }
 
     @Override
@@ -72,6 +67,7 @@ public class BallPhysics implements WorldObject {
 
     @Override
     public float getDegree() {
-        return body.m_sweep.a;
+        return (float) Math.toDegrees(body.getAngle());
     }
+
 }
