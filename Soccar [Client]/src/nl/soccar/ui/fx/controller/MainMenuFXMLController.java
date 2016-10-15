@@ -60,7 +60,7 @@ public class MainMenuFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         sessionController = Soccar.getInstance().getSessionController();
 
-        // Overschrijf de standaard placeholder tekst met een lege String.
+        // Overwrite the standard placeholder text with an empty String.
         tblSessionList.setPlaceholder(new Label(""));
         
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());
