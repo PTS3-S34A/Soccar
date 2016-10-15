@@ -42,7 +42,7 @@ public final class DisplayConstants {
      */
     public static final String LOCATION_TEXTURE_MOON = "resources/images/moon_texture.jpg";
     public static final String LOCATION_TEXTURE_DESERT = "resources/images/desert_texture.jpg";
-    public static final String LOCATION_TEXTURE_GRASS = "resources/images/grass_texture.jpg";
+    public static final String LOCATION_TEXTURE_GRASS = "resources/images/grass_texture.png";
 
     /**
      * Entity images properties
