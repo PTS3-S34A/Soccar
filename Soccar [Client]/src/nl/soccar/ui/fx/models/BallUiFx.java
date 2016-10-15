@@ -1,8 +1,9 @@
 package nl.soccar.ui.fx.models;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 import nl.soccar.library.Ball;
+import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
 import nl.soccar.ui.physics.models.BallPhysics;
@@ -12,18 +13,22 @@ import nl.soccar.util.PhysicsUtilities;
  * A BallUiFx object represents a JavaFX Drawable of a Ball.
  * It keeps track of the Ball and BallPhysics models and provides methods to draw and
  * update the models.
- * 
+ *
  * @author PTS34A
  */
 public class BallUiFx extends PhysicsDrawableFx<Ball, BallPhysics> {
 
-    private static final Color COLOR = Color.BLACK;
+    private static final Image TEXTURE_BALL;
+
+    static {
+        TEXTURE_BALL = new Image(DisplayConstants.LOCATION_TEXTURE_BALL);
+    }
 
     /**
      * Initiates a new BallUiFx Object using the given parameters.
-     * 
-     * @param canvas The canvas on which this Ball is placed.
-     * @param ball The ball model to keep track of.
+     *
+     * @param canvas  The canvas on which this Ball is placed.
+     * @param ball    The ball model to keep track of.
      * @param physics The physics model to keep track of.
      */
     public BallUiFx(GameCanvasFx canvas, Ball ball, BallPhysics physics) {
@@ -44,11 +49,16 @@ public class BallUiFx extends PhysicsDrawableFx<Ball, BallPhysics> {
         Ball ball = super.getModel();
 
         float radius = PhysicsUtilities.toPixelWidth(ball.getRadius());
-        float x = PhysicsUtilities.toPixelX(ball.getX()) - radius;
-        float y = PhysicsUtilities.toPixelY(ball.getY()) - radius;
+        float x = PhysicsUtilities.toPixelX(ball.getX());
+        float y = PhysicsUtilities.toPixelY(ball.getY());
 
-        context.setFill(COLOR);
-        context.fillOval(x, y, radius * 2, radius * 2);
+        context.save(); // Save the canvas so we can draw a rotated rectangle
+        context.translate(x, y); // Set the origin point of the rotation
+        context.rotate(-ball.getDegree()); // Set the angle of the rotation
+
+        // TODO: Find a solution for anti-aliasing
+        context.drawImage(TEXTURE_BALL, -radius, -radius, radius * 2, radius * 2); // Draw the rectangle from the top left
+        context.restore(); // Restore canvas to display a rotated image
     }
 
 }
