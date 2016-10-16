@@ -24,6 +24,7 @@ public class MapTest {
     // Declaration of test objects.
     private Player player;
     private Car car;
+    private Ball ball;
     private Map map;
 
     /**
@@ -33,7 +34,8 @@ public class MapTest {
     public void setUp() {
         player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         car = new Car(0.0F, 0.0F, 0.0F, 10.0F, 10.0F, player.getCarType(), player);
-        map = new Map(new Rectangle(0, 0, 10, 10), new Ball(0.0F, 0.0F, 0.0F, 0.0F, BallType.HOCKEY));
+        ball = new Ball(0.0F, 0.0F, 0.0F, 0.0F, BallType.HOCKEY);
+        map = new Map(new Rectangle(0, 0, 10, 10), ball);
     }
 
     /**
@@ -50,7 +52,13 @@ public class MapTest {
      */
     @Test
     public void getSizeTest() {
-        assertEquals(new Rectangle(0, 0, 10, 10), map.getSize());
+        Rectangle expectedSize = new Rectangle(0, 0, 10, 10);
+        Rectangle actualSize = map.getSize();
+
+        assertEquals(Math.round(expectedSize.getX()), Math.round(actualSize.getX()));
+        assertEquals(Math.round(expectedSize.getY()), Math.round(actualSize.getY()));
+        assertEquals(Math.round(expectedSize.getWidth()), Math.round(actualSize.getWidth()));
+        assertEquals(Math.round(expectedSize.getHeight()), Math.round(actualSize.getHeight()));
     }
 
     /**
@@ -58,7 +66,13 @@ public class MapTest {
      */
     @Test
     public void getGoalBlueTest() {
-        assertEquals(MapUtilities.getLeftGoal(), map.getGoalBlue());
+        Rectangle expectedLeftGoal = MapUtilities.getLeftGoal();
+        Rectangle actualLeftGoal = map.getGoalBlue();
+
+        assertEquals(Math.round(expectedLeftGoal.getX()), Math.round(actualLeftGoal.getX()));
+        assertEquals(Math.round(expectedLeftGoal.getY()), Math.round(actualLeftGoal.getY()));
+        assertEquals(Math.round(expectedLeftGoal.getWidth()), Math.round(actualLeftGoal.getWidth()));
+        assertEquals(Math.round(expectedLeftGoal.getHeight()), Math.round(actualLeftGoal.getHeight()));
     }
 
     /**
@@ -66,16 +80,30 @@ public class MapTest {
      */
     @Test
     public void getGoalRedTest() {
-        assertEquals(MapUtilities.getRightGoal(), map.getGoalRed());
+        Rectangle expectedRightGoal = MapUtilities.getRightGoal();
+        Rectangle actualRightGoal = map.getGoalRed();
+
+        assertEquals(Math.round(expectedRightGoal.getX()), Math.round(actualRightGoal.getX()));
+        assertEquals(Math.round(expectedRightGoal.getY()), Math.round(actualRightGoal.getY()));
+        assertEquals(Math.round(expectedRightGoal.getWidth()), Math.round(actualRightGoal.getWidth()));
+        assertEquals(Math.round(expectedRightGoal.getHeight()), Math.round(actualRightGoal.getHeight()));
     }
-    
+
     /**
-     * Tests the getMapType and setMapType methods.
+     * Tests the setMapType and getMapType methods.
      */
     @Test
-    public void getMapTypeTest() {
+    public void setMapTypeAndGetMapTypeTest() {
         map.setMapType(MapType.MOON);
         assertEquals(MapType.MOON, map.getMapType());
     }
-    
+
+    /**
+     * Tests the getBall method.
+     */
+    @Test
+    public void getBallTest() {
+        assertEquals(ball, map.getBall());
+    }
+
 }
