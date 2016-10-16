@@ -1,9 +1,7 @@
 package nl.soccar.util;
 
-import nl.soccar.library.Map;
 import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.Main;
-import nl.soccar.ui.physics.PhysicsContants;
 
 /**
  * Utility class which provides conversion methods between Physics and JavaFX
