@@ -37,6 +37,8 @@ public class SessionViewFXMLController implements Initializable {
     @FXML
     private Label lblUsername;
     @FXML
+    private Label lblCar;
+    @FXML
     private Label lblOccupancy;
     @FXML
     private Button btnStartGame;
@@ -57,7 +59,8 @@ public class SessionViewFXMLController implements Initializable {
         btnStartGame.setOnAction(e -> startGame());
 
         lblUsername.setText(currentPlayer.getUsername());
-
+        lblCar.setText(currentPlayer.getCarType().toString());
+        
         setRoomInfo();
     }
 
