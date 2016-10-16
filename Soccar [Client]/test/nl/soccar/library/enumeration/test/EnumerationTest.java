@@ -6,6 +6,7 @@ import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.EventType;
 import nl.soccar.library.enumeration.GameStatus;
 import nl.soccar.library.enumeration.MapType;
+import nl.soccar.library.enumeration.ObstacleType;
 import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.library.enumeration.TeamColour;
 import org.junit.Test;
@@ -28,6 +29,7 @@ public class EnumerationTest {
         EventType.valueOf(EventType.ASSIST.toString());
         GameStatus.valueOf(GameStatus.STARTED.toString());
         MapType.valueOf(MapType.DESERT.toString());
+        ObstacleType.valueOf(ObstacleType.WALL.toString());
         Privilege.valueOf(Privilege.ADMINISTRATOR.toString());
         TeamColour.valueOf(TeamColour.BLUE.toString());
     }
