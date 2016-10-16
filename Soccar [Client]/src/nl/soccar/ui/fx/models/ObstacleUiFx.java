@@ -1,7 +1,6 @@
 package nl.soccar.ui.fx.models;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import nl.soccar.library.Obstacle;
 import nl.soccar.library.enumeration.ObstacleType;
 import nl.soccar.ui.fx.GameCanvasFx;
