@@ -17,12 +17,6 @@ import org.jbox2d.dynamics.World;
  */
 public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
-    private static final Color WALL_COLOR;
-
-    static {
-        WALL_COLOR = Color.RED;
-    }
-
     /**
      * Initiates a new ObstacleUiFx Object using the given parameters.
      *
@@ -45,8 +39,6 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         float x = PhysicsUtilities.toPixelX(obstacle.getX());
         float y = PhysicsUtilities.toPixelY(obstacle.getY());
-        float width = PhysicsUtilities.toPixelWidth(obstacle.getWidth());
-        float height = PhysicsUtilities.toPixelHeight(obstacle.getHeight());
 
         context.save(); // Save the canvas so we can draw a rotated rectangle.
 
