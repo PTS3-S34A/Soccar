@@ -25,8 +25,6 @@ public class SessionViewFXMLController implements Initializable {
     @FXML
     private Label lblRoomName;
     @FXML
-    private Label lblRoomStatus;
-    @FXML
     private ListView lvPlayersRed;
     @FXML
     private ListView lvPlayersBlue;
