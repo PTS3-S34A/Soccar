@@ -35,7 +35,13 @@ public class MapUtilitiesTest {
      */
     @Test
     public void getLeftGoalTest() {
-        assertEquals(MapUtilities.getLeftGoal(), map.getGoalBlue());
+        Rectangle expectedLeftGoal = MapUtilities.getLeftGoal();
+        Rectangle actualLeftGoal = map.getGoalBlue();
+
+        assertEquals(Math.round(expectedLeftGoal.getX()), Math.round(actualLeftGoal.getX()));
+        assertEquals(Math.round(expectedLeftGoal.getY()), Math.round(actualLeftGoal.getY()));
+        assertEquals(Math.round(expectedLeftGoal.getWidth()), Math.round(actualLeftGoal.getWidth()));
+        assertEquals(Math.round(expectedLeftGoal.getHeight()), Math.round(actualLeftGoal.getHeight()));
     }
 
     /**
@@ -43,11 +49,36 @@ public class MapUtilitiesTest {
      */
     @Test
     public void getRightGoalTest() {
-        assertEquals(MapUtilities.getRightGoal(), map.getGoalRed());
+        Rectangle expectedRightGoal = MapUtilities.getRightGoal();
+        Rectangle actualRightGoal = map.getGoalRed();
+
+        assertEquals(Math.round(expectedRightGoal.getX()), Math.round(actualRightGoal.getX()));
+        assertEquals(Math.round(expectedRightGoal.getY()), Math.round(actualRightGoal.getY()));
+        assertEquals(Math.round(expectedRightGoal.getWidth()), Math.round(actualRightGoal.getWidth()));
+        assertEquals(Math.round(expectedRightGoal.getHeight()), Math.round(actualRightGoal.getHeight()));
+    }
+
+    /**
+     * Tests the getCentreX method.
+     */
+    @Test
+    public void getCentreXTest() {
+        Rectangle rectangle = new Rectangle(0, 0, 10, 12);
+        assertEquals(5, Math.round(MapUtilities.getCentreX(rectangle)));
+    }
+
+    /**
+     * Tests the getCentreY method.
+     */
+    @Test
+    public void getCentreYTest() {
+        Rectangle rectangle = new Rectangle(0, 0, 10, 12);
+        assertEquals(6, Math.round(MapUtilities.getCentreY(rectangle)));
     }
 
     /**
      * Marks the private constructor of the MapUtilities class as tested in JaCoCo.
+     *
      * @throws NoSuchMethodException Does not apply.
      * @throws IllegalAccessException Does not apply.
      * @throws InvocationTargetException Does not apply.

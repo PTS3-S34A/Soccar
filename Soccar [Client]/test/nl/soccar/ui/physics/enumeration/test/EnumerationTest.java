@@ -1,5 +1,6 @@
 package nl.soccar.ui.physics.enumeration.test;
 
+import nl.soccar.ui.physics.enumeration.HandbrakeAction;
 import nl.soccar.ui.physics.enumeration.SteerAction;
 import nl.soccar.ui.physics.enumeration.ThrottleAction;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class EnumerationTest {
      */
     @Test
     public void testAllEnumerations() {
+        HandbrakeAction.valueOf(HandbrakeAction.ACTIVE.toString());
         SteerAction.valueOf(SteerAction.NONE.toString());
         ThrottleAction.valueOf(ThrottleAction.ACCELERATE.toString());
     }

@@ -32,7 +32,7 @@ public class BallPhysicsTest {
     }
 
     /**
-     * Test void method for possible crashes.
+     * Tests void method for possible crashes.
      */
     @Test
     public void voidMethodsTest() {
