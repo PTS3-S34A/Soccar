@@ -66,14 +66,5 @@ public abstract class Entity {
     public final float getDegree() {
         return degree;
     }
-
-    /**
-     * Gets the velocity (speed) of this Entity.
-     * 
-     * @return The velocity of this Entity.
-     */
-    public final float getVelocity() {
-        return velocity;
-    }
-
+    
 }
