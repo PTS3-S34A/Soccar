@@ -10,9 +10,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import nl.soccar.exception.UIException;
@@ -62,18 +64,20 @@ public class MainMenuFXMLController implements Initializable {
 
         // Overwrite the standard placeholder text with an empty String.
         tblSessionList.setPlaceholder(new Label(""));
-        
+
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());
         lblCar.setText(Soccar.getInstance().getCurrentPlayer().getCarType().toString());
 
         btnLogOut.setOnAction(e -> Main.getInstance().logOut());
         btnCreateRoom.setOnAction(e -> Main.getInstance().setScene(FXMLConstants.LOCATION_CREATE_ROOM));
         btnJoinRoom.setOnAction(e -> joinRoom(tblSessionList.getSelectionModel().getSelectedItem()));
+        btnJoinRoom.setDisable(true);
 
         tbclName.setCellValueFactory(new PropertyValueFactory<>("roomName"));
         tbclOccupation.setCellValueFactory(new PropertyValueFactory<>("occupancy"));
         tbclOwner.setCellValueFactory(new PropertyValueFactory<>("hostName"));
         tbclPassword.setCellValueFactory(new PropertyValueFactory<>("passwordAvailable"));
+
         tblSessionList.setRowFactory(tv -> {
             TableRow<SessionTableItem> row = new TableRow();
             row.setOnMouseClicked(event -> {
@@ -83,6 +87,10 @@ public class MainMenuFXMLController implements Initializable {
             });
             return row;
         });
+        
+        TableViewSelectionModel<SessionTableItem> model = tblSessionList.getSelectionModel();
+        model.setSelectionMode(SelectionMode.SINGLE);
+        model.selectedItemProperty().addListener(l -> btnJoinRoom.setDisable(model.getSelectedItem() == null));
 
         updateTable();
     }
@@ -99,6 +107,11 @@ public class MainMenuFXMLController implements Initializable {
         String password = NO_PASSWORD;
 
         Session selectedSession = selectedRow.getSession();
+        if (selectedSession == null) {
+            // There isn't actually a selected session, we should just do nothing.
+            return;
+        }
+
         if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
             dialog.setTitle("Room Locked");
