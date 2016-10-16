@@ -154,8 +154,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         public ObstacleUiFx build() {
             Obstacle obstacle = new Obstacle(x, y, degree, width, height, type);
             ObstaclePhysics obstaclePhysics = new ObstaclePhysics(obstacle, world);
-            ObstacleUiFx obstacleUiFx = new ObstacleUiFx(canvas, obstacle, obstaclePhysics);
-            return obstacleUiFx;
+            return new ObstacleUiFx(canvas, obstacle, obstaclePhysics);
         }
 
     }
