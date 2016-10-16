@@ -128,8 +128,7 @@ public class CarPhysicsTest {
      */
     @Test
     public void getHandbrakeActionTest() {
-        // TODO: set HandbrakeAction to INACTIVE in CarPhysics constructor
-        // assertEquals(HandbrakeAction.INACTIVE, carPhysics.getHandbrakeAction());
+        assertEquals(HandbrakeAction.INACTIVE, carPhysics.getHandbrakeAction());
         carPhysics.step();
 
         Keyboard.setKeyPressed(KeyCode.SPACE);

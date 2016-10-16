@@ -33,7 +33,7 @@ public class CarPhysics implements WorldObject {
     private final Body body;
     private float steerAngle = 0.0F;
 
-    private List<WheelPhysics> wheels;
+    private final List<WheelPhysics> wheels;
     private ThrottleAction throttleAction;
     private SteerAction steerAction;
     private HandbrakeAction handbrakeAction;
@@ -68,6 +68,7 @@ public class CarPhysics implements WorldObject {
 
         throttleAction = ThrottleAction.IDLE;
         steerAction = SteerAction.NONE;
+        handbrakeAction = HandbrakeAction.INACTIVE;
 
         wheels = new ArrayList<>();
 
