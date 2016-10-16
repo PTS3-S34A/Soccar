@@ -106,10 +106,11 @@ public class WheelPhysics implements WorldObject {
         }
 
         // Don't do anything
-        if (desiredSpeed == currentSpeed) {
+        if (Math.abs(desiredSpeed - currentSpeed) < 0.0001F) { // Calculate absolute of values, then check if it is below a treshold
+                                                             // Because floating points literals will (almost) never be equal.
             return;
-        }
-
+        } 
+        
         body.applyForce(currentForwardNormal.mul(force), body.getWorldCenter());
     }
 

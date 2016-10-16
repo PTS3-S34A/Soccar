@@ -153,7 +153,7 @@ public class MapUiFx extends DrawableFx<Map> {
                 .type(ObstacleType.WALL).build();
 
         ObstacleUiFx eastWallMiddleUi = new ObstacleBuilder(canvas, world)
-                .x((mapWidth + (WALL_WIDTH / 2))).y(mapHeight / 2).degree(0)
+                .x(mapWidth + (WALL_WIDTH / 2)).y(mapHeight / 2).degree(0)
                 .width(WALL_WIDTH).height(mapHeight)
                 .type(ObstacleType.WALL).build();
 
