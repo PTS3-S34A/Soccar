@@ -11,7 +11,6 @@ public abstract class Entity {
     protected float x;
     protected float y;
     protected float degree;
-    protected float velocity;
 
     /**
      * Initiates a new Entity Object.
@@ -24,7 +23,6 @@ public abstract class Entity {
         this.x = x;
         this.y = y;
         this.degree = degree;
-        velocity = 0.0F;
     }
     
     /**
@@ -66,14 +64,5 @@ public abstract class Entity {
     public final float getDegree() {
         return degree;
     }
-
-    /**
-     * Gets the velocity (speed) of this Entity.
-     * 
-     * @return The velocity of this Entity.
-     */
-    public final float getVelocity() {
-        return velocity;
-    }
-
+    
 }
