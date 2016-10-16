@@ -54,6 +54,9 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         context.restore(); // Restore canvas to display a rotated image.
     }
 
+    /**
+     * An ObstacleBuilder builds an obstacle for usage with the UI. It combines a model, physics-model and ui object and builds them implicitely.
+     */
     public static class ObstacleBuilder {
 
         private final GameCanvasFx canvas;
@@ -66,41 +69,88 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         private float height;
         private ObstacleType type;
 
+        /**
+         * Initiates a new ObstacleBuilder with the given parameters.
+         * 
+         * @param canvas The canvas that will be used to create the UI object.
+         * @param world The world that will be used to create the physics-model.
+         */
         public ObstacleBuilder(GameCanvasFx canvas, World world) {
             this.canvas = canvas;
             this.world = world;
         }
 
+        /**
+         * Sets the x-position of this Obstacle.
+         * 
+         * @param x The new x-position that will be used when building this obstacle.
+         * @return This ObstacleBuilder, for method chaining.
+         */
         public ObstacleBuilder x(float x) {
             this.x = x;
             return this;
         }
 
+        /**
+         * Sets the y-position of this Obstacle.
+         * 
+         * @param y The new y-position that will be used when building this obstacle.
+         * @return This ObstacleBuilder, for method chaining.
+         */
         public ObstacleBuilder y(float y) {
             this.y = y;
             return this;
         }
 
+        /**
+         * Sets the angle of this Obstacle.
+         * 
+         * @param degree The new angle that will be used when building this obstacle.
+         * @return This ObstacleBuilder, for method chaining.
+         */
         public ObstacleBuilder degree(float degree) {
             this.degree = degree;
             return this;
         }
 
+        /**
+         * Sets the width of this Obstacle.
+         * 
+         * @param width The new width that will be used when building this obstacle.
+         * @return This ObstacleBuilder, for method chaining.
+         */
         public ObstacleBuilder width(float width) {
             this.width = width;
             return this;
         }
 
+        /**
+         * Sets the height of this Obstacle.
+         * 
+         * @param height The new height that will be used when building this obstacle.
+         * @return This ObstacleBuilder, for method chaining.
+         */
         public ObstacleBuilder height(float height) {
             this.height = height;
             return this;
         }
 
+        /**
+         * Sets the type of this Obstacle.
+         * 
+         * @param type The new type that will be used when building this obstacle.
+         * @return This ObstacleBuilder, for method chaining.
+         */
         public ObstacleBuilder type(ObstacleType type) {
             this.type = type;
             return this;
         }
 
+        /**
+         * Builds an Obstacle-UI object, it combines a model and a physics-model to do so.
+         * 
+         * @return The created ObstacleUiFx object.
+         */
         public ObstacleUiFx build() {
             Obstacle obstacle = new Obstacle(x, y, degree, width, height, type);
             ObstaclePhysics obstaclePhysics = new ObstaclePhysics(obstacle, world);
