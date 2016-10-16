@@ -11,6 +11,7 @@ import nl.soccar.util.PhysicsUtilities;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * JUnit test that tests the nl.soccar.library.Wheel class.
@@ -77,5 +78,21 @@ public class WheelPhysicsTest {
     public void getHeightTest() {
         assertEquals(Math.round(PhysicsUtilities.calculateWheelHeight(PhysicsUtilities.calculateWheelWidth(car.getWidth()))), Math.round(leftFrontWheel.getHeight()));
     }
-    
+
+    /**
+     * Tests the isSteerable method.
+     */
+    @Test
+    public void isSteerableTest() {
+        assertTrue(leftFrontWheel.isSteerable());
+    }
+
+    /**
+     * Tests the isPowered method.
+     */
+    @Test
+    public void isPoweredTest() {
+        assertTrue(leftFrontWheel.isPowered());
+    }
+
 }
