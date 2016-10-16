@@ -11,7 +11,6 @@ public abstract class Entity {
     protected float x;
     protected float y;
     protected float degree;
-    protected float velocity;
 
     /**
      * Initiates a new Entity Object.
@@ -24,7 +23,6 @@ public abstract class Entity {
         this.x = x;
         this.y = y;
         this.degree = degree;
-        velocity = 0.0F;
     }
     
     /**
