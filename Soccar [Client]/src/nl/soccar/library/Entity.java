@@ -46,7 +46,7 @@ public abstract class Entity {
      * Gets the X-position of this Entity.
      *
      * @return The X-position of this Entity, relative to the Map it is placed
-     * on.
+     * on, not null.
      */
     public final float getX() {
         return x;
@@ -56,7 +56,7 @@ public abstract class Entity {
      * Gets the Y-position of this Entity.
      *
      * @return The Y-position of this Entity, relative to the Map it is placed
-     * on.
+     * on, not null.
      */
     public final float getY() {
         return y;
@@ -65,7 +65,7 @@ public abstract class Entity {
     /**
      * Gets the angle of this Entity.
      *
-     * @return The angle of this Entity, in degrees.
+     * @return The angle of this Entity, in degrees, not null.
      */
     public final float getDegree() {
         return degree;

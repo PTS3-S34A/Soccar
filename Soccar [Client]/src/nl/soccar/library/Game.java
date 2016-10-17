@@ -61,36 +61,18 @@ public class Game {
 
     /**
      * Gets the Map of this Game.
-     * 
-     * @return The Map of this Game.
+     *
+     * @return The Map of this Game, not null.
      */
     public Map getMap() {
         return map;
     }
 
     /**
-     * Adds an Event to this Game.
-     *
-     * @param event The Event that was triggered during this Game.
-     */
-    public void addEvent(Event event) {
-        events.add(event);
-    }
-
-    /**
-     * Gets all Events that occurred in this Game.
-     *
-     * @return A collection of Events that occurred in this Game.
-     */
-    public List<Event> getEvents() {
-        return Collections.unmodifiableList(events);
-    }
-
-    /**
      * Gets the time at which this Game started. If there's no current match on
      * going, the Optional will be empty.
      *
-     * @return An optional that contains the start time of the current match.
+     * @return An optional that contains the start time of the current match, not null.
      */
     public Optional<LocalTime> getStartTime() {
         return startTime;
@@ -99,7 +81,7 @@ public class Game {
     /**
      * Gets the GameStatus of this Game.
      *
-     * @return The GameStatus of this Game.
+     * @return The GameStatus of this Game, not null.
      */
     public GameStatus getStatus() {
         return status;
@@ -108,7 +90,7 @@ public class Game {
     /**
      * Gets the Duration of this Game.
      *
-     * @return The Duration of this Game.
+     * @return The Duration of this Game, not null.
      */
     public Duration getDuration() {
         return duration;
@@ -121,6 +103,24 @@ public class Game {
      */
     public void setDuration(Duration duration) {
         this.duration = duration;
+    }
+
+    /**
+     * Gets all Events that occurred in this Game.
+     *
+     * @return A collection of Events that occurred in this Game, not null.
+     */
+    public List<Event> getEvents() {
+        return Collections.unmodifiableList(events);
+    }
+
+    /**
+     * Adds an Event to this Game.
+     *
+     * @param event The Event that was triggered during this Game.
+     */
+    public void addEvent(Event event) {
+        events.add(event);
     }
 
 }
