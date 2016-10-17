@@ -29,6 +29,9 @@ public class Main extends Application {
 
     private Stage primaryStage;
 
+    /**
+     * Initiates a new Main Object. This only happens once, so the static instance gets filled out here.
+     */
     public Main() {
         super();
         
