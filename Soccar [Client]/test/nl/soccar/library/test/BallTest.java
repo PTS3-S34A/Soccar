@@ -49,11 +49,12 @@ public class BallTest {
     }
 
     /**
-     * Tests the getType method.
+     * Tests the getBallType and setBallType methods.
      */
     @Test
-    public void getTypeTest() {
-        assertEquals(BallType.FOOTBALL, ball.getType());
+    public void getBallTypeandSetBallTypeTest() {
+        ball.setBallType(BallType.HOCKEY);
+        assertEquals(BallType.HOCKEY, ball.getBallType());
     }
 
 }

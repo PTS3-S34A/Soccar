@@ -1,32 +1,43 @@
 package nl.soccar.library;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import javafx.scene.shape.Rectangle;
 import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.GameStatus;
+import nl.soccar.ui.DisplayConstants;
 
 /**
- * A Game contains all kind of information about a Match.
- * 
+ * A Game is an object which contains information about a match, like the
+ * duration, the GameStatus and the BallType. It also containts a collection of
+ * Events that are triggered in the match.
+ *
  * @author PTS34A
  */
 public class Game {
 
-    private Optional<LocalDateTime> startTime;
-    private Duration duration;
-    private BallType balltype;
-    private GameStatus status;
+    private final Map map;
 
-    private List<Event> events;
-    
+    private Optional<LocalTime> startTime;
+    private GameStatus status;
+    private Duration duration;
+
+    private final List<Event> events;
+
     /**
-     * Initiates a new Game Object.
+     * Constructor used to instantiate a new Game object. While initializing
+     * this Game, a new Ball is created and the Map is set with the default
+     * constant values. The startTime is set to empty, the GameStatus is set to
+     * stopped and the events list is initiated.
      */
     public Game() {
+        Ball ball = new Ball(DisplayConstants.MAP_WIDTH / 2, DisplayConstants.MAP_HEIGHT / 2, 0.0F, DisplayConstants.BALL_RADIUS, BallType.FOOTBALL);
+        map = new Map(new Rectangle(0, 0, DisplayConstants.MAP_WIDTH, DisplayConstants.MAP_HEIGHT), ball);
+
         startTime = Optional.empty();
         status = GameStatus.STOPPED;
         events = new ArrayList<>();
@@ -36,7 +47,7 @@ public class Game {
      * Starts this Game.
      */
     public void start() {
-        // TODO implementatie
+        // TODO implementation
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -44,41 +55,51 @@ public class Game {
      * Ends this Game.
      */
     public void stop() {
-        // TODO implementatie
+        // TODO implementation
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
-     * Adds an Event to this Game.
+     * Gets the Map of this Game.
      * 
-     * @param event The Event that occurred in this Game.
+     * @return The Map of this Game.
+     */
+    public Map getMap() {
+        return map;
+    }
+
+    /**
+     * Adds an Event to this Game.
+     *
+     * @param event The Event that was triggered during this Game.
      */
     public void addEvent(Event event) {
         events.add(event);
     }
-    
+
     /**
      * Gets all Events that occurred in this Game.
-     * 
-     * @return A List of Events that occurred in this Game.
+     *
+     * @return A collection of Events that occurred in this Game.
      */
     public List<Event> getEvents() {
         return Collections.unmodifiableList(events);
     }
 
     /**
-     * Gets the time at which this Game started, if there's no current match on going, the Optional will be empty.
-     * 
-     * @return An Optional that contains the start time of the current match.
+     * Gets the time at which this Game started. If there's no current match on
+     * going, the Optional will be empty.
+     *
+     * @return An optional that contains the start time of the current match.
      */
-    public Optional<LocalDateTime> getStartTime() {
+    public Optional<LocalTime> getStartTime() {
         return startTime;
     }
 
     /**
-     * Gets the status of this Game.
-     * 
-     * @return The status of this Game.
+     * Gets the GameStatus of this Game.
+     *
+     * @return The GameStatus of this Game.
      */
     public GameStatus getStatus() {
         return status;
@@ -86,7 +107,7 @@ public class Game {
 
     /**
      * Gets the Duration of this Game.
-     * 
+     *
      * @return The Duration of this Game.
      */
     public Duration getDuration() {
@@ -95,29 +116,11 @@ public class Game {
 
     /**
      * Sets the Duration of this Game.
-     * 
+     *
      * @param duration The new Duration of this Game.
      */
     public void setDuration(Duration duration) {
         this.duration = duration;
-    }
-
-    /**
-     * Gets the BallType that should be used for this Game.
-     * 
-     * @return The BallType that should be used for this Game.
-     */
-    public BallType getBalltype() {
-        return balltype;
-    }
-
-    /**
-     * Sets the new BallType that should be used for this Game.
-     * 
-     * @param balltype The new BallType that should be used for this Game.
-     */
-    public void setBalltype(BallType balltype) {
-        this.balltype = balltype;
     }
 
 }

@@ -90,13 +90,4 @@ public class GameTest {
         assertEquals(Duration.MINUTES_3, game.getDuration());
     }
 
-    /**
-     * Tests the getBallType and setBallType methods.
-     */
-    @Test
-    public void getBalltypeAndSetBalltypeTest() {
-        game.setBalltype(BallType.BOWLING);
-        assertEquals(BallType.BOWLING, game.getBalltype());
-    }
-
 }

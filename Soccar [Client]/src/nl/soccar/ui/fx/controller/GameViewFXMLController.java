@@ -8,15 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import nl.soccar.library.Ball;
 import nl.soccar.library.Car;
 import nl.soccar.library.Map;
 import nl.soccar.library.Player;
+import nl.soccar.library.Session;
 import nl.soccar.library.Soccar;
-import nl.soccar.library.enumeration.BallType;
-import nl.soccar.library.enumeration.CarType;
-import nl.soccar.library.enumeration.MapType;
 import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.models.BallUiFx;
@@ -51,49 +48,39 @@ public class GameViewFXMLController implements Initializable {
         canvas.setHeight(height);
         canvas.setFocusTraversable(true);
 
-        /**
-         * Instantiate and start the GameCanvasFX object.
-         */
-        GameCanvasFx game = new GameCanvasFx(canvas.getGraphicsContext2D());
-        game.start();
+        GameCanvasFx gameCanvas = new GameCanvasFx(canvas.getGraphicsContext2D());
+        gameCanvas.start();
 
-        /**
-         * Get the users settings from the 
-         */
-        Soccar soccar = Soccar.getInstance();
-        Player player = soccar.getCurrentPlayer();
-        CarType carType = player.getCarType();
-        BallType ballType = soccar.getSessionController().getCurrentSession().getGame().getBalltype();
+        Session session = Soccar.getInstance().getSessionController().getCurrentSession();
+        initializeMap(session, gameCanvas);
+        initializeBall(session, gameCanvas);
+        initializeCar(gameCanvas);
+    }
 
-        /**
-         * Create the domain models.
-         */
-        Ball ball = new Ball(DisplayConstants.MAP_WIDTH / 2, DisplayConstants.MAP_HEIGHT / 2, 0.0F, DisplayConstants.BALL_RADIUS, ballType);
-        Map map = new Map(new Rectangle(0, 0, DisplayConstants.MAP_WIDTH, DisplayConstants.MAP_HEIGHT), ball);
-        Car car = new Car(60.0F, 60.0F, 0.0F, DisplayConstants.CAR_WIDTH, PhysicsUtilities.calculateCarHeight(DisplayConstants.CAR_WIDTH), carType, player);
+    private void initializeMap(Session session, GameCanvasFx gameCanvas) {
+        Map map = session.getGame().getMap();
+        MapUiFx mapUiFx = new MapUiFx(gameCanvas, map);
 
-        map.setMapType(MapType.GRASSLAND); // TODO: set the map type that the user selected in the session view.
-
-        /**
-         * Create the Physics models.
-         */
-        BallPhysics ballPhysics = new BallPhysics(ball, game.getPhysics().getWorld());
-        CarPhysics carPhysics = new CarPhysics(car, game.getPhysics().getWorld());
-
-        /**
-         * Crate the UiFx models.
-         */
-        MapUiFx mapUiFx = new MapUiFx(game, map);
-        BallUiFx ballUiFx = new BallUiFx(game, ball, ballPhysics);
-        CarUiFx carUiFx = new CarUiFx(game, car, carPhysics);
-
-        /**
-         * Add drawables to the game in the correct drawing order.
-         */
-        game.addDrawable(mapUiFx);
+        gameCanvas.addDrawable(mapUiFx);
         mapUiFx.addWalls();
-        game.addDrawable(ballUiFx);
-        game.addDrawable(carUiFx);
+    }
+
+    private void initializeBall(Session session, GameCanvasFx gameCanvas) {
+        Ball ball = session.getGame().getMap().getBall();
+        BallPhysics ballPhysics = new BallPhysics(ball, gameCanvas.getPhysics().getWorld());
+        BallUiFx ballUiFx = new BallUiFx(gameCanvas, ball, ballPhysics);
+
+        gameCanvas.addDrawable(ballUiFx);
+    }
+
+    private void initializeCar(GameCanvasFx gameCanvas) {
+        Player player = Soccar.getInstance().getCurrentPlayer();
+
+        Car car = new Car(60.0F, 60.0F, 0.0F, DisplayConstants.CAR_WIDTH, PhysicsUtilities.calculateCarHeight(DisplayConstants.CAR_WIDTH), player.getCarType(), player);
+        CarPhysics carPhysics = new CarPhysics(car, gameCanvas.getPhysics().getWorld());
+        CarUiFx carUiFx = new CarUiFx(gameCanvas, car, carPhysics);
+
+        gameCanvas.addDrawable(carUiFx);
     }
 
 }
