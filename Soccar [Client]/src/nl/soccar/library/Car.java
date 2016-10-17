@@ -33,6 +33,8 @@ public class Car extends Entity {
         this.height = height;
         this.type = type;
         this.player = player;
+                
+        this.booster = 0;
     }
 
     /**

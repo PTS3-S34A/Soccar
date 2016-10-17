@@ -38,7 +38,7 @@ public class Statistics {
      * @return Calculated games ratio.
      */
     public double getGamesRatio() {
-        return (gamesWon - gamesLost) / gamesPlayed * 100.0;
+        return ((double) gamesWon - (double) gamesLost) / (double) gamesPlayed * 100.0D;
     }
 
     /**
