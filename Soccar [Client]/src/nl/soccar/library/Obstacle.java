@@ -43,7 +43,7 @@ public class Obstacle extends Entity {
         return height;
     }
 
-    public ObstacleType getType() {
+    public ObstacleType getObstacleType() {
         return type;
     }
 
