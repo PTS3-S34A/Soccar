@@ -86,12 +86,12 @@
                                     <Font name="Century Gothic" size="20.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="46.0" layoutY="610.0" text="SELECTED CAR:" textFill="WHITE">
+                              <Label layoutX="49.0" layoutY="610.0" text="SELECTED CAR:" textFill="WHITE">
                                  <font>
                                     <Font name="Century Gothic" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblCar" layoutX="212.0" layoutY="612.0" text="carPlaceHolder" textFill="WHITE">
+                              <Label fx:id="lblCar" layoutX="212.0" layoutY="610.0" text="carPlaceHolder" textFill="WHITE">
                                  <font>
                                     <Font name="Century Gothic" size="20.0" />
                                  </font>
