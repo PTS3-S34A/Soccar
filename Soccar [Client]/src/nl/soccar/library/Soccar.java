@@ -16,8 +16,10 @@ public class Soccar {
     private SessionController sessionController;
 
     private Soccar() {
-        // Constructor is intentionally set private, so that this Singleton 
-        // class can never be initialized in the application.
+        /**
+         * Constructor is intentionally set private, so that this Singleton
+         * class can never be initialized.
+         */
     }
 
     /**
@@ -54,7 +56,7 @@ public class Soccar {
     /**
      * Gets the instance of the Singleton Soccar class.
      *
-     * @return The Instance of the Soccar class.
+     * @return The Singleton instance of the Soccar class.
      */
     public static Soccar getInstance() {
         return instance;

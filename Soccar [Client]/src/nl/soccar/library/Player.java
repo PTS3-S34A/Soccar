@@ -61,18 +61,18 @@ public class Player {
     }
 
     /**
-     * Gets the game statistics of this player.
+     * Gets the Game Statistics of this Player.
      *
-     * @return Game statistics of this player, not null.
+     * @return Game Statistics of this Player, not null.
      */
     public Statistics getStatistics() {
         return statistics;
     }
 
     /**
-     * Sets the game Statistics of this player.
+     * Sets the Game Statistics of this player.
      *
-     * @param statistics The new game Statistics of this player.
+     * @param statistics The new Game Statistics of this Player.
      */
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
