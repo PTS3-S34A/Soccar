@@ -1,6 +1,6 @@
 package nl.soccar.library.test;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import nl.soccar.library.Event;
 import nl.soccar.library.Player;
 import nl.soccar.library.enumeration.CarType;
@@ -27,7 +27,7 @@ public class EventTest {
     @Before
     public void setUp() {
         player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
-        event = new Event(EventType.GOAL, LocalDateTime.of(2016, 1, 1, 0, 0), player);
+        event = new Event(EventType.GOAL, LocalTime.of(12, 27, 56), player);
     }
     
     /**
@@ -43,7 +43,7 @@ public class EventTest {
      */
     @Test
     public void getTimeTest() {
-        assertEquals(LocalDateTime.of(2016, 1, 1, 0, 0), event.getTime());
+        assertEquals(LocalTime.of(12, 27, 56), event.getTime());
     }
     
     /**

@@ -1,36 +1,38 @@
 package nl.soccar.library;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import nl.soccar.library.enumeration.EventType;
 
 /**
- * An Event is something that occurs in a Game. This includes, but is not limited to: scoring a goal, making an assist.
- * 
+ * An Event is added to a Game whenever actions, specified in EventType, are
+ * performed. It describes the type of Event, when it occurred and who
+ * triggered it.
+ *
  * @author PTS34A
  */
 public class Event {
-    
+
     private final EventType type;
-    private final LocalDateTime time;
+    private final LocalTime time;
     private final Player player;
 
     /**
-     * Initiates a new Event Object.
-     * 
-     * @param type The type of this Event.
-     * @param time The time at which this Event occurred.
-     * @param player The Player that executed this Event.
+     * Constructor used to initiate a new Event object.
+     *
+     * @param type The EventType of this Event.
+     * @param time The time at which this Event occurred, not null.
+     * @param player The Player that triggered this Event, not null.
      */
-    public Event(EventType type, LocalDateTime time, Player player) {
+    public Event(EventType type, LocalTime time, Player player) {
         this.type = type;
         this.time = time;
         this.player = player;
     }
 
     /**
-     * Gets the type of this Event.
-     * 
-     * @return The type of this Event.
+     * Gets the EventType of this Event.
+     *
+     * @return The EventType of this Event.
      */
     public EventType getType() {
         return type;
@@ -38,20 +40,20 @@ public class Event {
 
     /**
      * Gets the time at which this Event occurred.
-     * 
-     * @return The time at which this Event occurred.
+     *
+     * @return The time at which this Event occurred, not null.
      */
-    public LocalDateTime getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
     /**
-     * Gets the Player that executed this Event.
-     * 
-     * @return The Player that executed this Event.
+     * Gets the Player that triggered this Event.
+     *
+     * @return The Player that triggered this Event, not null.
      */
     public Player getPlayer() {
         return player;
     }
-    
+
 }
