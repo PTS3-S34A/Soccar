@@ -6,8 +6,9 @@ package nl.soccar.library.enumeration;
  * @author PTS34
  */
 public enum GameStatus {
-    
-    STARTED,
+
+    RUNNING,
+    SCORED,
     STOPPED
     
 }
