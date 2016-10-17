@@ -154,7 +154,7 @@ public class SessionController {
      * joined Session, the current player is in.
      */
     public void setCurrentSession(Session session) {
-        currentSession = Optional.of(session);
+        currentSession = Optional.ofNullable(session);
     }
 
 }
