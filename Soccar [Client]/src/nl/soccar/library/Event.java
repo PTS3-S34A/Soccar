@@ -5,8 +5,8 @@ import nl.soccar.library.enumeration.EventType;
 
 /**
  * An Event is added to a Game whenever actions, specified in EventType, are
- * performed. It describes the type of Event, when it occurred and who
- * triggered it.
+ * performed. It describes the type of Event, when it occurred and who triggered
+ * it.
  *
  * @author PTS34A
  */

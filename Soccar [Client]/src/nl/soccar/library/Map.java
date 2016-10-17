@@ -7,37 +7,42 @@ import nl.soccar.library.enumeration.MapType;
 import nl.soccar.util.MapUtilities;
 
 /**
- * Class that represents the Map model.
+ * A Map keeps track of Cars and a Ball. Furthermore it specifies its size and
+ * where the actual goals are placed. It contains a MapType that determines how
+ * it will be drawn on the screen.
  *
  * @author PTS34A
  */
 public class Map {
 
-    private Rectangle size;
-    private Rectangle goalBlue;
-    private Rectangle goalRed;
+    private final Rectangle size;
+    private final Rectangle goalBlue;
+    private final Rectangle goalRed;
     private MapType type;
 
-    private List<Car> cars;
-    private Ball ball;
+    private final List<Car> cars;
+    private final Ball ball;
 
     /**
-     * Initiates a new Map Object.
+     * Constructor used to initiate a new Map object.
      *
-     * @param size The size of this Map.
-     * @param ball The ball of this Map.
+     * @param size The size of this Map, not null.
+     * @param ball The ball of this Map, not null.
      */
     public Map(Rectangle size, Ball ball) {
         this(size, ball, MapUtilities.getLeftGoal(), MapUtilities.getRightGoal());
     }
 
     /**
-     * Constructor used for instantiation of a Map object.
+     * Constructor used to instantiate a new Map object. By default it sets the
+     * MapType to grassland.
      *
-     * @param size The size of this map.
-     * @param goalBlue Rectangle position of the blue goal.
-     * @param goalRed Rectangle pisition of the red goal.
-     * @param ball The ball of this Map.
+     * @param size The size of this map, not null.
+     * @param goalBlue The position of the blue goal, relative to this Map, not
+     * null.
+     * @param goalRed The Position of the red goal, relative to this Map, not
+     * null.
+     * @param ball The ball that is placed on this Map, not null.
      */
     public Map(Rectangle size, Ball ball, Rectangle goalBlue, Rectangle goalRed) {
         this.size = size;
@@ -50,55 +55,60 @@ public class Map {
     }
 
     /**
-     * Method that adds a car to the map.
+     * Adds a car to this Map.
      *
-     * @param car Car that needs to be added to the map.
+     * @param car The Car that will be added to this Map, not null.
      */
     public void addCar(Car car) {
         cars.add(car);
     }
 
     /**
-     * Method that gets the car of the player that is passed as an argument.
+     * Retrieves a Car based on a given Player. It iterates through all Cars
+     * (added to this Map) and compares the associated player with the given
+     * player.
      *
-     * @param player Player whose car needs to be retrieved.
-     * @return
+     * @param player The Player, not null, to get the Car from.
+     * @return A Car that is driven by the given Player. May be null if there's
+     * no Car added in this Map that is driven by the given player.
      */
     public Car getCarFromPlayer(Player player) {
         return cars.stream().filter(c -> c.getPlayer().equals(player)).findFirst().get();
     }
 
     /**
-     * Method that gets the map rectangle.
+     * Gets the size of this Map.
      *
-     * @return Rectangle of the map.
+     * @return A Rectangle containing the size, in JBox2D units, of this Map.
      */
     public Rectangle getSize() {
         return size;
     }
 
     /**
-     * Method that gets the blue goal rectangle.
+     * Gets the size, and position, of the blue goal.
      *
-     * @return Recangle of the blue goal.
+     * @return A Rectangle containing the size, and position, in JBox2D units,
+     * of this Map.
      */
     public Rectangle getGoalBlue() {
         return goalBlue;
     }
 
     /**
-     * Method that gets the red goal rectangle.
+     * Gets the size, and position, of the red goal.
      *
-     * @return Recangle of the red goal.
+     * @return A Rectangle containing the size, and position, in JBox2D units,
+     * of this Map.
      */
     public Rectangle getGoalRed() {
         return goalRed;
     }
 
     /**
-     * Method that gets the type of this map.
+     * Gets the MapType of this Map.
      *
-     * @return Map type of this map.
+     * @return The MapType of this Map.
      */
     public MapType getMapType() {
         return type;
@@ -115,7 +125,7 @@ public class Map {
 
     /**
      * Method that gets the ball of this map.
-     * 
+     *
      * @return The ball of this map.
      */
     public Ball getBall() {
