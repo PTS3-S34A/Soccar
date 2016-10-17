@@ -51,7 +51,7 @@ public class GameViewFXMLController implements Initializable {
         GameCanvasFx gameCanvas = new GameCanvasFx(canvas.getGraphicsContext2D());
         gameCanvas.start();
 
-        Session session = Soccar.getInstance().getSessionController().getCurrentSession();
+        Session session = Soccar.getInstance().getSessionController().getCurrentSession().get(); // Will never be null.
         initializeMap(session, gameCanvas);
         initializeBall(session, gameCanvas);
         initializeCar(gameCanvas);

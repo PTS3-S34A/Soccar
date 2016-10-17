@@ -3,9 +3,8 @@ package nl.soccar.library;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import nl.soccar.exception.DuplicateValueException;
 import nl.soccar.exception.ExceptionConstants;
 import nl.soccar.exception.InvalidCredentialException;
@@ -15,7 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class that represents the SessionController model.
+ * A SessionController keeps track of all Sessions and provides methods for
+ * creating and joining/leaving Sessions.
  *
  * @author PTS34A
  */
@@ -24,34 +24,38 @@ public class SessionController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SessionController.class);
     private static final Random RANDOM = new Random();
 
-    private Session currentSession;
-
-    private List<Session> allSessions;
+    private Optional<Session> currentSession;
+    private final List<Session> sessions;
 
     /**
-     * Constructor used for instantiation of a SessionController object.
-     *
+     * Constructor used to initiate a new SessionController object. It
+     * initializes all sessions, by default there are no sessions until
+     * retrieved from the network.
      */
     public SessionController() {
-        allSessions = new ArrayList<>();
+        currentSession = Optional.empty();
+        sessions = new ArrayList<>();
     }
 
     /**
-     * Method that creates a session.
+     * Creates a new Session with the given parameters.
      *
-     * @param name Name of the room that is nested inside this session.
-     * @param password Password of the room that is nested inside this session.
-     * @param player Player that creates the session.
-     * @return Session that was created.
-     * @throws nl.soccar.exception.DuplicateValueException When Roomname has already been used (ignoring capital characters). 
+     * @param name Name, not null & not empty, of the room that is nested inside
+     * this session.
+     * @param password Password, not null, of the Room that is nested inside
+     * this session.
+     * @param player Player, not null, that creates the session.
+     * @return The Session, not null, that was created.
+     * @throws nl.soccar.exception.DuplicateValueException When the given
+     * roomname has already been used (ignoring capital characters).
      */
     public Session create(String name, String password, Player player) throws DuplicateValueException {
-        if (allSessions.stream().map(s -> s.getRoom().getName()).anyMatch(name::equalsIgnoreCase)) {
+        if (sessions.stream().map(s -> s.getRoom().getName()).anyMatch(name::equalsIgnoreCase)) {
             throw new DuplicateValueException(ExceptionConstants.DUPLICATE_ROOM_TITLE, ExceptionConstants.DUPLICATE_ROOM_MESSAGE);
         }
 
         Session session = new Session(name, password);
-        allSessions.add(session);
+        sessions.add(session);
 
         try {
             join(session, password, player);
@@ -63,17 +67,23 @@ public class SessionController {
     }
 
     /**
-     * Method that adds a player to a session.
+     * Adds a Player to a Session given that there is space in the specified
+     * Session, and that the given password is equal to the password of the Room
+     * nested in the Session.
      *
-     * @param s Session that the player wants to join.
-     * @param password Password of the room that is nested inside this session.
-     * @param player Player that needs to be added to this session.
-     * @return Session that was joined.
-     * @throws nl.soccar.exception.InvalidCredentialException When Password is not correct.
-     * @throws nl.soccar.exception.RoomException When Room capacity is smaller then current playercount.
+     * @param session The Session, not null, that the Player wants to join.
+     * @param password The password, not null, of the Room that is nested inside
+     * this session.
+     * @param player The Player, not null, that needs to be added to this
+     * session.
+     * @return The Session, not null, that was joined.
+     * @throws nl.soccar.exception.InvalidCredentialException When the given
+     * password is not correct.
+     * @throws nl.soccar.exception.RoomException When there is no capacity left
+     * in the room for the Player to join.
      */
-    public Session join(Session s, String password, Player player) throws UIException {
-        Room room = s.getRoom();
+    public Session join(Session session, String password, Player player) throws UIException {
+        Room room = session.getRoom();
         if (room.getOccupancy() >= room.getCapacity()) {
             throw new RoomException(ExceptionConstants.ROOM_FULL_TITLE, ExceptionConstants.ROOM_FULL_MESSAGE);
         }
@@ -96,14 +106,16 @@ public class SessionController {
             teamRed.join(player);
         }
 
-        return s;
+        return session;
     }
 
     /**
-     * Method that removes a player from a session.
+     * Removes the given Player from the given Session.
      *
-     * @param session Session from where the player needs to be removed.
-     * @param player Player that needs to be removed from this session.
+     * @param session The Session, not null, from where the Player needs to be
+     * removed.
+     * @param player The Player, not null, that needs to be removed from this
+     * Session.
      */
     public void leave(Session session, Player player) {
         Room room = session.getRoom();
@@ -115,41 +127,34 @@ public class SessionController {
     }
 
     /**
-     * Method that gets a list of all sessions.
+     * Gets all Session that this SessionController currently keeps track of.
      *
-     * @return List of all sessions.
+     * @return A List, not null, of all Sessions.
      */
     public List<Session> getAllSessions() {
-        return Collections.unmodifiableList(allSessions);
+        return Collections.unmodifiableList(sessions);
     }
 
     /**
-     * Method that gets a observable list of all rooms.
+     * Gets the Session that is currently joined by the Player that launched the
+     * application.
      *
-     * @return Observablelist of all rooms.
+     * @return The Session, may be null to indicate that there's no current
+     * Session., that is currently joined.
      */
-    public ObservableList<Room> getAllRooms() {
-        ObservableList<Room> roomList = FXCollections.observableArrayList();
-        allSessions.stream().map(s -> s.getRoom()).forEach(roomList::add);
-        return roomList;
-    }
-
-    /**
-     * Method that gets the current session
-     *
-     * @return the current session the player is in.
-     */
-    public Session getCurrentSession() {
+    public Optional<Session> getCurrentSession() {
         return currentSession;
     }
 
     /**
-     * Method that sets the current Session.
+     * Sets the current Session that is joined by the player that launched the
+     * application.
      *
-     * @param currentSession Current session the current player is in.
+     * @param session The current session, may be null to indicate there's no
+     * joined Session, the current player is in.
      */
-    public void setCurrentSession(Session currentSession) {
-        this.currentSession = currentSession;
+    public void setCurrentSession(Session session) {
+        currentSession = Optional.of(session);
     }
 
 }
