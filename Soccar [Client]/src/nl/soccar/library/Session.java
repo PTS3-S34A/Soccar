@@ -23,7 +23,7 @@ public class Session {
     }
 
     /**
-     * Method that gets the Game.
+     * Gets the Game.
      *
      * @return The Game that is nested in this Session, not null.
      */
@@ -32,7 +32,7 @@ public class Session {
     }
 
     /**
-     * Method that gets the Room.
+     * Gets the Room.
      *
      * @return The Room that is nested in this Session, not null.
      */

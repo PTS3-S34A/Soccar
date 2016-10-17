@@ -1,43 +1,49 @@
 package nl.soccar.library;
 
 /**
- * Class that represents the Soccar model.
+ * Soccar is a Singleton class that serves as container for the
+ * SessionsController and the current Player. It also grants access to all
+ * underlying classes.
  *
  * @author PTS34A
  */
 public class Soccar {
 
-    /**
-     * Constant string that will be used to print out the application name.
-     */
-    public static final String APPLICATION_NAME = "Soccar";
-    
     private static Soccar instance;
-    
+
     private Player currentPlayer;
-    
+
     private SessionController sessionController;
 
-    // Constructor that is intentionally set private (Singleton)
     private Soccar() {
+        // Constructor is intentionally set private, so that this Singleton 
+        // class can never be initialized in the application.
     }
-    
+
     /**
-     * 
-     * @return 
+     * Gets the current Player.
+     *
+     * @return The current Player, not null.
      */
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-    
+
+    /**
+     * Gets the SessionController.
+     *
+     * @return The SessionController, not null.
+     */
     public SessionController getSessionController() {
         return sessionController;
     }
-    
+
     /**
-     * Method that sets the instance of the Singleton Soccar class.
+     * Sets the instance of the Singleton Soccar class. The SessionController is
+     * created and the Player is set based on the Player that is passed as an
+     * argument.
      *
-     * @param player Player that is currently using the game.
+     * @param player The Player that is currently using the game.
      */
     public static void setInstance(Player player) {
         instance = new Soccar();
@@ -46,12 +52,12 @@ public class Soccar {
     }
 
     /**
-     * Method that gets the instance of the Singleton Soccar class.
+     * Gets the instance of the Singleton Soccar class.
      *
-     * @return Instance of the Soccar class.
+     * @return The Instance of the Soccar class.
      */
     public static Soccar getInstance() {
         return instance;
     }
-       
+
 }

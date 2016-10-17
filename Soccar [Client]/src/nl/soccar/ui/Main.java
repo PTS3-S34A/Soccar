@@ -100,7 +100,7 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(sceneName));
             Scene scene = new Scene(root, DisplayConstants.SCREEN_WIDTH, DisplayConstants.SCREEN_HEIGHT);
 
-            primaryStage.setTitle(Soccar.APPLICATION_NAME);
+            primaryStage.setTitle(DisplayConstants.APPLICATION_NAME);
             primaryStage.setScene(scene);
             primaryStage.getIcons().add(new Image(DisplayConstants.LOCATION_STAGE_ICON));
 

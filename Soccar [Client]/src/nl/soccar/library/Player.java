@@ -52,7 +52,7 @@ public class Player {
     }
 
     /**
-     * Method thats gets the CarType of this Player.
+     * Gets the CarType of this Player.
      *
      * @return Car type of this player, not null.
      */
@@ -61,7 +61,7 @@ public class Player {
     }
 
     /**
-     * Method that gets the game statistics of this player.
+     * Gets the game statistics of this player.
      *
      * @return Game statistics of this player, not null.
      */
@@ -70,7 +70,7 @@ public class Player {
     }
 
     /**
-     * Method that sets the game Statistics of this player.
+     * Sets the game Statistics of this player.
      *
      * @param statistics The new game Statistics of this player.
      */

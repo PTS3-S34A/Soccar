@@ -8,6 +8,11 @@ package nl.soccar.ui;
 public final class DisplayConstants {
 
     /**
+     * Constant String that will be used to print out the application name.
+     */
+    public static final String APPLICATION_NAME = "Soccar";
+
+    /**
      * Screen constants in pixels
      */
     public static final float SCREEN_WIDTH = 1200.0F;
