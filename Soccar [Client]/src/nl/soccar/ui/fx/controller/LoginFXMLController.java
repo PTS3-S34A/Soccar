@@ -51,13 +51,18 @@ public class LoginFXMLController implements Initializable {
      * Handler for login-button; Uses current selected car, username and optional password.
      */
     private void login() {
-        CarType selectedCar = CarType.CASUAL;
+        CarType selectedCar = null;
         if (btnSelectCasualCar.isSelected()) {
             selectedCar = CarType.CASUAL;
         } else if (btnSelectPickup.isSelected()) {
             selectedCar = CarType.PICKUP;
         } else if (btnSelectSportsCar.isSelected()) {
             selectedCar = CarType.SPORTSCAR;
+        } else {
+            btnSelectCasualCar.setStyle("-fx-border-color: red");
+            btnSelectSportsCar.setStyle("-fx-border-color: red;");
+            btnSelectPickup.setStyle("-fx-border-color: red;");
+            return;
         }
 
         if (!txtFieldName.getText().isEmpty()) {
