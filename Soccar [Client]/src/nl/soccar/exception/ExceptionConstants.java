@@ -20,7 +20,7 @@ public final class ExceptionConstants {
     public static final String ROOM_FULL_MESSAGE = "The room you want to enter is full";
 
     private ExceptionConstants() {
-
+        // Private because this is a constants class, an instance should never be created.
     }
 
 }

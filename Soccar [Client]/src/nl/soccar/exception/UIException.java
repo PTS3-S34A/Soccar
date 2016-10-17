@@ -13,8 +13,10 @@ public class UIException extends Exception {
     /**
      * Initiates a new UIException object.
      *
-     * @param title The title for the exception, which will be displayed.
-     * @param message The exception-message, which will be displayed.
+     * @param title The title for the exception, it will be used to display an
+     * alert. The title shouldn't be null or empty.
+     * @param message The exception-message, it will be used to display an
+     * alert. The title shouldn't be null or empty.
      */
     public UIException(String title, String message) {
         super(message);
@@ -22,9 +24,10 @@ public class UIException extends Exception {
     }
 
     /**
-     * Returns the title of this exception object
+     * Gets the title of this exception. The title, in turn, will be used to
+     * display on an alert.
      *
-     * @return String The title of the exception.
+     * @return String The title of the message. The title will never be null.
      */
     public String getTitle() {
         return title;
