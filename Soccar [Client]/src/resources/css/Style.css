@@ -4,15 +4,15 @@
 * Author: PTS34A
 */
 
-#button {
+.button {
     -fx-background-color: #545ECB;
 }
 
-#button:hover {
+.button:hover {
     -fx-background-color: #767ED5;
 }
 
-#button:selected {
+.button:selected {
     -fx-background-color: #767ED5;
     -fx-border-color: white; 
     -fx-border-width: 4;
