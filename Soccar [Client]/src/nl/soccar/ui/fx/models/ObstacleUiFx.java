@@ -44,7 +44,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         context.translate(x, y); // Set the origin point of the rotation.
         context.rotate(-obstacle.getDegree()); // Set the angle of the rotation.
 
-        switch (obstacle.getType()) {
+        switch (obstacle.getObstacleType()) {
             default:
             case WALL:
                 // The wall obstacle is never drawn, it is invisible.
