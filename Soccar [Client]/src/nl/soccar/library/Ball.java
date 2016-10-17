@@ -34,7 +34,7 @@ public class Ball extends Entity {
     /**
      * Gets the radius of this Ball.
      *
-     * @return The radius of this ball.
+     * @return The radius of this ball, not null.
      */
     public float getRadius() {
         return radius;
@@ -43,7 +43,7 @@ public class Ball extends Entity {
     /**
      * Gets the BallType of this Ball.
      *
-     * @return The BallType of this Ball.
+     * @return The BallType of this Ball, not null.
      */
     public BallType getBallType() {
         return type;
