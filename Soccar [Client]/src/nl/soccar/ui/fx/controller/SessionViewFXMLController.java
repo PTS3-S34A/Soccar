@@ -49,7 +49,7 @@ public class SessionViewFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Soccar soccar = Soccar.getInstance();
-        currentSession = soccar.getSessionController().getCurrentSession();
+        currentSession = soccar.getSessionController().getCurrentSession().get(); // Will never be null.
         currentPlayer = soccar.getCurrentPlayer();
 
         btnLogOut.setOnAction(e -> Main.getInstance().logOut());

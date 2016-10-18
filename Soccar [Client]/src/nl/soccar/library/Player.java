@@ -4,12 +4,13 @@ import nl.soccar.library.enumeration.Privilege;
 import nl.soccar.library.enumeration.CarType;
 
 /**
- * Class that represents the Player model.
- * 
+ * A Player is an object which contains information about the user that is
+ * playing the game.
+ *
  * @author PTS34A
  */
 public class Player {
-    
+
     private final String username;
     private final Privilege privilege;
     private final CarType carType;
@@ -17,10 +18,13 @@ public class Player {
 
     /**
      * Constructor used for instantiation of a Player object.
-     * 
-     * @param username Username of the player.
-     * @param privilege Privilege of the player that is used to maintain system rights.
-     * @param carType Car type of the player.
+     *
+     * @param username The username of this player that will visible for all
+     * other players of the game.
+     * @param privilege The Privilege of this player that is used to maintain
+     * system rights.
+     * @param carType The CarType of this player that determines the aesthetics
+     * of the car.
      */
     public Player(String username, Privilege privilege, CarType carType) {
         this.username = username;
@@ -29,50 +33,51 @@ public class Player {
     }
 
     /**
-     * Method that gets the username of the player.
-     * 
-     * @return Username of the player.
+     * Gets the username of this player.
+     *
+     * @return The username of this player, not null.
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Method that gets the privilege of the player.
-     * 
-     * @return Privilege of the player that is used to maintain system rights.
+     * Gets the privilege of this player.
+     *
+     * @return The Privilege of this player that is used to maintain system
+     * rights, not null.
      */
     public Privilege getPrivilege() {
         return privilege;
     }
 
     /**
-     * Method thats gets the cartype of the player.
-     * 
-     * @return Car type of the player.
+     * Gets the CarType of this Player.
+     *
+     * @return Car type of this player, not null.
      */
     public CarType getCarType() {
         return carType;
     }
 
     /**
-     * Method that gets the game statistics of the player.
-     * 
-     * @return Game statistics of the player.
+     * Gets the Game Statistics of this Player.
+     *
+     * @return Game Statistics of this Player, not null.
      */
     public Statistics getStatistics() {
         return statistics;
     }
 
     /**
-     * Method that sets the game statistics of the player.
-     * 
-     * @param statistics Game statistics of the player.
+     * Sets the Game Statistics of this player.
+     *
+     * @param statistics The new Game Statistics of this Player.
      */
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
-    
+
     @Override
     public String toString() {
         return username;

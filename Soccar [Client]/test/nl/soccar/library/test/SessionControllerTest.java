@@ -1,7 +1,5 @@
 package nl.soccar.library.test;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import nl.soccar.exception.DuplicateValueException;
 import nl.soccar.exception.InvalidCredentialException;
 import nl.soccar.exception.RoomException;
@@ -117,15 +115,6 @@ public class SessionControllerTest {
     public void getAllSessionsTest() throws UIException {
         sessionController.create("name", "password", player1);
         assertNotNull(sessionController.getAllSessions());
-    }
-
-    /**
-     * Tests the getAllRooms method.
-     */
-    @Test
-    public void getAllRoomsTest() throws UIException {
-        sessionController.create("name", "password", player1);
-        assertNotNull(sessionController.getAllRooms());
     }
 
     /**

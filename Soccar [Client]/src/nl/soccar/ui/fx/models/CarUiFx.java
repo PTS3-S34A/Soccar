@@ -43,7 +43,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
     public CarUiFx(GameCanvasFx canvas, Car car, CarPhysics physics) {
         super(canvas, car, physics);
 
-        carTexture = ImageUtilities.getCarImage(car.getType(), TeamColour.RED); // TODO get team colour.
+        carTexture = ImageUtilities.getCarImage(car.getCarType(), TeamColour.RED); // TODO get team colour.
     }
 
     @Override

@@ -1,7 +1,7 @@
 package nl.soccar.library.enumeration;
 
 /**
- * Enumeration of all available team colours in the game.
+ * Enumeration of all available Team colours in the game.
  * 
  * @author PTS34
  */

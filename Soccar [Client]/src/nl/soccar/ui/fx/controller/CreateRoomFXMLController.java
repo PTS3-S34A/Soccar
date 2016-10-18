@@ -14,9 +14,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import nl.soccar.exception.DuplicateValueException;
+import nl.soccar.library.Game;
+import nl.soccar.library.Map;
 import nl.soccar.library.Player;
 import nl.soccar.library.Session;
+import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
+import nl.soccar.library.enumeration.BallType;
+import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.MapType;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
@@ -78,19 +83,29 @@ public class CreateRoomFXMLController implements Initializable {
      * Event-handler for CreatRoom button; Uses password, roomname, capacity and
      * map-type.
      */
-    public void createRoom() {
+    private void createRoom() {
         String password = "";
 
         if (!textFieldPassword.getText().isEmpty()) {
             password = textFieldPassword.getText();
         }
 
-        Session newSession;
+        Session session;
         try {
-            newSession = Soccar.getInstance().getSessionController().create(textFieldRoomName.getText(), password, Soccar.getInstance().getCurrentPlayer());
-            newSession.getRoom().setCapacity((int) sliderCapacity.getValue());
+            Soccar soccar = Soccar.getInstance();
+            SessionController controller = soccar.getSessionController();
 
-            Soccar.getInstance().getSessionController().setCurrentSession(newSession);
+            session = controller.create(textFieldRoomName.getText(), password, soccar.getCurrentPlayer());
+            session.getRoom().setCapacity((int) sliderCapacity.getValue());
+
+            Game game = session.getGame();
+            game.setDuration(Duration.MINUTES_5); // TODO implement manual selection duration.
+
+            Map map = game.getMap();
+            map.setMapType((MapType) cbMap.getValue());
+            map.getBall().setBallType(BallType.FOOTBALL); // TODO implement manual selection ball.
+
+            controller.setCurrentSession(session);
             Main.getInstance().setScene(FXMLConstants.LOCATION_SESSION_VIEW);
         } catch (DuplicateValueException e) {
             LOGGER.error("An error occurred while creating a room.", e);

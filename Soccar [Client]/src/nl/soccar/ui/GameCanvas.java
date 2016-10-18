@@ -9,8 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A canvas keeps track of Drawables. It updates them and provides a way to draw them.
- * It also keeps track of all Physics, the drawables (in turn) provide stepping methodes for the World (Physics).
+ * A canvas keeps track of Drawables. It updates them and provides a way to draw
+ * them. It also keeps track of all Physics, the Drawables (in turn) provide
+ * stepping methodes for the World (Physics).
  *
  * @author PTS34A
  */
@@ -22,7 +23,10 @@ public abstract class GameCanvas {
     private final List<Drawable> drawables;
 
     /**
-     * Initiates a new GameCanvas object.
+     * Initiates a new GameCanvas object. While initializing, the collections of
+     * Drawables en Physics are also initialized.
+     *
+     * @param game The Game, not null, that will be used to interact with.
      */
     public GameCanvas(Game game) {
         this.game = game;
@@ -33,72 +37,77 @@ public abstract class GameCanvas {
     }
 
     /**
-     * Starts the game loop and starts drawing all drawables at a fixed rate.
+     * Starts the game loop and starts drawing all Drawables and updating all
+     * physics objects. at a fixed rate.
      */
     public abstract void start();
 
     /**
-     * Stops the game loop and stops drawing all drawables.
+     * Stops the game loop and stops drawing all Drawables and updating all
+     * physics objects.
      */
     public abstract void stop();
 
     /**
-     * Method that adds a world object to the list of world objects.
+     * Adds a world object to the list of world objects.
      *
-     * @param worldObject WorldObject item that needs to be added to the list of world objects.
+     * @param worldObject WorldObject item, not null, that needs to be added to
+     * the list of world objects.
      */
     public final void addWorldObject(WorldObject worldObject) {
         worldObjects.add(worldObject);
     }
 
     /**
-     * Method that removes world object out of the list of world objects.
+     * Removes world object out of the list of world objects.
      *
-     * @param worldObject WorldObject item that needs to be removed from the worldObjects list.
+     * @param worldObject WorldObject item, not null, that needs to be removed
+     * from the worldObjects list.
      */
     public final void removeWorldObject(WorldObject worldObject) {
         worldObjects.remove(worldObject);
     }
 
     /**
-     * Method that adds a drawable to the list of drawables.
+     * Adds a drawable to the list of drawables.
      *
-     * @param drawable Drawable item that needs to be added to the list of drawables.
+     * @param drawable Drawable item, not null, that needs to be added to the
+     * list of drawables.
      */
     public final void addDrawable(Drawable drawable) {
         drawables.add(drawable);
     }
 
     /**
-     * Method that removes drawable out of the list of drawables.
+     * Removes a drawable out of the list of drawables.
      *
-     * @param drawable Drawable item that needs to be removed from the drawable list.
+     * @param drawable Drawable item, not null, that needs to be removed from
+     * the drawable list.
      */
     public final void removeDrawable(Drawable drawable) {
         drawables.remove(drawable);
     }
 
     /**
-     * Method that gets the physics.
+     * Gets the GamePhysics.
      *
-     * @return The physics.
+     * @return The GamePhysics, not null.
      */
     public final GamePhysics getPhysics() {
         return physics;
     }
 
     /**
-     * Method that gets the list of drawable items of this GameCanvas.
+     * Gets all Drawables of this GameCanvas.
      *
-     * @return unmodifiable List of drawables.
+     * @return An unmodifiable List, not null, of Drawables, not null.
      */
     public final List<Drawable> getDrawables() {
         return Collections.unmodifiableList(drawables);
     }
 
-
     /**
-     * Method that gets the list of world object items of this GameCanvas.
+     * Gets the list of world object items of this GameCanvas.
      *
      * @return unmodifiable List of world objects.
      */

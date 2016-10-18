@@ -12,6 +12,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * BallPhysics is a physics-model that keeps track of the physics of the Ball.
@@ -82,7 +83,7 @@ public class BallPhysics implements WorldObject {
      * When it does, it adds an event to the Game object and sets the GameStatus to SCORED.
      */
     private void checkGoalScored() {
-        Game game = Soccar.getInstance().getSessionController().getCurrentSession().getGame();
+        Game game = Soccar.getInstance().getSessionController().getCurrentSession().get().getGame();
         Player player = Soccar.getInstance().getCurrentPlayer();
 
         float ballX = ball.getX();
@@ -90,10 +91,10 @@ public class BallPhysics implements WorldObject {
         Rectangle rightGoal = MapUtilities.getRightGoal();
 
         if (ballX > rightGoal.getX() + DisplayConstants.BALL_RADIUS) {
-            game.addEvent(new Event(EventType.GOAL_RED, LocalDateTime.now(), player));
+            game.addEvent(new Event(EventType.GOAL_RED, LocalTime.now(), player));
             game.setStatus(GameStatus.SCORED);
         } else if (ballX < leftGoal.getX() + leftGoal.getWidth() - DisplayConstants.BALL_RADIUS) {
-            game.addEvent(new Event(EventType.GOAL_BLUE, LocalDateTime.now(), player));
+            game.addEvent(new Event(EventType.GOAL_BLUE, LocalTime.now(), player));
             game.setStatus(GameStatus.SCORED);
         }
     }

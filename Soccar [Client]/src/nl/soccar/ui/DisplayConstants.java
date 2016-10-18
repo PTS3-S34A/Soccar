@@ -1,30 +1,35 @@
 package nl.soccar.ui;
 
 /**
- * This class will keep up with all constants regarding the UI.
+ * Class that contains constant values regarding to the user interface.
  *
  * @author PTS34A
  */
 public final class DisplayConstants {
 
     /**
-     * Screen constants in pixels
+     * Application name constant.
+     */
+    public static final String APPLICATION_NAME = "Soccar";
+
+    /**
+     * Screen constants in pixels.
      */
     public static final float SCREEN_WIDTH = 1200.0F;
     public static final float SCREEN_HEIGHT = 800.0F;
 
     /**
-     * Ball constants in JBox2D units
+     * Ball constant in JBox2D units.
      */
     public static final float BALL_RADIUS = 2.5F;
 
     /**
-     * Car constants in JBox2D units
+     * Car constant in JBox2D units.
      */
     public static final float CAR_WIDTH = 3.0F;
 
     /**
-     * Map constants in JBox2D units
+     * Map constants in JBox2D units.
      */
     public static final float MAP_WIDTH = 160.0F;
     public static final float MAP_HEIGHT = 90.0F;
@@ -40,7 +45,7 @@ public final class DisplayConstants {
     public static final float GOAL_HEIGHT = BOX_HEIGHT / 1.5F;
 
     /**
-     * Map image constants
+     * Map image location constants.
      */
     public static final String LOCATION_TEXTURE_MOON = "resources/images/moon_texture.jpg";
     public static final String LOCATION_TEXTURE_DESERT = "resources/images/desert_texture.jpg";
@@ -52,10 +57,14 @@ public final class DisplayConstants {
     public static final String LOCATION_TEXTURE_BALL = "resources/images/ball_texture.png";
 
     /**
-     * Stage constants
+     * Stage constants.
      */
     public static final String LOCATION_STAGE_ICON = "resources/images/icon.png";
 
     private DisplayConstants() {
+        /**
+         * Constructor is intentionally set private, so that this class can
+         * never be initialized.
+         */
     }
 }

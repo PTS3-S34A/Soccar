@@ -3,32 +3,34 @@ package nl.soccar.ui;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * A Drawable is an Object that can be drawn on the screen. It keeps up with a model.
- * The model represents an Object which is connected to this Drawable, such as a Car.
+ * A Drawable is an Object that can be drawn on the screen. It keeps up with a
+ * model. The model represents an object which is connected to this Drawable,
+ * such as a Car.
  *
- * @param <M> The model connected to this Drawable.
  * @author PTS34A
+ * @param <M> The model connected to this Drawable.
  */
 public interface Drawable<M> {
 
     /**
-     * Method that draws this Drawable object on the graphics context.
+     * Draws this Drawable object on the graphics context that is passed as an
+     * argument.
      *
      * @param context The drawable graphics context.
      */
     void draw(GraphicsContext context);
 
     /**
-     * Method that returns this model.
+     * Gets the model assosciated with this Drawable.
      *
-     * @return This model.
+     * @return This model, may be null if none specified.
      */
     M getModel();
 
     /**
-     * Method that returns the game canvas on which this drawable is placed.
+     * Gets the GameCanvas on which this drawable is placed.
      *
-     * @return The game canvas.
+     * @return The GameCanvas, not null, on which this drawable is placed.
      */
     GameCanvas getCanvas();
 
