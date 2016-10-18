@@ -27,7 +27,7 @@ public class EventTest {
     @Before
     public void setUp() {
         player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
-        event = new Event(EventType.GOAL, LocalTime.of(12, 27, 56), player);
+        event = new Event(EventType.GOAL_RED, LocalTime.of(12, 27, 56), player);
     }
     
     /**
@@ -35,7 +35,7 @@ public class EventTest {
      */
     @Test
     public void getTypeTest() {
-        assertEquals(EventType.GOAL, event.getType());
+        assertEquals(EventType.GOAL_RED, event.getType());
     }
     
     /**

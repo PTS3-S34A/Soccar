@@ -4,7 +4,6 @@ import java.time.LocalTime;
 import nl.soccar.library.Event;
 import nl.soccar.library.Game;
 import nl.soccar.library.Player;
-import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.EventType;
@@ -32,7 +31,7 @@ public class GameTest {
     @Before
     public void setUp() {
         player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
-        event = new Event(EventType.GOAL, LocalTime.of(13, 55, 03), player);
+        event = new Event(EventType.GOAL_RED, LocalTime.of(13, 55, 03), player);
         game = new Game();
     }
 
