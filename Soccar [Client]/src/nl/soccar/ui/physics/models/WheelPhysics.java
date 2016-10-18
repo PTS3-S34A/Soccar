@@ -27,6 +27,8 @@ public class WheelPhysics implements WorldObject {
     private final CarPhysics car;
     private final Body carBody;
 
+    private final Vec2 originalPos;
+
     private final float width;
     private final float height;
     private boolean steerable;
@@ -57,9 +59,11 @@ public class WheelPhysics implements WorldObject {
         this.steerable = steerable;
         this.powered = powered;
 
+        originalPos = carBody.getWorldPoint(new Vec2(relPosX, relPosY));
+
         BodyDef bd = new BodyDef();
         bd.type = BodyType.DYNAMIC;
-        bd.position = carBody.getWorldPoint(new Vec2(relPosX, relPosY));
+        bd.position = originalPos;
         bd.angle = carBody.getAngle();
         bd.linearDamping = LINEAR_DAMPING; // Simulates friction
         bd.angularDamping = ANGULAR_DAMPING;
@@ -107,10 +111,10 @@ public class WheelPhysics implements WorldObject {
 
         // Don't do anything
         if (Math.abs(desiredSpeed - currentSpeed) < 0.0001F) { // Calculate absolute of values, then check if it is below a treshold
-                                                             // Because floating points literals will (almost) never be equal.
+            // Because floating points literals will (almost) never be equal.
             return;
-        } 
-        
+        }
+
         body.applyForce(currentForwardNormal.mul(force), body.getWorldCenter());
     }
 
@@ -189,6 +193,13 @@ public class WheelPhysics implements WorldObject {
             updateDrive();
         }
 
+    }
+
+    @Override
+    public void reset() {
+        body.setLinearVelocity(new Vec2(0.0F, 0.0F));
+        body.setAngularVelocity(0.0F);
+        body.setTransform(originalPos, 0.0F);
     }
 
     @Override

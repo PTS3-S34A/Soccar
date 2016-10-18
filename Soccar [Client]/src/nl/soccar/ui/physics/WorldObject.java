@@ -16,6 +16,11 @@ public interface WorldObject {
     void step();
 
     /**
+     * Resets the WorldObject to its original position.
+     */
+    void reset();
+
+    /**
      * Gets the x-coordinate of this physics-model, relative to the map it is
      * placed in.
      *

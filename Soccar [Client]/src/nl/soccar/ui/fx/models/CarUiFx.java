@@ -7,7 +7,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import nl.soccar.library.Car;
 import nl.soccar.library.enumeration.TeamColour;
-import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
 import nl.soccar.ui.physics.models.CarPhysics;
@@ -29,9 +28,9 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
     static {
         COLOR_WHEEL = Color.grayRgb(50);
-        PLAYER_FONT = new Font("Ariel", 20);
+        PLAYER_FONT = new Font("Arial", 20);
     }
-    
+
     private Image carTexture;
 
     /**
@@ -43,17 +42,8 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
      */
     public CarUiFx(GameCanvasFx canvas, Car car, CarPhysics physics) {
         super(canvas, car, physics);
-        
+
         carTexture = ImageUtilities.getCarImage(car.getType(), TeamColour.RED); // TODO get team colour.
-    }
-
-    @Override
-    public void update() {
-        CarPhysics physics = super.getPhysicsModel();
-        Car car = super.getModel();
-
-        physics.step();
-        car.move(physics.getX(), physics.getY(), physics.getDegree());
     }
 
     @Override
