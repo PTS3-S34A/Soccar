@@ -68,8 +68,6 @@ public class BallPhysics implements WorldObject {
     public void step() {
         ball.move(getX(), getY(), getDegree());
         checkGoalScored();
-
-        System.out.println(getX() + " " + getY());
     }
 
     @Override
