@@ -1,8 +1,8 @@
 package nl.soccar.ui;
 
 import nl.soccar.library.Game;
-import nl.soccar.ui.physics.GamePhysics;
-import nl.soccar.ui.physics.WorldObject;
+import nl.soccar.physics.GamePhysics;
+import nl.soccar.physics.WorldObject;
 
 import java.util.ArrayList;
 import java.util.Collections;

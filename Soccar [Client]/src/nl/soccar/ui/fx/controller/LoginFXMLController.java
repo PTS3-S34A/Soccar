@@ -18,6 +18,9 @@ import nl.soccar.ui.Main;
  */
 public class LoginFXMLController implements Initializable {
 
+    private static final String CSS_ERROR_BORDER = "-fx-border-color: red;";
+    private static final String CSS_NORMAL_BORDER = "-fx-border-color: white;";
+    
     @FXML
     private Button btnLogin;
     @FXML
@@ -41,9 +44,9 @@ public class LoginFXMLController implements Initializable {
         btnSelectPickup.setToggleGroup(toggleGroupCars);
 
         toggleGroupCars.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
-            btnSelectCasualCar.setStyle("-fx-border-color: white;");
-            btnSelectSportsCar.setStyle("-fx-border-color: white;");
-            btnSelectPickup.setStyle("-fx-border-color: white;");
+            btnSelectCasualCar.setStyle(CSS_NORMAL_BORDER);
+            btnSelectSportsCar.setStyle(CSS_NORMAL_BORDER);
+            btnSelectPickup.setStyle(CSS_NORMAL_BORDER);
         });
         
         txtFieldName.setOnAction(e -> login());
@@ -55,7 +58,7 @@ public class LoginFXMLController implements Initializable {
      * optional password.
      */
     private void login() {
-        CarType selectedCar = null;
+        CarType selectedCar;
         if (btnSelectCasualCar.isSelected()) {
             selectedCar = CarType.CASUAL;
         } else if (btnSelectPickup.isSelected()) {
@@ -63,9 +66,9 @@ public class LoginFXMLController implements Initializable {
         } else if (btnSelectSportsCar.isSelected()) {
             selectedCar = CarType.SPORTSCAR;
         } else {
-            btnSelectCasualCar.setStyle("-fx-border-color: red;");
-            btnSelectSportsCar.setStyle("-fx-border-color: red;");
-            btnSelectPickup.setStyle("-fx-border-color: red;");
+            btnSelectCasualCar.setStyle(CSS_ERROR_BORDER);
+            btnSelectSportsCar.setStyle(CSS_ERROR_BORDER);
+            btnSelectPickup.setStyle(CSS_ERROR_BORDER);
             return;
         }
 

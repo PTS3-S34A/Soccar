@@ -1,12 +1,12 @@
-package nl.soccar.ui.physics.models;
+package nl.soccar.physics.models;
 
 import nl.soccar.library.Car;
 import nl.soccar.ui.input.Keyboard;
-import nl.soccar.ui.physics.PhysicsContants;
-import nl.soccar.ui.physics.WorldObject;
-import nl.soccar.ui.physics.enumeration.HandbrakeAction;
-import nl.soccar.ui.physics.enumeration.SteerAction;
-import nl.soccar.ui.physics.enumeration.ThrottleAction;
+import nl.soccar.physics.PhysicsContants;
+import nl.soccar.physics.WorldObject;
+import nl.soccar.physics.enumeration.HandbrakeAction;
+import nl.soccar.physics.enumeration.SteerAction;
+import nl.soccar.physics.enumeration.ThrottleAction;
 import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;

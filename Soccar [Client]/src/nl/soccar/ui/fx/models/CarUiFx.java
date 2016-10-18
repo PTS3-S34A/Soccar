@@ -9,8 +9,8 @@ import nl.soccar.library.Car;
 import nl.soccar.library.enumeration.TeamColour;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
-import nl.soccar.ui.physics.models.CarPhysics;
-import nl.soccar.ui.physics.models.WheelPhysics;
+import nl.soccar.physics.models.CarPhysics;
+import nl.soccar.physics.models.WheelPhysics;
 import nl.soccar.util.ImageUtilities;
 import nl.soccar.util.PhysicsUtilities;
 

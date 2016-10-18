@@ -1,9 +1,9 @@
-package nl.soccar.ui.physics.models;
+package nl.soccar.physics.models;
 
-import nl.soccar.ui.physics.PhysicsContants;
-import nl.soccar.ui.physics.WorldObject;
-import nl.soccar.ui.physics.enumeration.HandbrakeAction;
-import nl.soccar.ui.physics.enumeration.ThrottleAction;
+import nl.soccar.physics.PhysicsContants;
+import nl.soccar.physics.WorldObject;
+import nl.soccar.physics.enumeration.HandbrakeAction;
+import nl.soccar.physics.enumeration.ThrottleAction;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;

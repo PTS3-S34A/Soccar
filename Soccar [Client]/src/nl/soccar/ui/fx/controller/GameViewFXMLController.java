@@ -15,8 +15,8 @@ import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.models.BallUiFx;
 import nl.soccar.ui.fx.models.CarUiFx;
 import nl.soccar.ui.fx.models.MapUiFx;
-import nl.soccar.ui.physics.models.BallPhysics;
-import nl.soccar.ui.physics.models.CarPhysics;
+import nl.soccar.physics.models.BallPhysics;
+import nl.soccar.physics.models.CarPhysics;
 import nl.soccar.util.PhysicsUtilities;
 
 import java.awt.*;

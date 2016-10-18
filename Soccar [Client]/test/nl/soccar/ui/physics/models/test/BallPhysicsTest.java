@@ -2,8 +2,8 @@ package nl.soccar.ui.physics.models.test;
 
 import nl.soccar.library.Ball;
 import nl.soccar.library.enumeration.BallType;
-import nl.soccar.ui.physics.GamePhysics;
-import nl.soccar.ui.physics.models.BallPhysics;
+import nl.soccar.physics.GamePhysics;
+import nl.soccar.physics.models.BallPhysics;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

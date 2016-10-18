@@ -5,7 +5,7 @@ import nl.soccar.library.Obstacle;
 import nl.soccar.library.enumeration.ObstacleType;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
-import nl.soccar.ui.physics.models.ObstaclePhysics;
+import nl.soccar.physics.models.ObstaclePhysics;
 import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.dynamics.World;
 

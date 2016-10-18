@@ -16,8 +16,8 @@ import nl.soccar.ui.Drawable;
 import nl.soccar.ui.GameCanvas;
 import nl.soccar.ui.fx.models.NotificationUiFx;
 import nl.soccar.ui.input.Keyboard;
-import nl.soccar.ui.physics.PhysicsContants;
-import nl.soccar.ui.physics.WorldObject;
+import nl.soccar.physics.PhysicsContants;
+import nl.soccar.physics.WorldObject;
 
 import java.util.List;
 
