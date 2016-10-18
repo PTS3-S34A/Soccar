@@ -1,4 +1,4 @@
-package nl.soccar.ui.physics;
+package nl.soccar.physics;
 
 import org.jbox2d.dynamics.World;
 
@@ -18,6 +18,7 @@ public class GamePhysics {
     public GamePhysics() {
         // doSleep (second parameter) is true for better performance
         world = new World(PhysicsContants.GRAVITY_ANGLE, true);
+        world.setContactListener(new BallContactListener());
     }
 
     /**

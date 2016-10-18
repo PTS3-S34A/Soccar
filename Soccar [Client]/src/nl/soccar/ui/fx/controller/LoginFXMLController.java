@@ -8,10 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import nl.soccar.library.enumeration.CarType;
-import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.Main;
 
 /**
@@ -21,6 +18,9 @@ import nl.soccar.ui.Main;
  */
 public class LoginFXMLController implements Initializable {
 
+    private static final String CSS_ERROR_BORDER = "-fx-border-color: red;";
+    private static final String CSS_NORMAL_BORDER = "-fx-border-color: white;";
+    
     @FXML
     private Button btnLogin;
     @FXML
@@ -43,21 +43,33 @@ public class LoginFXMLController implements Initializable {
         btnSelectSportsCar.setToggleGroup(toggleGroupCars);
         btnSelectPickup.setToggleGroup(toggleGroupCars);
 
+        toggleGroupCars.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+            btnSelectCasualCar.setStyle(CSS_NORMAL_BORDER);
+            btnSelectSportsCar.setStyle(CSS_NORMAL_BORDER);
+            btnSelectPickup.setStyle(CSS_NORMAL_BORDER);
+        });
+        
         txtFieldName.setOnAction(e -> login());
         btnLogin.setOnAction(e -> login());
     }
 
     /**
-     * Handler for login-button; Uses current selected car, username and optional password.
+     * Handler for login-button; Uses current selected car, username and
+     * optional password.
      */
     private void login() {
-        CarType selectedCar = CarType.CASUAL;
+        CarType selectedCar;
         if (btnSelectCasualCar.isSelected()) {
             selectedCar = CarType.CASUAL;
         } else if (btnSelectPickup.isSelected()) {
             selectedCar = CarType.PICKUP;
         } else if (btnSelectSportsCar.isSelected()) {
             selectedCar = CarType.SPORTSCAR;
+        } else {
+            btnSelectCasualCar.setStyle(CSS_ERROR_BORDER);
+            btnSelectSportsCar.setStyle(CSS_ERROR_BORDER);
+            btnSelectPickup.setStyle(CSS_ERROR_BORDER);
+            return;
         }
 
         if (!txtFieldName.getText().isEmpty()) {

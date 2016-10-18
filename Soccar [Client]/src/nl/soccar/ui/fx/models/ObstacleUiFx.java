@@ -5,7 +5,7 @@ import nl.soccar.library.Obstacle;
 import nl.soccar.library.enumeration.ObstacleType;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
-import nl.soccar.ui.physics.models.ObstaclePhysics;
+import nl.soccar.physics.models.ObstaclePhysics;
 import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.dynamics.World;
 
@@ -28,11 +28,6 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
     }
 
     @Override
-    public void update() {
-        // The update method is not implemented because obstacles never move on the map.
-    }
-
-    @Override
     public void draw(GraphicsContext context) {
         Obstacle obstacle = super.getModel();
 
@@ -44,7 +39,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
         context.translate(x, y); // Set the origin point of the rotation.
         context.rotate(-obstacle.getDegree()); // Set the angle of the rotation.
 
-        switch (obstacle.getType()) {
+        switch (obstacle.getObstacleType()) {
             default:
             case WALL:
                 // The wall obstacle is never drawn, it is invisible.
@@ -71,9 +66,9 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Initiates a new ObstacleBuilder with the given parameters.
-         * 
+         *
          * @param canvas The canvas that will be used to create the UI object.
-         * @param world The world that will be used to create the physics-model.
+         * @param world  The world that will be used to create the physics-model.
          */
         public ObstacleBuilder(GameCanvasFx canvas, World world) {
             this.canvas = canvas;
@@ -82,7 +77,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Sets the x-position of this Obstacle.
-         * 
+         *
          * @param x The new x-position that will be used when building this obstacle.
          * @return This ObstacleBuilder, for method chaining.
          */
@@ -93,7 +88,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Sets the y-position of this Obstacle.
-         * 
+         *
          * @param y The new y-position that will be used when building this obstacle.
          * @return This ObstacleBuilder, for method chaining.
          */
@@ -104,7 +99,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Sets the angle of this Obstacle.
-         * 
+         *
          * @param degree The new angle that will be used when building this obstacle.
          * @return This ObstacleBuilder, for method chaining.
          */
@@ -115,7 +110,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Sets the width of this Obstacle.
-         * 
+         *
          * @param width The new width that will be used when building this obstacle.
          * @return This ObstacleBuilder, for method chaining.
          */
@@ -126,7 +121,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Sets the height of this Obstacle.
-         * 
+         *
          * @param height The new height that will be used when building this obstacle.
          * @return This ObstacleBuilder, for method chaining.
          */
@@ -137,7 +132,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Sets the type of this Obstacle.
-         * 
+         *
          * @param type The new type that will be used when building this obstacle.
          * @return This ObstacleBuilder, for method chaining.
          */
@@ -148,7 +143,7 @@ public class ObstacleUiFx extends PhysicsDrawableFx<Obstacle, ObstaclePhysics> {
 
         /**
          * Builds an Obstacle-UI object, it combines a model and a physics-model to do so.
-         * 
+         *
          * @return The created ObstacleUiFx object.
          */
         public ObstacleUiFx build() {

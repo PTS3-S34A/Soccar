@@ -45,7 +45,7 @@ public class ObstacleTest {
      */
     @Test
     public void getTypeTest() {
-        assertEquals(ObstacleType.WALL, obstacle.getType());
+        assertEquals(ObstacleType.WALL, obstacle.getObstacleType());
     }
 
 }

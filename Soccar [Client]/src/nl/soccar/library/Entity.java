@@ -1,68 +1,74 @@
 package nl.soccar.library;
 
 /**
- * An Entity is an Object which is placed on a Map.
- * It contains it's own method of moving around.
- * 
+ * An Entity is an Object which is placed on a Map. It contains a position which
+ * is relative to the Map it is placed on. It also has the posibility to alter
+ * its position.
+ *
  * @author PTS34A
  */
 public abstract class Entity {
-    
+
     protected float x;
     protected float y;
     protected float degree;
 
     /**
-     * Initiates a new Entity Object.
-     * 
-     * @param x The x-position of this Entity.
-     * @param y The y-position of this Entity.
-     * @param degree The degree which this Entity is going.
+     * Constructor used to instantiate a new Entity object.
+     *
+     * @param x The X-position of this Entity, relative to the Map this Entity
+     * is placed on.
+     * @param y The Y-position of this Entity, relative to the Map this Entity
+     * is placed on.
+     * @param degree The angle, in degrees, in which this Entity is going in,
+     * relative to the Map this Entity is placed on.
      */
     public Entity(float x, float y, float degree) {
         this.x = x;
         this.y = y;
         this.degree = degree;
     }
-    
+
     /**
      * Moves this Entity around on the Map.
-     * 
-     * @param x The new x-position.
-     * @param y The new y-position.
-     * @param degree The new degree.
+     *
+     * @param x The new X-position.
+     * @param y The new Y-position.
+     * @param degree The new angle, in degrees.
      */
     public void move(float x, float y, float degree) {
         this.x = x;
         this.y = y;
         this.degree = degree;
     }
-    
+
     /**
-     * Gets the x-position of this Entity.
-     * 
-     * @return The x-position of this Entity.
+     * Gets the X-position of this Entity.
+     *
+     * @return The X-position of this Entity, relative to the Map it is placed
+     * on, not null.
      */
     public final float getX() {
         return x;
     }
 
     /**
-     * Gets the y-position of this Entity.
-     * 
-     * @return The y-position of this Entity.
+     * Gets the Y-position of this Entity.
+     *
+     * @return The Y-position of this Entity, relative to the Map it is placed
+     * on, not null.
      */
     public final float getY() {
         return y;
     }
 
     /**
-     * Gets the degree of this Entity.
-     * 
-     * @return The degree of this Entity.
+     * Gets the angle of this Entity.
+     *
+     * @return The angle of this Entity, in degrees, not null.
      */
     public final float getDegree() {
         return degree;
     }
-    
+
 }

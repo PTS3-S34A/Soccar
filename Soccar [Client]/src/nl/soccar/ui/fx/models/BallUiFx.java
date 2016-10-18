@@ -6,7 +6,7 @@ import nl.soccar.library.Ball;
 import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
-import nl.soccar.ui.physics.models.BallPhysics;
+import nl.soccar.physics.models.BallPhysics;
 import nl.soccar.util.PhysicsUtilities;
 
 /**
@@ -33,15 +33,6 @@ public class BallUiFx extends PhysicsDrawableFx<Ball, BallPhysics> {
      */
     public BallUiFx(GameCanvasFx canvas, Ball ball, BallPhysics physics) {
         super(canvas, ball, physics);
-    }
-
-    @Override
-    public void update() {
-        BallPhysics physics = super.getPhysicsModel();
-        physics.step();
-
-        Ball ball = super.getModel();
-        ball.move(physics.getX(), physics.getY(), physics.getDegree());
     }
 
     @Override

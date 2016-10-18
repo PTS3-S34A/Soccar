@@ -17,7 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Entry point of the Soccar application. The Main class keeps track of the UI and provides a way to switch certain scenes.
+ * Entry point of the Soccar application. The Main class keeps track of the user
+ * interface and provides a way to switch scenes.
  *
  * @author PTS34A
  */
@@ -30,19 +31,21 @@ public class Main extends Application {
     private Stage primaryStage;
 
     /**
-     * Initiates a new Main Object. This only happens once, so the static instance gets filled out here.
+     * Constructor used for initiation of a Main object. This only happens once,
+     * so the static instance gets filled out here.
      */
     public Main() {
         super();
-        
+
         synchronized (Main.class) {
             if (instance != null) {
                 throw new UnsupportedOperationException("Main is a singleton, cannot be called from its constructor.");
             }
-            
+
             instance = this;
-        } 
+        }
     }
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -51,18 +54,18 @@ public class Main extends Application {
     }
 
     /**
-     * Gets an instance of this class (singleton).
+     * Gets the instance of the Singleton Main class.
      *
-     * @return A singleton instance of this class.
+     * @return The Singleton instance of the Main class.
      */
     public static Main getInstance() {
         return instance;
     }
 
     /**
-     * Starts the application.
+     * Starts the application and configures the error logger.
      *
-     * @param args The command line arguments to pass into the application.
+     * @param args The command line arguments to passed into the application.
      */
     public static void main(String[] args) {
         BasicConfigurator.configure();
@@ -71,10 +74,12 @@ public class Main extends Application {
     }
 
     /**
-     * Handles a login request. On success: adjusts the current player and changes the scene to the main menu. On fail: throws an exception and displays an error message to the end user.
+     * Handles a login request. On success, it adjusts the current Player and
+     * changes the scene to the main menu. On fail, it throws an exception and
+     * displays an error message to the user.
      *
-     * @param username The username of the player.
-     * @param selectedCar The selected car of the player.
+     * @param username The username of the Player.
+     * @param selectedCar The selected car of the Player.
      */
     public void login(String username, CarType selectedCar) {
         //TODO Login handling (password, privilege)
@@ -91,7 +96,9 @@ public class Main extends Application {
     }
 
     /**
-     * Changes the scene by giving a name. The actual file is resolved by combining a predefined String and the given name.
+     * Changes the scene by giving a name. The actual file is resolved by
+     * combining a predefined String and the given name. The stage title and
+     * icon are also set.
      *
      * @param sceneName The name of the scene.
      */
@@ -100,7 +107,7 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(sceneName));
             Scene scene = new Scene(root, DisplayConstants.SCREEN_WIDTH, DisplayConstants.SCREEN_HEIGHT);
 
-            primaryStage.setTitle(Soccar.APPLICATION_NAME);
+            primaryStage.setTitle(DisplayConstants.APPLICATION_NAME);
             primaryStage.setScene(scene);
             primaryStage.getIcons().add(new Image(DisplayConstants.LOCATION_STAGE_ICON));
 
@@ -113,7 +120,8 @@ public class Main extends Application {
     /**
      * Sets the application window to full screen mode.
      *
-     * @param fullScreen
+     * @param fullScreen True if the application window needs to be set to full
+     * screen mode.
      */
     public void setFullScreen(boolean fullScreen) {
         primaryStage.setMaximized(fullScreen);
@@ -122,7 +130,7 @@ public class Main extends Application {
     }
 
     /**
-     * Method that gets the width of the primary stage.
+     * Gets the width of the primary stage.
      *
      * @return The width of the primary stage.
      */

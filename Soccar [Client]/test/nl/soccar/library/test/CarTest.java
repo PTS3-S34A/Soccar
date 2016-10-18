@@ -74,7 +74,7 @@ public class CarTest {
      */
     @Test
     public void getTypeTest () {
-        assertEquals(CarType.CASUAL, car.getType());
+        assertEquals(CarType.CASUAL, car.getCarType());
     }
 
     /**

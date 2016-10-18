@@ -1,7 +1,7 @@
 package nl.soccar.library.enumeration;
 
 /**
- * Enumeration of all available map types in the game.
+ * Enumeration of all available Map types in the game.
  * 
  * @author PTS34
  */

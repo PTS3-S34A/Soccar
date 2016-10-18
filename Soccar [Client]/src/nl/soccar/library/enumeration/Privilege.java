@@ -1,7 +1,7 @@
 package nl.soccar.library.enumeration;
 
 /**
- * Enumeration of all available player privileges in the game.
+ * Enumeration of all available Player privileges in the game.
  * 
  * @author PTS34
  */

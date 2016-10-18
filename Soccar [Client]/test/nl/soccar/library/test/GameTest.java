@@ -1,10 +1,9 @@
 package nl.soccar.library.test;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import nl.soccar.library.Event;
 import nl.soccar.library.Game;
 import nl.soccar.library.Player;
-import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.EventType;
@@ -32,7 +31,7 @@ public class GameTest {
     @Before
     public void setUp() {
         player = new Player("username", Privilege.NORMAL, CarType.CASUAL);
-        event = new Event(EventType.GOAL, LocalDateTime.of(2016, 1, 1, 0, 0), player);
+        event = new Event(EventType.GOAL_RED, LocalTime.of(13, 55, 03), player);
         game = new Game();
     }
 
@@ -88,15 +87,6 @@ public class GameTest {
     public void getDurationAndSetDurationTest() {
         game.setDuration(Duration.MINUTES_3);
         assertEquals(Duration.MINUTES_3, game.getDuration());
-    }
-
-    /**
-     * Tests the getBallType and setBallType methods.
-     */
-    @Test
-    public void getBalltypeAndSetBalltypeTest() {
-        game.setBalltype(BallType.BOWLING);
-        assertEquals(BallType.BOWLING, game.getBalltype());
     }
 
 }

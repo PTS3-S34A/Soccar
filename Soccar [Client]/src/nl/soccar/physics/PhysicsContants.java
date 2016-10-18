@@ -1,4 +1,4 @@
-package nl.soccar.ui.physics;
+package nl.soccar.physics;
 
 import nl.soccar.ui.DisplayConstants;
 import org.jbox2d.common.Vec2;

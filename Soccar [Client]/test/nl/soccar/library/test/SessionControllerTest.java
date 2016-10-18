@@ -1,7 +1,6 @@
 package nl.soccar.library.test;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Optional;
 import nl.soccar.exception.DuplicateValueException;
 import nl.soccar.exception.InvalidCredentialException;
 import nl.soccar.exception.RoomException;
@@ -39,6 +38,7 @@ public class SessionControllerTest {
     @Before
     public void setUp() {
         sessionController = new SessionController();
+        session = new Session("name", "password");
         player1 = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         player2 = new Player("username", Privilege.NORMAL, CarType.CASUAL);
         player3 = new Player("username", Privilege.NORMAL, CarType.CASUAL);
@@ -120,21 +120,12 @@ public class SessionControllerTest {
     }
 
     /**
-     * Tests the getAllRooms method.
-     */
-    @Test
-    public void getAllRoomsTest() throws UIException {
-        sessionController.create("name", "password", player1);
-        assertNotNull(sessionController.getAllRooms());
-    }
-
-    /**
      * Tests get getCurrentSession and setCurrentSession methods.
      */
     @Test
     public void getCurrentSessionAndSetCurrentSessionTest() {
         sessionController.setCurrentSession(session);
-        assertEquals(session, sessionController.getCurrentSession());
+        assertEquals(Optional.of(session), sessionController.getCurrentSession());
     }
 
 }

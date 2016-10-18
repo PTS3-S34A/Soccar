@@ -1,6 +1,6 @@
 package nl.soccar.ui.fx;
 
-import nl.soccar.ui.physics.WorldObject;
+import nl.soccar.physics.WorldObject;
 
 /**
  * This class is an extension on top of the regular Fx Drawable. On top of the regular implementation

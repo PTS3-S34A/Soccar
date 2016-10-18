@@ -3,9 +3,10 @@ package nl.soccar.library;
 import nl.soccar.library.enumeration.ObstacleType;
 
 /**
- * Class that represents the Obstacle model.
- * 
- * @author Robin Laugs
+ * An Obstacle is an Entity that, generally, is unable to move. It is used for
+ * collision with other Entities.
+ *
+ * @author PTS34A
  */
 public class Obstacle extends Entity {
 
@@ -14,14 +15,18 @@ public class Obstacle extends Entity {
     private final ObstacleType type;
 
     /**
-     * Initiates a new Obstacle using the given parameters.
-     * 
-     * @param x The x-coordinate, relative to the map, of this Obstacle.
-     * @param y The y-coordinate, relative to the map, of this Obstacle.
-     * @param degree The angle of this Obstacle.
-     * @param width The width of this Obstacle.
-     * @param height The height of this Obstacle.
-     * @param type The type of this Obstacle. An ObstacleType determines how this Obstacle will be drawn on the map.
+     * Constructor used to instantiate a new Obstacle object.
+     *
+     * @param x The X-position of this Obstacle, relative to the Map this
+     * Obstacle is placed on.
+     * @param y The Y-position of this Obstacle, relative to the Map this
+     * Obstacle is placed on.
+     * @param degree The angle, in degrees, in which this Obstacle is going in,
+     * relative to the Map this Obstacle is placed on.
+     * @param width The width of this Obstacle, in JBox2D units.
+     * @param height The height of this Obstacle, in JBox2D units.
+     * @param type The ObstacleType of this Obstacle. The type determines how
+     * this Obstacle will be drawn on the screen.
      */
     public Obstacle(float x, float y, float degree, float width, float height, ObstacleType type) {
         super(x, y, degree);
@@ -38,8 +43,8 @@ public class Obstacle extends Entity {
         return height;
     }
 
-    public ObstacleType getType() {
+    public ObstacleType getObstacleType() {
         return type;
     }
-    
+
 }

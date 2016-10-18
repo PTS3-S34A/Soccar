@@ -1,4 +1,4 @@
-package nl.soccar.ui.physics;
+package nl.soccar.physics;
 
 /**
  * A WorldObject represents a physics-model which are eventually tracked by
@@ -14,6 +14,11 @@ public interface WorldObject {
      * update states of physics-objects, such as: applying velocity to a wheel.
      */
     void step();
+
+    /**
+     * Resets the WorldObject to its original position.
+     */
+    void reset();
 
     /**
      * Gets the x-coordinate of this physics-model, relative to the map it is

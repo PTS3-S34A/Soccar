@@ -4,7 +4,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import nl.soccar.library.Ball;
 import nl.soccar.library.Map;
 import nl.soccar.library.enumeration.ObstacleType;
 import nl.soccar.ui.DisplayConstants;
@@ -16,7 +15,8 @@ import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.dynamics.World;
 
 /**
- * A MapUiFx object represents a JavaFX Drawable of a Map. It keeps track of the Map model and provides methods to draw and update the model.
+ * A MapUiFx object represents a JavaFX Drawable of a Map. It keeps track of the
+ * Map model and provides methods to draw and update the model.
  *
  * @author PTS34A
  */
@@ -25,7 +25,6 @@ public class MapUiFx extends DrawableFx<Map> {
     private static final Image TEXTURE_MOON;
     private static final Image TEXTURE_DESERT;
     private static final Image TEXTURE_GRASS;
-    private static final float GOAL_TRIGGER_MARGIN;
     private static final float WALL_WIDTH;
     private static final float CORNER_SIZE;
 
@@ -33,20 +32,11 @@ public class MapUiFx extends DrawableFx<Map> {
         TEXTURE_MOON = new Image(DisplayConstants.LOCATION_TEXTURE_MOON);
         TEXTURE_DESERT = new Image(DisplayConstants.LOCATION_TEXTURE_DESERT);
         TEXTURE_GRASS = new Image(DisplayConstants.LOCATION_TEXTURE_GRASS);
-        GOAL_TRIGGER_MARGIN = 1.2F;
-        WALL_WIDTH = 2.0F;
+        WALL_WIDTH = 5.0F;
         CORNER_SIZE = 15.0F;
     }
 
     private final World world;
-    private final Map map;
-    private final Ball ball;
-    private float ballX;
-    private float ballY;
-    private final float ballWidth;
-    private final float ballHeight;
-    private final Rectangle goalLeft;
-    private final Rectangle goalRight;
 
     /**
      * Initiates a new MapUiFx Object using the given parameters.
@@ -58,39 +48,14 @@ public class MapUiFx extends DrawableFx<Map> {
         super(canvas, model);
 
         world = canvas.getPhysics().getWorld();
-        map = model;
-        ball = map.getBall();
-        ballWidth = PhysicsUtilities.toPixelWidth(ball.getRadius());
-        ballHeight = PhysicsUtilities.toPixelHeight(ball.getRadius());
-
-        Rectangle goalLeftJBox2D = map.getGoalBlue();
-        Rectangle goalRightJBox2D = map.getGoalRed();
-
-        /**
-         * Convert the values of the JBox2D units to pixels.
-         */
-        float leftGoalWidth = PhysicsUtilities.toPixelWidth((float) goalLeftJBox2D.getWidth());
-        float leftGoalHeight = PhysicsUtilities.toPixelHeight((float) goalLeftJBox2D.getHeight());
-        float rightGoalWidth = PhysicsUtilities.toPixelWidth((float) goalRightJBox2D.getWidth());
-        float rightGoalHeight = PhysicsUtilities.toPixelHeight((float) goalRightJBox2D.getHeight());
-
-        goalLeft = new Rectangle(
-                PhysicsUtilities.toPixelX((float) goalLeftJBox2D.getX()) + leftGoalWidth - ballWidth * GOAL_TRIGGER_MARGIN,
-                PhysicsUtilities.toPixelY((float) goalLeftJBox2D.getY()) + ballHeight * GOAL_TRIGGER_MARGIN,
-                leftGoalWidth,
-                leftGoalHeight - ballHeight * GOAL_TRIGGER_MARGIN);
-
-        goalRight = new Rectangle(
-                PhysicsUtilities.toPixelX((float) goalRightJBox2D.getX()) + ballWidth * GOAL_TRIGGER_MARGIN,
-                PhysicsUtilities.toPixelY((float) goalRightJBox2D.getY()) + ballHeight * GOAL_TRIGGER_MARGIN,
-                rightGoalWidth,
-                rightGoalHeight - ballHeight * GOAL_TRIGGER_MARGIN);
     }
 
     /**
      * Method that calls all methods that add map obstacles to the map.
      */
     public void addWalls() {
+        Map map = super.getModel();
+        
         Rectangle size = map.getSize();
         float mapWidth = (float) size.getWidth();
         float mapHeight = (float) size.getHeight();
@@ -102,12 +67,15 @@ public class MapUiFx extends DrawableFx<Map> {
     }
 
     /**
-     * Method that adds the obstacle drawables to the map that represent the west wall.
-     * 
+     * Method that adds the obstacle drawables to the map that represent the
+     * west wall.
+     *
      * @param mapHeight The height of the map.
      */
     private void addWestWalls(float mapHeight) {
+        Map map = super.getModel();
         GameCanvasFx canvas = super.getCanvas();
+        
         Rectangle leftGoal = map.getGoalBlue();
         float leftGoalY = (float) leftGoal.getY();
 
@@ -122,7 +90,7 @@ public class MapUiFx extends DrawableFx<Map> {
                 .type(ObstacleType.WALL).build();
 
         ObstacleUiFx westWallMiddleUi = new ObstacleBuilder(canvas, world)
-                .x(-(WALL_WIDTH / 2)).y(mapHeight / 2).degree(0)
+                .x(-WALL_WIDTH).y(mapHeight / 2).degree(0)
                 .width(WALL_WIDTH).height(mapHeight)
                 .type(ObstacleType.WALL).build();
 
@@ -132,13 +100,16 @@ public class MapUiFx extends DrawableFx<Map> {
     }
 
     /**
-     * Method that adds the obstacle drawables to the map that represent the easts walls.
-     * 
+     * Method that adds the obstacle drawables to the map that represent the
+     * easts walls.
+     *
      * @param mapWidth The width of the map.
      * @param mapHeight The height of the map.
      */
     private void addEastWalls(float mapWidth, float mapHeight) {
+        Map map = super.getModel();
         GameCanvasFx canvas = super.getCanvas();
+        
         Rectangle rightGoal = map.getGoalRed();
         float rightGoalY = (float) rightGoal.getY();
 
@@ -153,7 +124,7 @@ public class MapUiFx extends DrawableFx<Map> {
                 .type(ObstacleType.WALL).build();
 
         ObstacleUiFx eastWallMiddleUi = new ObstacleBuilder(canvas, world)
-                .x(mapWidth + (WALL_WIDTH / 2)).y(mapHeight / 2).degree(0)
+                .x(mapWidth + WALL_WIDTH).y(mapHeight / 2).degree(0)
                 .width(WALL_WIDTH).height(mapHeight)
                 .type(ObstacleType.WALL).build();
 
@@ -163,8 +134,9 @@ public class MapUiFx extends DrawableFx<Map> {
     }
 
     /**
-     * Method that adds the obstacle drawables to the map that represent the north and south walls.
-     * 
+     * Method that adds the obstacle drawables to the map that represent the
+     * north and south walls.
+     *
      * @param mapWidth The width of the map.
      * @param mapHeight The height of the map.
      */
@@ -185,8 +157,9 @@ public class MapUiFx extends DrawableFx<Map> {
     }
 
     /**
-     * Method that adds the obstacle drawables to the map that represent the nort and south walls.
-     * 
+     * Method that adds the obstacle drawables to the map that represent the
+     * nort and south walls.
+     *
      * @param mapWidth The width of the map.
      * @param mapHeight The height of the map.
      */
@@ -219,23 +192,9 @@ public class MapUiFx extends DrawableFx<Map> {
     }
 
     @Override
-    public void update() {
-        ballX = PhysicsUtilities.toPixelX(ball.getX());
-        ballY = PhysicsUtilities.toPixelY(ball.getY());
-
-        if (goalLeft.intersects(ballX, ballY, ballWidth, ballHeight)) {
-            System.out.println("GOAL BLUE");
-        } else if (goalRight.intersects(ballX, ballY, ballWidth, ballHeight)) {
-            System.out.println("GOAL RED");
-        } else {
-            System.out.println("NO GOAL");
-        }
-        
-        // TODO: Take care of the goal that is made and reset the entities on the map.
-    }
-
-    @Override
     public void draw(GraphicsContext context) {
+        Map map = super.getModel();
+        
         Rectangle size = map.getSize();
         double width = PhysicsUtilities.toPixelWidth((float) size.getWidth());
         double height = PhysicsUtilities.toPixelHeight((float) size.getHeight());
@@ -255,15 +214,22 @@ public class MapUiFx extends DrawableFx<Map> {
 
         // Draw the grid lines on the map.
         drawGridLines(context, size);
+
+        // Draw the scoreboard
+        drawScoreboard(context, size);
     }
 
     /**
      * Method that draws the grid lines on the map.
      *
-     * @param context The graphics context on which the grid lines need to be drawn.
-     * @param mapSize The size of the map on which the grid lines need to be drawn.
+     * @param context The graphics context on which the grid lines need to be
+     * drawn.
+     * @param mapSize The size of the map on which the grid lines need to be
+     * drawn.
      */
     private void drawGridLines(GraphicsContext context, Rectangle mapSize) {
+        Map map = super.getModel();
+        
         double mapWidth = PhysicsUtilities.toPixelWidth((float) mapSize.getWidth());
         double mapHeight = PhysicsUtilities.toPixelHeight((float) mapSize.getHeight());
 
@@ -352,6 +318,17 @@ public class MapUiFx extends DrawableFx<Map> {
 
         // Right goal
         context.strokeRect(rightGoalX, rightGoalY, rightGoalWidth, rightGoalHeight);
+    }
+
+    private void drawScoreboard(GraphicsContext context, Rectangle mapSize) {
+        float width = PhysicsUtilities.toPixelWidth(DisplayConstants.SCOREBOARD_WIDTH);
+        float height = PhysicsUtilities.toPixelHeight(DisplayConstants.SCOREBOARD_HEIGHT);
+
+        float x = PhysicsUtilities.toPixelX(MapUtilities.getCentreX(mapSize) - (DisplayConstants.SCOREBOARD_WIDTH / 2));
+        float y = PhysicsUtilities.toPixelY((float) mapSize.getHeight());
+
+        context.setFill(Color.BROWN);
+        context.fillRect(x, y, width, height);
     }
 
 }

@@ -1,7 +1,7 @@
-package nl.soccar.ui.physics.models;
+package nl.soccar.physics.models;
 
 import nl.soccar.library.Obstacle;
-import nl.soccar.ui.physics.WorldObject;
+import nl.soccar.physics.WorldObject;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -51,6 +51,11 @@ public class ObstaclePhysics implements WorldObject {
     @Override
     public void step() {
         // The step method is not implemented because obstacles never move on the map.
+    }
+
+    @Override
+    public void reset() {
+        // The reset method is not implemented because obstacles never move on the map.
     }
 
     @Override

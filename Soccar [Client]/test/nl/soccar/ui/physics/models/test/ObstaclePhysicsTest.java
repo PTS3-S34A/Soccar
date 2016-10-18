@@ -2,8 +2,8 @@ package nl.soccar.ui.physics.models.test;
 
 import nl.soccar.library.Obstacle;
 import nl.soccar.library.enumeration.ObstacleType;
-import nl.soccar.ui.physics.GamePhysics;
-import nl.soccar.ui.physics.models.ObstaclePhysics;
+import nl.soccar.physics.GamePhysics;
+import nl.soccar.physics.models.ObstaclePhysics;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,9 +1,9 @@
 package nl.soccar.ui.input;
 
 import javafx.scene.input.KeyCode;
-import nl.soccar.ui.physics.enumeration.HandbrakeAction;
-import nl.soccar.ui.physics.enumeration.SteerAction;
-import nl.soccar.ui.physics.enumeration.ThrottleAction;
+import nl.soccar.physics.enumeration.HandbrakeAction;
+import nl.soccar.physics.enumeration.SteerAction;
+import nl.soccar.physics.enumeration.ThrottleAction;
 
 import java.util.ArrayList;
 import java.util.List;
