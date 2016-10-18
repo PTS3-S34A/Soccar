@@ -1,9 +1,12 @@
 package nl.soccar.ui.physics.models;
 
+import javafx.scene.shape.Rectangle;
 import nl.soccar.library.*;
 import nl.soccar.library.enumeration.EventType;
 import nl.soccar.library.enumeration.GameStatus;
+import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.physics.WorldObject;
+import nl.soccar.util.MapUtilities;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
@@ -65,6 +68,8 @@ public class BallPhysics implements WorldObject {
     public void step() {
         ball.move(getX(), getY(), getDegree());
         checkGoalScored();
+
+        System.out.println(getX() + " " + getY());
     }
 
     @Override
@@ -78,23 +83,21 @@ public class BallPhysics implements WorldObject {
      * Checks if the ball passes by the goal line.
      * When it does, it adds an event to the Game object and sets the GameStatus to SCORED.
      */
-    public void checkGoalScored() {
-
+    private void checkGoalScored() {
         Game game = Soccar.getInstance().getSessionController().getCurrentSession().getGame();
         Player player = Soccar.getInstance().getCurrentPlayer();
 
         float ballX = ball.getX();
+        Rectangle leftGoal = MapUtilities.getLeftGoal();
+        Rectangle rightGoal = MapUtilities.getRightGoal();
 
-        if (ballX > 156.0F) {
+        if (ballX > rightGoal.getX() + DisplayConstants.BALL_RADIUS) {
             game.addEvent(new Event(EventType.GOAL_RED, LocalDateTime.now(), player));
             game.setStatus(GameStatus.SCORED);
-            System.out.println("GOAL RED");
-        } else if (ballX < 4.0F) {
+        } else if (ballX < leftGoal.getX() + leftGoal.getWidth() - DisplayConstants.BALL_RADIUS) {
             game.addEvent(new Event(EventType.GOAL_BLUE, LocalDateTime.now(), player));
             game.setStatus(GameStatus.SCORED);
-            System.out.println("GOAL BLUE");
         }
-
     }
 
     @Override

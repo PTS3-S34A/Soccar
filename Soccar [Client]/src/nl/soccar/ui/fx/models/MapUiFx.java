@@ -121,7 +121,7 @@ public class MapUiFx extends DrawableFx<Map> {
                 .type(ObstacleType.WALL).build();
 
         ObstacleUiFx westWallMiddleUi = new ObstacleBuilder(canvas, world)
-                .x(-(WALL_WIDTH / 2)).y(mapHeight / 2).degree(0)
+                .x(-WALL_WIDTH).y(mapHeight / 2).degree(0)
                 .width(WALL_WIDTH).height(mapHeight)
                 .type(ObstacleType.WALL).build();
 
@@ -152,7 +152,7 @@ public class MapUiFx extends DrawableFx<Map> {
                 .type(ObstacleType.WALL).build();
 
         ObstacleUiFx eastWallMiddleUi = new ObstacleBuilder(canvas, world)
-                .x(mapWidth + (WALL_WIDTH / 2)).y(mapHeight / 2).degree(0)
+                .x(mapWidth + WALL_WIDTH).y(mapHeight / 2).degree(0)
                 .width(WALL_WIDTH).height(mapHeight)
                 .type(ObstacleType.WALL).build();
 
@@ -216,32 +216,6 @@ public class MapUiFx extends DrawableFx<Map> {
         canvas.addDrawable(southWestWallUi);
         canvas.addDrawable(southEastWallUi);
     }
-
-//    @Override
-//    public void update() {
-//        ballX = ball.getX();
-//        ballY = ball.getY();
-//
-//        Game game = Soccar.getInstance().getSessionController().getCurrentSession().getGame();
-//
-//        if (goalLeftBox2D.intersects(ballX, ballY, ballWidth, ballHeight)) {
-//            System.out.println("GOAL BLUE");
-//            isScored = true;
-//            game.addEvent(new Event(EventType.GOAL, LocalDateTime.now(), Soccar.getInstance().getCurrentPlayer()));
-//        } else if (goalRightBox2D.intersects(ballX, ballY, ballWidth, ballHeight)) {
-//            System.out.println("GOAL RED");
-//            game.addEvent(new Event(EventType.GOAL, LocalDateTime.now(), Soccar.getInstance().getCurrentPlayer()));
-//            isScored = true;
-//        } else {
-//            System.out.println("NO GOAL");
-//        }
-//
-//        // TODO: Take care of the goal that is made and reset the entities on the map.
-//
-//        if (isScored) {
-//            //TODO : Reset game
-//        }
-//    }
 
     @Override
     public void draw(GraphicsContext context) {
@@ -366,8 +340,7 @@ public class MapUiFx extends DrawableFx<Map> {
         context.strokeRect(rightGoalX, rightGoalY, rightGoalWidth, rightGoalHeight);
     }
 
-    public void drawScoreboard(GraphicsContext context, Rectangle mapSize) {
-
+    private void drawScoreboard(GraphicsContext context, Rectangle mapSize) {
         float width = PhysicsUtilities.toPixelWidth(DisplayConstants.SCOREBOARD_WIDTH);
         float height = PhysicsUtilities.toPixelHeight(DisplayConstants.SCOREBOARD_HEIGHT);
 

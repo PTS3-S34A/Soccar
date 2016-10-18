@@ -114,4 +114,5 @@ public abstract class GameCanvas {
     public final Game getGame() {
         return game;
     }
+
 }
