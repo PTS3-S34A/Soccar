@@ -9,6 +9,7 @@ import nl.soccar.ui.physics.enumeration.SteerAction;
 import nl.soccar.ui.physics.enumeration.ThrottleAction;
 import nl.soccar.util.PhysicsUtilities;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
 import java.util.ArrayList;
@@ -30,13 +31,15 @@ public class CarPhysics implements WorldObject {
     private static final float WHEEL_POS_RATIO_X = 2.3F;
     private static final float WHEEL_POS_RATIO_Y = 4.0F;
 
-    private final Body body;
-    private float steerAngle = 0.0F;
+    private final Vec2 originalPos;
 
+    private final Body body;
     private final List<WheelPhysics> wheels;
+    private float steerAngle = 0.0F;
     private ThrottleAction throttleAction;
     private SteerAction steerAction;
     private HandbrakeAction handbrakeAction;
+    private Car car;
 
     /**
      * Initiates a new CarPhysics Object using the given parameters.
@@ -45,13 +48,16 @@ public class CarPhysics implements WorldObject {
      * @param world The world in which this model is placed.
      */
     public CarPhysics(Car car, World world) {
+        this.car = car;
 
         float carWidth = car.getWidth();
         float carHeight = car.getHeight();
 
+        originalPos = new Vec2(car.getX(), car.getY());
+
         BodyDef bd = new BodyDef();
         bd.type = BodyType.DYNAMIC;
-        bd.position.set(car.getX(), car.getY());
+        bd.position.set(originalPos);
         bd.angle = (float) Math.toRadians(car.getDegree());
         bd.bullet = BULLET; // Prevents tunneling
 
@@ -62,6 +68,7 @@ public class CarPhysics implements WorldObject {
         fd.density = DENSITY;
         fd.restitution = RESTITUTION;
         fd.shape = shape;
+        fd.userData = car;
 
         body = world.createBody(bd);
         body.createFixture(fd);
@@ -96,6 +103,17 @@ public class CarPhysics implements WorldObject {
 
         // Update each wheel
         wheels.forEach(WheelPhysics::step);
+
+        car.move(getX(), getY(), getDegree());
+    }
+
+    @Override
+    public void reset() {
+        body.setLinearVelocity(new Vec2(0.0F, 0.0F));
+        body.setAngularVelocity(0.0F);
+        body.setTransform(originalPos, 0.0F);
+
+        wheels.forEach(WheelPhysics::reset);
     }
 
     /**

@@ -34,15 +34,13 @@ public class MapUiFx extends DrawableFx<Map> {
         TEXTURE_DESERT = new Image(DisplayConstants.LOCATION_TEXTURE_DESERT);
         TEXTURE_GRASS = new Image(DisplayConstants.LOCATION_TEXTURE_GRASS);
         GOAL_TRIGGER_MARGIN = 1.2F;
-        WALL_WIDTH = 2.0F;
+        WALL_WIDTH = 5.0F;
         CORNER_SIZE = 15.0F;
     }
 
     private final World world;
     private final Map map;
     private final Ball ball;
-    private float ballX;
-    private float ballY;
     private final float ballWidth;
     private final float ballHeight;
     private final Rectangle goalLeft;
@@ -52,7 +50,7 @@ public class MapUiFx extends DrawableFx<Map> {
      * Initiates a new MapUiFx Object using the given parameters.
      *
      * @param canvas The canvas on which this Map is placed.
-     * @param model The model to keep track of.
+     * @param model  The model to keep track of.
      */
     public MapUiFx(GameCanvasFx canvas, Map model) {
         super(canvas, model);
@@ -63,26 +61,27 @@ public class MapUiFx extends DrawableFx<Map> {
         ballWidth = PhysicsUtilities.toPixelWidth(ball.getRadius());
         ballHeight = PhysicsUtilities.toPixelHeight(ball.getRadius());
 
-        Rectangle goalLeftJBox2D = map.getGoalBlue();
-        Rectangle goalRightJBox2D = map.getGoalRed();
+        Rectangle goalLeftBox2D = map.getGoalBlue();
+        Rectangle goalRightBox2D = map.getGoalRed();
+
 
         /**
-         * Convert the values of the JBox2D units to pixels.
+         * Convert the values of the Box2D units to pixels.
          */
-        float leftGoalWidth = PhysicsUtilities.toPixelWidth((float) goalLeftJBox2D.getWidth());
-        float leftGoalHeight = PhysicsUtilities.toPixelHeight((float) goalLeftJBox2D.getHeight());
-        float rightGoalWidth = PhysicsUtilities.toPixelWidth((float) goalRightJBox2D.getWidth());
-        float rightGoalHeight = PhysicsUtilities.toPixelHeight((float) goalRightJBox2D.getHeight());
+        float leftGoalWidth = PhysicsUtilities.toPixelWidth((float) goalLeftBox2D.getWidth());
+        float leftGoalHeight = PhysicsUtilities.toPixelHeight((float) goalLeftBox2D.getHeight());
+        float rightGoalWidth = PhysicsUtilities.toPixelWidth((float) goalRightBox2D.getWidth());
+        float rightGoalHeight = PhysicsUtilities.toPixelHeight((float) goalRightBox2D.getHeight());
 
         goalLeft = new Rectangle(
-                PhysicsUtilities.toPixelX((float) goalLeftJBox2D.getX()) + leftGoalWidth - ballWidth * GOAL_TRIGGER_MARGIN,
-                PhysicsUtilities.toPixelY((float) goalLeftJBox2D.getY()) + ballHeight * GOAL_TRIGGER_MARGIN,
+                PhysicsUtilities.toPixelX((float) goalLeftBox2D.getX()) + leftGoalWidth - ballWidth * GOAL_TRIGGER_MARGIN,
+                PhysicsUtilities.toPixelY((float) goalLeftBox2D.getY()) + ballHeight * GOAL_TRIGGER_MARGIN,
                 leftGoalWidth,
                 leftGoalHeight - ballHeight * GOAL_TRIGGER_MARGIN);
 
         goalRight = new Rectangle(
-                PhysicsUtilities.toPixelX((float) goalRightJBox2D.getX()) + ballWidth * GOAL_TRIGGER_MARGIN,
-                PhysicsUtilities.toPixelY((float) goalRightJBox2D.getY()) + ballHeight * GOAL_TRIGGER_MARGIN,
+                PhysicsUtilities.toPixelX((float) goalRightBox2D.getX()) + ballWidth * GOAL_TRIGGER_MARGIN,
+                PhysicsUtilities.toPixelY((float) goalRightBox2D.getY()) + ballHeight * GOAL_TRIGGER_MARGIN,
                 rightGoalWidth,
                 rightGoalHeight - ballHeight * GOAL_TRIGGER_MARGIN);
     }
@@ -103,7 +102,7 @@ public class MapUiFx extends DrawableFx<Map> {
 
     /**
      * Method that adds the obstacle drawables to the map that represent the west wall.
-     * 
+     *
      * @param mapHeight The height of the map.
      */
     private void addWestWalls(float mapHeight) {
@@ -122,7 +121,7 @@ public class MapUiFx extends DrawableFx<Map> {
                 .type(ObstacleType.WALL).build();
 
         ObstacleUiFx westWallMiddleUi = new ObstacleBuilder(canvas, world)
-                .x(-(WALL_WIDTH / 2)).y(mapHeight / 2).degree(0)
+                .x(-WALL_WIDTH).y(mapHeight / 2).degree(0)
                 .width(WALL_WIDTH).height(mapHeight)
                 .type(ObstacleType.WALL).build();
 
@@ -133,8 +132,8 @@ public class MapUiFx extends DrawableFx<Map> {
 
     /**
      * Method that adds the obstacle drawables to the map that represent the easts walls.
-     * 
-     * @param mapWidth The width of the map.
+     *
+     * @param mapWidth  The width of the map.
      * @param mapHeight The height of the map.
      */
     private void addEastWalls(float mapWidth, float mapHeight) {
@@ -153,7 +152,7 @@ public class MapUiFx extends DrawableFx<Map> {
                 .type(ObstacleType.WALL).build();
 
         ObstacleUiFx eastWallMiddleUi = new ObstacleBuilder(canvas, world)
-                .x(mapWidth + (WALL_WIDTH / 2)).y(mapHeight / 2).degree(0)
+                .x(mapWidth + WALL_WIDTH).y(mapHeight / 2).degree(0)
                 .width(WALL_WIDTH).height(mapHeight)
                 .type(ObstacleType.WALL).build();
 
@@ -164,8 +163,8 @@ public class MapUiFx extends DrawableFx<Map> {
 
     /**
      * Method that adds the obstacle drawables to the map that represent the north and south walls.
-     * 
-     * @param mapWidth The width of the map.
+     *
+     * @param mapWidth  The width of the map.
      * @param mapHeight The height of the map.
      */
     private void addNorthAndSouthWalls(float mapWidth, float mapHeight) {
@@ -186,8 +185,8 @@ public class MapUiFx extends DrawableFx<Map> {
 
     /**
      * Method that adds the obstacle drawables to the map that represent the nort and south walls.
-     * 
-     * @param mapWidth The width of the map.
+     *
+     * @param mapWidth  The width of the map.
      * @param mapHeight The height of the map.
      */
     private void addCornerWalls(float mapWidth, float mapHeight) {
@@ -219,22 +218,6 @@ public class MapUiFx extends DrawableFx<Map> {
     }
 
     @Override
-    public void update() {
-        ballX = PhysicsUtilities.toPixelX(ball.getX());
-        ballY = PhysicsUtilities.toPixelY(ball.getY());
-
-        if (goalLeft.intersects(ballX, ballY, ballWidth, ballHeight)) {
-            System.out.println("GOAL BLUE");
-        } else if (goalRight.intersects(ballX, ballY, ballWidth, ballHeight)) {
-            System.out.println("GOAL RED");
-        } else {
-            System.out.println("NO GOAL");
-        }
-        
-        // TODO: Take care of the goal that is made and reset the entities on the map.
-    }
-
-    @Override
     public void draw(GraphicsContext context) {
         Rectangle size = map.getSize();
         double width = PhysicsUtilities.toPixelWidth((float) size.getWidth());
@@ -255,6 +238,9 @@ public class MapUiFx extends DrawableFx<Map> {
 
         // Draw the grid lines on the map.
         drawGridLines(context, size);
+
+        // Draw the scoreboard
+        drawScoreboard(context, size);
     }
 
     /**
@@ -352,6 +338,17 @@ public class MapUiFx extends DrawableFx<Map> {
 
         // Right goal
         context.strokeRect(rightGoalX, rightGoalY, rightGoalWidth, rightGoalHeight);
+    }
+
+    private void drawScoreboard(GraphicsContext context, Rectangle mapSize) {
+        float width = PhysicsUtilities.toPixelWidth(DisplayConstants.SCOREBOARD_WIDTH);
+        float height = PhysicsUtilities.toPixelHeight(DisplayConstants.SCOREBOARD_HEIGHT);
+
+        float x = PhysicsUtilities.toPixelX(MapUtilities.getCentreX(mapSize) - (DisplayConstants.SCOREBOARD_WIDTH / 2));
+        float y = PhysicsUtilities.toPixelY((float) mapSize.getHeight());
+
+        context.setFill(Color.BROWN);
+        context.fillRect(x, y, width, height);
     }
 
 }

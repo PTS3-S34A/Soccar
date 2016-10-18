@@ -36,15 +36,6 @@ public class BallUiFx extends PhysicsDrawableFx<Ball, BallPhysics> {
     }
 
     @Override
-    public void update() {
-        BallPhysics physics = super.getPhysicsModel();
-        physics.step();
-
-        Ball ball = super.getModel();
-        ball.move(physics.getX(), physics.getY(), physics.getDegree());
-    }
-
-    @Override
     public void draw(GraphicsContext context) {
         Ball ball = super.getModel();
 

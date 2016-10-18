@@ -7,7 +7,8 @@ package nl.soccar.library.enumeration;
  */
 public enum EventType {
     
-    GOAL,
+    GOAL_RED,
+    GOAL_BLUE,
     ASSIST
     
 }
