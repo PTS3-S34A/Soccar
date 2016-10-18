@@ -57,7 +57,7 @@ public class GameTest {
     }
 
     /**
-     * Tests the addEvent and getEvent methods.
+     * Tests the addEvent and getEvents methods.
      */
     @Test
     public void addEventAndGetEventsTest() {

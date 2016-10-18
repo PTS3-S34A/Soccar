@@ -1,10 +1,13 @@
 package nl.soccar.ui.physics.models.test;
 
+import javafx.scene.input.KeyCode;
 import nl.soccar.library.Car;
 import nl.soccar.library.Player;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
+import nl.soccar.ui.input.Keyboard;
 import nl.soccar.ui.physics.GamePhysics;
+import nl.soccar.ui.physics.enumeration.HandbrakeAction;
 import nl.soccar.ui.physics.enumeration.SteerAction;
 import nl.soccar.ui.physics.enumeration.ThrottleAction;
 import nl.soccar.ui.physics.models.CarPhysics;
@@ -37,21 +40,29 @@ public class CarPhysicsTest {
     }
 
     /**
-     * Test void methods for possible crashes.
+     * Tests void methods for possible crashes.
      */
     @Test
     public void voidMethodsTest() {
         carPhysics.step();
-        carPhysics.setThrottleAction(ThrottleAction.ACCELERATE);
+    }
+
+    /**
+     * Tests the updateSteerAngle method.
+     */
+    @Test
+    public void updateSteerAngleAndGetSteerActionTest() {
+        assertEquals(SteerAction.NONE, carPhysics.getSteerAction());
         carPhysics.step();
-        carPhysics.setThrottleAction(ThrottleAction.IDLE);
+
+        Keyboard.setKeyPressed(KeyCode.A);
         carPhysics.step();
-        carPhysics.setThrottleAction(ThrottleAction.REVERSE);
+        assertEquals(SteerAction.STEER_LEFT, carPhysics.getSteerAction());
+        Keyboard.setKeyReleased(KeyCode.A);
+
+        Keyboard.setKeyPressed(KeyCode.D);
         carPhysics.step();
-        carPhysics.setSteerAction(SteerAction.STEER_LEFT);
-        carPhysics.step();
-        carPhysics.setSteerAction(SteerAction.STEER_RIGHT);
-        carPhysics.step();
+        assertEquals(SteerAction.STEER_RIGHT, carPhysics.getSteerAction());
     }
 
     /**
@@ -76,6 +87,53 @@ public class CarPhysicsTest {
     @Test
     public void getDegreesTest() {
         assertEquals(Math.round(0.0F), Math.round(carPhysics.getDegree()));
+    }
+
+    /**
+     * Tests the getSteerAngle method.
+     */
+    @Test
+    public void getSteerAngleTest() {
+        assertEquals(Math.round(0.0F), Math.round(carPhysics.getSteerAngle()));
+    }
+
+    /**
+     * Tests the getBody method.
+     */
+    @Test
+    public void getBodyTest() {
+        assertNotNull(carPhysics.getBody());
+    }
+
+    /**
+     * Tests the getThrottleAction method.
+     */
+    @Test
+    public void getThrottleActionTest() {
+        assertEquals(ThrottleAction.IDLE, carPhysics.getThrottleAction());
+        carPhysics.step();
+
+        Keyboard.setKeyPressed(KeyCode.W);
+        carPhysics.step();
+        assertEquals(ThrottleAction.ACCELERATE, carPhysics.getThrottleAction());
+        Keyboard.setKeyReleased(KeyCode.W);
+
+        Keyboard.setKeyPressed(KeyCode.S);
+        carPhysics.step();
+        assertEquals(ThrottleAction.REVERSE, carPhysics.getThrottleAction());
+    }
+
+    /**
+     * Tests the getHandbrakeAction method.
+     */
+    @Test
+    public void getHandbrakeActionTest() {
+        assertEquals(HandbrakeAction.INACTIVE, carPhysics.getHandbrakeAction());
+        carPhysics.step();
+
+        Keyboard.setKeyPressed(KeyCode.SPACE);
+        carPhysics.step();
+        assertEquals(HandbrakeAction.ACTIVE, carPhysics.getHandbrakeAction());
     }
 
     /**

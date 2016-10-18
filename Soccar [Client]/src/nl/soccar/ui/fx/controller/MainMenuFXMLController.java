@@ -87,7 +87,7 @@ public class MainMenuFXMLController implements Initializable {
             });
             return row;
         });
-        
+
         TableViewSelectionModel<SessionTableItem> model = tblSessionList.getSelectionModel();
         model.setSelectionMode(SelectionMode.SINGLE);
         model.selectedItemProperty().addListener(l -> btnJoinRoom.setDisable(model.getSelectedItem() == null));
@@ -104,14 +104,13 @@ public class MainMenuFXMLController implements Initializable {
     }
 
     private void joinRoom(SessionTableItem selectedRow) {
-        String password = NO_PASSWORD;
-
         Session selectedSession = selectedRow.getSession();
         if (selectedSession == null) {
             // There isn't actually a selected session, we should just do nothing.
             return;
         }
 
+        String password = NO_PASSWORD;
         if (selectedSession.getRoom().passwordAvailable()) {
             TextInputDialog dialog = new TextInputDialog("Password");
             dialog.setTitle("Room Locked");
@@ -119,6 +118,10 @@ public class MainMenuFXMLController implements Initializable {
             dialog.setContentText("Enter the room password:");
 
             Optional<String> result = dialog.showAndWait();
+            if (!result.isPresent()) {
+                // There's no password set, we should just do nothing.
+                return;
+            }
             password = result.get();
         }
 

@@ -15,38 +15,6 @@ import static org.junit.Assert.*;
 public class PhysicsUtilitiesTest {
 
     /**
-     * Tests the toPixelX method.
-     */
-    @Test
-    public void toPixelXTest() {
-        assertEquals(Math.round(100.0F), Math.round(PhysicsUtilities.toPixelX(10.0F)));
-    }
-
-    /**
-     * Tests the toPixelY method.
-     */
-    @Test
-    public void toPixelYTest() {
-        assertEquals(Math.round(700.0F), Math.round(PhysicsUtilities.toPixelY(10.0F)));
-    }
-
-    /**
-     * Tests the toPixelWidth method.
-     */
-    @Test
-    public void toPixelWidthTest() {
-        assertEquals(Math.round(100.0F), Math.round(PhysicsUtilities.toPixelWidth(10.0F)));
-    }
-
-    /**
-     * Tests the toPixelHeight method.
-     */
-    @Test
-    public void toPixelHeightTest() {
-        assertEquals(Math.round(100.0F), Math.round(PhysicsUtilities.toPixelHeight(10.0F)));
-    }
-
-    /**
      * Tests the calculateCarHeight method.
      */
     @Test

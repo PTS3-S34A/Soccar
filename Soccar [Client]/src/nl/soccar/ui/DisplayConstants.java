@@ -48,7 +48,6 @@ public final class DisplayConstants {
      * Entity images properties
      */
     public static final String LOCATION_TEXTURE_BALL = "resources/images/ball_texture.png";
-    public static final String LOCATION_TEXTURE_CAR_RED = "resources/images/casual_car_texture.png";
 
     /**
      * Stage constants

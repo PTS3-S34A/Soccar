@@ -69,7 +69,7 @@ public class RoomTest {
     public void getAllPlayersTest() {
         assertEquals(1, room.getOccupancy());
     }
-    
+
     /**
      * Tests the getName method.
      */
@@ -77,7 +77,7 @@ public class RoomTest {
     public void getNameTest() {
         assertEquals("name", room.getName());
     }
-    
+
     /**
      * Tests the getCapacity and setCapacity methods.
      */
@@ -85,6 +85,16 @@ public class RoomTest {
     public void getCapacityAndSetCapacityTest() {
         room.setCapacity(4);
         assertEquals(4, room.getCapacity());
+    }
+
+    /**
+     * Tests the passwordAvailable method.
+     */
+    @Test
+    public void passwordAvailableTest() {
+        assertTrue(room.passwordAvailable());
+        room = new Room("name", "");
+        assertFalse(room.passwordAvailable());
     }
 
 }

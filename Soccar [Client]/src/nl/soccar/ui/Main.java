@@ -25,13 +25,26 @@ public class Main extends Application {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
-    private static Main mainClass;
+    private static Main instance;
 
     private Stage primaryStage;
 
+    /**
+     * Initiates a new Main Object. This only happens once, so the static instance gets filled out here.
+     */
+    public Main() {
+        super();
+        
+        synchronized (Main.class) {
+            if (instance != null) {
+                throw new UnsupportedOperationException("Main is a singleton, cannot be called from its constructor.");
+            }
+            
+            instance = this;
+        } 
+    }
     @Override
     public void start(Stage primaryStage) {
-        mainClass = this;
         this.primaryStage = primaryStage;
 
         setScene(FXMLConstants.LOCATION_LOGIN);
@@ -43,7 +56,7 @@ public class Main extends Application {
      * @return A singleton instance of this class.
      */
     public static Main getInstance() {
-        return mainClass;
+        return instance;
     }
 
     /**
