@@ -1,4 +1,4 @@
-package nl.soccar.ui.physics;
+package nl.soccar.physics;
 
 import nl.soccar.library.Ball;
 import nl.soccar.library.Car;

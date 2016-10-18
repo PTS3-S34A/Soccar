@@ -1,17 +1,16 @@
-package nl.soccar.ui.physics.models;
+package nl.soccar.physics.models;
 
 import javafx.scene.shape.Rectangle;
 import nl.soccar.library.*;
 import nl.soccar.library.enumeration.EventType;
 import nl.soccar.library.enumeration.GameStatus;
 import nl.soccar.ui.DisplayConstants;
-import nl.soccar.ui.physics.WorldObject;
+import nl.soccar.physics.WorldObject;
 import nl.soccar.util.MapUtilities;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**

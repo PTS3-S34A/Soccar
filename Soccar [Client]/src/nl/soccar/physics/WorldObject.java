@@ -1,4 +1,4 @@
-package nl.soccar.ui.physics;
+package nl.soccar.physics;
 
 /**
  * A WorldObject represents a physics-model which are eventually tracked by

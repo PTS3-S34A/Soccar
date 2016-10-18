@@ -1,4 +1,4 @@
-package nl.soccar.ui.physics.enumeration;
+package nl.soccar.physics.enumeration;
 
 /**
  * Enumeration of all available steer actions.
