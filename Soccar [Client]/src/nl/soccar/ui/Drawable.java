@@ -22,16 +22,16 @@ public interface Drawable<M> {
     void draw(GraphicsContext context);
 
     /**
-     * Returns this model.
+     * Gets the model assosciated with this Drawable.
      *
-     * @return This model.
+     * @return This model, may be null if none specified.
      */
     M getModel();
 
     /**
-     * Returns the game canvas on which this drawable is placed.
+     * Gets the GameCanvas on which this drawable is placed.
      *
-     * @return The game canvas.
+     * @return The GameCanvas, not null, on which this drawable is placed.
      */
     GameCanvas getCanvas();
 
