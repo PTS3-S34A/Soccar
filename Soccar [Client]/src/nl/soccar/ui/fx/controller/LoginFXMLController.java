@@ -8,7 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nl.soccar.library.enumeration.CarType;
+import nl.soccar.ui.DisplayConstants;
 import nl.soccar.ui.Main;
 
 /**
@@ -35,10 +38,10 @@ public class LoginFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         toggleGroupCars = new ToggleGroup();
 
-        btnSelectPickup.setToggleGroup(toggleGroupCars);
         btnSelectCasualCar.setToggleGroup(toggleGroupCars);
-        btnSelectSportsCar.setToggleGroup(toggleGroupCars);
         btnSelectCasualCar.setSelected(true);
+        btnSelectSportsCar.setToggleGroup(toggleGroupCars);
+        btnSelectPickup.setToggleGroup(toggleGroupCars);
 
         txtFieldName.setOnAction(e -> login());
         btnLogin.setOnAction(e -> login());

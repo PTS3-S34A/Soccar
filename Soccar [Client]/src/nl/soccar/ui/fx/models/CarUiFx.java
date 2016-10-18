@@ -6,11 +6,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import nl.soccar.library.Car;
-import nl.soccar.ui.DisplayConstants;
+import nl.soccar.library.enumeration.TeamColour;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.ui.fx.PhysicsDrawableFx;
 import nl.soccar.ui.physics.models.CarPhysics;
 import nl.soccar.ui.physics.models.WheelPhysics;
+import nl.soccar.util.ImageUtilities;
 import nl.soccar.util.PhysicsUtilities;
 
 /**
@@ -22,15 +23,15 @@ import nl.soccar.util.PhysicsUtilities;
 public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
     private static final Font PLAYER_FONT;
-    private static final Image TEXTURE_CAR_RED;
     private static final Color COLOR_WHEEL;
 
 
     static {
-        TEXTURE_CAR_RED = new Image(DisplayConstants.LOCATION_TEXTURE_CAR_RED);
         COLOR_WHEEL = Color.grayRgb(50);
-        PLAYER_FONT = new Font("Ariel", 20);
+        PLAYER_FONT = new Font("Arial", 20);
     }
+
+    private Image carTexture;
 
     /**
      * Initiates a new CarUiFx Object using the given parameters.
@@ -41,15 +42,8 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
      */
     public CarUiFx(GameCanvasFx canvas, Car car, CarPhysics physics) {
         super(canvas, car, physics);
-    }
 
-    @Override
-    public void update() {
-        CarPhysics physics = super.getPhysicsModel();
-        Car car = super.getModel();
-
-        physics.step();
-        car.move(physics.getX(), physics.getY(), physics.getDegree());
+        carTexture = ImageUtilities.getCarImage(car.getCarType(), TeamColour.RED); // TODO get team colour.
     }
 
     @Override
@@ -72,7 +66,7 @@ public class CarUiFx extends PhysicsDrawableFx<Car, CarPhysics> {
 
         gc.translate(x, y); // Set the origin point of the rotation.
         gc.rotate(-car.getDegree()); // Set the angle of the rotation.
-        gc.drawImage(TEXTURE_CAR_RED, -width / 2, -height / 2, width, height); // TODO: Find a solution for anti-aliasing
+        gc.drawImage(carTexture, -width / 2, -height / 2, width, height); // TODO: Find a solution for anti-aliasing
 
         gc.restore(); // Restore canvas to display a rotated image.
 

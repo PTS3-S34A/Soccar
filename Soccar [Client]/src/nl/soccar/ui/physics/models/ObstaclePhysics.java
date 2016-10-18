@@ -54,6 +54,11 @@ public class ObstaclePhysics implements WorldObject {
     }
 
     @Override
+    public void reset() {
+        // The reset method is not implemented because obstacles never move on the map.
+    }
+
+    @Override
     public float getX() {
         return body.getPosition().x;
     }

@@ -33,6 +33,8 @@ public final class DisplayConstants {
      */
     public static final float MAP_WIDTH = 160.0F;
     public static final float MAP_HEIGHT = 90.0F;
+    public static final float SCOREBOARD_WIDTH = 10.0F;
+    public static final float SCOREBOARD_HEIGHT = 6.0F;
     public static final float LINE_WIDTH = 0.2F;
     public static final float CENTRE_CIRCLE_SIZE = 13.75F;
     public static final float CENTRE_SPOT_SIZE = 1.5F;
@@ -47,13 +49,12 @@ public final class DisplayConstants {
      */
     public static final String LOCATION_TEXTURE_MOON = "resources/images/moon_texture.jpg";
     public static final String LOCATION_TEXTURE_DESERT = "resources/images/desert_texture.jpg";
-    public static final String LOCATION_TEXTURE_GRASS = "resources/images/grass_texture.png";
+    public static final String LOCATION_TEXTURE_GRASS = "resources/images/grass_texture.jpg";
 
     /**
      * Entity images properties
      */
     public static final String LOCATION_TEXTURE_BALL = "resources/images/ball_texture.png";
-    public static final String LOCATION_TEXTURE_CAR_RED = "resources/images/casual_car_texture.png";
 
     /**
      * Stage constants.

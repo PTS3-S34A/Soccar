@@ -1,9 +1,5 @@
 package nl.soccar.ui.fx.controller;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -22,6 +18,10 @@ import nl.soccar.ui.fx.models.MapUiFx;
 import nl.soccar.ui.physics.models.BallPhysics;
 import nl.soccar.ui.physics.models.CarPhysics;
 import nl.soccar.util.PhysicsUtilities;
+
+import java.awt.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -48,13 +48,14 @@ public class GameViewFXMLController implements Initializable {
         canvas.setHeight(height);
         canvas.setFocusTraversable(true);
 
-        GameCanvasFx gameCanvas = new GameCanvasFx(canvas.getGraphicsContext2D());
-        gameCanvas.start();
-
         Session session = Soccar.getInstance().getSessionController().getCurrentSession().get(); // Will never be null.
+        GameCanvasFx gameCanvas = new GameCanvasFx(session.getGame(), canvas.getGraphicsContext2D());
+
         initializeMap(session, gameCanvas);
         initializeBall(session, gameCanvas);
         initializeCar(gameCanvas);
+
+        gameCanvas.start();
     }
 
     private void initializeMap(Session session, GameCanvasFx gameCanvas) {
@@ -70,16 +71,18 @@ public class GameViewFXMLController implements Initializable {
         BallPhysics ballPhysics = new BallPhysics(ball, gameCanvas.getPhysics().getWorld());
         BallUiFx ballUiFx = new BallUiFx(gameCanvas, ball, ballPhysics);
 
+        gameCanvas.addWorldObject(ballPhysics);
         gameCanvas.addDrawable(ballUiFx);
     }
 
     private void initializeCar(GameCanvasFx gameCanvas) {
         Player player = Soccar.getInstance().getCurrentPlayer();
 
-        Car car = new Car(60.0F, 60.0F, 0.0F, DisplayConstants.CAR_WIDTH, PhysicsUtilities.calculateCarHeight(DisplayConstants.CAR_WIDTH), player.getCarType(), player);
+        Car car = new Car(60.0F, DisplayConstants.MAP_HEIGHT / 2, -90.0F, DisplayConstants.CAR_WIDTH, PhysicsUtilities.calculateCarHeight(DisplayConstants.CAR_WIDTH), player.getCarType(), player);
         CarPhysics carPhysics = new CarPhysics(car, gameCanvas.getPhysics().getWorld());
         CarUiFx carUiFx = new CarUiFx(gameCanvas, car, carPhysics);
 
+        gameCanvas.addWorldObject(carPhysics);
         gameCanvas.addDrawable(carUiFx);
     }
 

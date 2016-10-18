@@ -21,6 +21,7 @@ import nl.soccar.ui.DisplayConstants;
 public class Game {
 
     private final Map map;
+    private Player lastBallTouched;
 
     private Optional<LocalTime> startTime;
     private GameStatus status;
@@ -47,32 +48,22 @@ public class Game {
      * Starts this Game.
      */
     public void start() {
-        // TODO implementation
-        throw new UnsupportedOperationException("Not supported yet.");
+        status = GameStatus.RUNNING;
     }
 
     /**
      * Ends this Game.
      */
     public void stop() {
-        // TODO implementation
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     * Gets the Map of this Game.
-     *
-     * @return The Map of this Game, not null.
-     */
-    public Map getMap() {
-        return map;
+        status = GameStatus.STOPPED;
     }
 
     /**
      * Gets the time at which this Game started. If there's no current match on
      * going, the Optional will be empty.
      *
-     * @return An optional that contains the start time of the current match, not null.
+     * @return An optional that contains the start time of the current match,
+     * not null.
      */
     public Optional<LocalTime> getStartTime() {
         return startTime;
@@ -85,6 +76,15 @@ public class Game {
      */
     public GameStatus getStatus() {
         return status;
+    }
+
+    /**
+     * Sets the status of this Game.
+     *
+     * @param status The status to be set.
+     */
+    public void setStatus(GameStatus status) {
+        this.status = status;
     }
 
     /**
@@ -122,5 +122,26 @@ public class Game {
     public void addEvent(Event event) {
         events.add(event);
     }
+    
+    public Map getMap() {
+        return map;
+    }
 
+    /**
+     * Gets the last player who touched the ball.
+     *
+     * @return
+     */
+    public Player getLastBallTouched() {
+        return lastBallTouched;
+    }
+
+    /**
+     * Sets the last player who touched the ball.
+     *
+     * @param lastBallTouched
+     */
+    public void setLastBallTouched(Player lastBallTouched) {
+        this.lastBallTouched = lastBallTouched;
+    }
 }

@@ -9,13 +9,9 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * @author PTS34A
  * @param <M> The model connected to this Drawable.
+ * @author PTS34A
  */
 public interface Drawable<M> {
-
-    /**
-     * Updates the position of this Drawable object.
-     */
-    void update();
 
     /**
      * Draws this Drawable object on the graphics context that is passed as an

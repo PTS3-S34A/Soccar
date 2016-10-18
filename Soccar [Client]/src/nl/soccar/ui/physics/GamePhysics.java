@@ -18,6 +18,7 @@ public class GamePhysics {
     public GamePhysics() {
         // doSleep (second parameter) is true for better performance
         world = new World(PhysicsContants.GRAVITY_ANGLE, true);
+        world.setContactListener(new BallContactListener());
     }
 
     /**
