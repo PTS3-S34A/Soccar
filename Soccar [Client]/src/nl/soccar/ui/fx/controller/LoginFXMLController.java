@@ -43,12 +43,19 @@ public class LoginFXMLController implements Initializable {
         btnSelectSportsCar.setToggleGroup(toggleGroupCars);
         btnSelectPickup.setToggleGroup(toggleGroupCars);
 
+        toggleGroupCars.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+            btnSelectCasualCar.setStyle("-fx-border-color: white;");
+            btnSelectSportsCar.setStyle("-fx-border-color: white;");
+            btnSelectPickup.setStyle("-fx-border-color: white;");
+        });
+        
         txtFieldName.setOnAction(e -> login());
         btnLogin.setOnAction(e -> login());
     }
 
     /**
-     * Handler for login-button; Uses current selected car, username and optional password.
+     * Handler for login-button; Uses current selected car, username and
+     * optional password.
      */
     private void login() {
         CarType selectedCar = null;
@@ -59,7 +66,7 @@ public class LoginFXMLController implements Initializable {
         } else if (btnSelectSportsCar.isSelected()) {
             selectedCar = CarType.SPORTSCAR;
         } else {
-            btnSelectCasualCar.setStyle("-fx-border-color: red");
+            btnSelectCasualCar.setStyle("-fx-border-color: red;");
             btnSelectSportsCar.setStyle("-fx-border-color: red;");
             btnSelectPickup.setStyle("-fx-border-color: red;");
             return;
