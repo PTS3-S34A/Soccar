@@ -27,7 +27,7 @@ public class EnumerationTest {
         CarType.valueOf(CarType.CASUAL.toString());
         Duration.valueOf(Duration.MINUTES_10.toString());
         EventType.valueOf(EventType.ASSIST.toString());
-        GameStatus.valueOf(GameStatus.STARTED.toString());
+        GameStatus.valueOf(GameStatus.RUNNING.toString());
         MapType.valueOf(MapType.DESERT.toString());
         ObstacleType.valueOf(ObstacleType.WALL.toString());
         Privilege.valueOf(Privilege.ADMINISTRATOR.toString());

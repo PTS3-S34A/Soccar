@@ -28,15 +28,6 @@ public class BallPhysicsTest {
         gamePhysics = new GamePhysics();
         ball = new Ball(0.0F, 0.0F, 0.0F, 10.0F, BallType.FOOTBALL);
         ballPhysics = new BallPhysics(ball, gamePhysics.getWorld());
-        ballPhysics.step();
-    }
-
-    /**
-     * Tests void method for possible crashes.
-     */
-    @Test
-    public void voidMethodsTest() {
-        ballPhysics.step();
     }
 
     /**
