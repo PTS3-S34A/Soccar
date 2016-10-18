@@ -4,7 +4,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import nl.soccar.library.Ball;
 import nl.soccar.library.Map;
 import nl.soccar.library.enumeration.ObstacleType;
 import nl.soccar.ui.DisplayConstants;
@@ -26,7 +25,6 @@ public class MapUiFx extends DrawableFx<Map> {
     private static final Image TEXTURE_MOON;
     private static final Image TEXTURE_DESERT;
     private static final Image TEXTURE_GRASS;
-    private static final float GOAL_TRIGGER_MARGIN;
     private static final float WALL_WIDTH;
     private static final float CORNER_SIZE;
 
@@ -34,7 +32,6 @@ public class MapUiFx extends DrawableFx<Map> {
         TEXTURE_MOON = new Image(DisplayConstants.LOCATION_TEXTURE_MOON);
         TEXTURE_DESERT = new Image(DisplayConstants.LOCATION_TEXTURE_DESERT);
         TEXTURE_GRASS = new Image(DisplayConstants.LOCATION_TEXTURE_GRASS);
-        GOAL_TRIGGER_MARGIN = 1.2F;
         WALL_WIDTH = 5.0F;
         CORNER_SIZE = 15.0F;
     }
