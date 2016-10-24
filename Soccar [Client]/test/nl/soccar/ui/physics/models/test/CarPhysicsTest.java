@@ -40,11 +40,12 @@ public class CarPhysicsTest {
     }
 
     /**
-     * Tests void methods for possible crashes.
+     * Tests step and reset methods for possible crashes.
      */
     @Test
-    public void voidMethodsTest() {
+    public void stepAndResetTest() {
         carPhysics.step();
+        carPhysics.reset();
     }
 
     /**
