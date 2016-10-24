@@ -65,8 +65,7 @@ public class CarTest {
      */
     @Test
     public void getBooster() {
-        // TODO
-        // assertEquals(100, car.getBooster());
+        assertEquals(0, car.getBooster());
     }
     
     /**
