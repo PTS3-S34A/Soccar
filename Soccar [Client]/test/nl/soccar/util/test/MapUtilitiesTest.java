@@ -13,7 +13,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * JUnit test that tests the nl.soccar.util MapUtilities class.
+ * JUnit test that tests the nl.soccar.util.MapUtilities class.
  *
  * @author PTS34A
  */

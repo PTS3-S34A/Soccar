@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * JUnit test that tests the nl.soccar.util PhysicsUtilities class.
+ * JUnit test that tests the nl.soccar.util.PhysicsUtilities class.
  *
  * @author PTS34A
  */

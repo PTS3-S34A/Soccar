@@ -101,17 +101,6 @@ public class SessionControllerTest {
     }
 
     /**
-     * Tests the leave method.
-     */
-    @Test
-    public void leaveTest() throws UIException {
-        Session createdSession = sessionController.create("name", "password", player1);
-        
-        // TODO: leave method throws NullPointerExcpetion
-        // sessionController.leave(createdSession, player1);
-    }
-
-    /**
      * Tests the getAllSessions method.
      */
     public void getAllSessionsTest() throws UIException {
