@@ -1,15 +1,17 @@
 package nl.soccar.library;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 import javafx.scene.shape.Rectangle;
 import nl.soccar.library.enumeration.BallType;
 import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.GameStatus;
 import nl.soccar.ui.DisplayConstants;
+
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * A Game is an object which contains information about a match, like the
@@ -25,7 +27,7 @@ public class Game {
 
     private Optional<LocalTime> startTime;
     private GameStatus status;
-    private Duration duration;
+    private int duration; // Duration in seconds
 
     private final List<Event> events;
 
@@ -49,6 +51,7 @@ public class Game {
      */
     public void start() {
         status = GameStatus.RUNNING;
+        startTime = Optional.of(LocalTime.now());
     }
 
     /**
@@ -88,13 +91,23 @@ public class Game {
     }
 
     /**
+     * Gets the time remaining for the current game.
+     * @return
+     */
+    public long getTimeLeft() {
+        long diff = ChronoUnit.SECONDS.between(startTime.get(), LocalTime.now());
+        return duration - diff;
+    }
+
+    /**
      * Gets the Duration of this Game.
      *
      * @return The Duration of this Game, not null.
      */
-    public Duration getDuration() {
+    public int getDuration() {
         return duration;
     }
+
 
     /**
      * Sets the Duration of this Game.
@@ -102,7 +115,20 @@ public class Game {
      * @param duration The new Duration of this Game.
      */
     public void setDuration(Duration duration) {
-        this.duration = duration;
+        switch (duration) {
+            case MINUTES_3:
+                this.duration = 180;
+                break;
+            case MINUTES_5:
+                this.duration = 300;
+                break;
+            case MINUTES_10:
+                this.duration = 600;
+                break;
+            default:
+                //exception
+                break;
+        }
     }
 
     /**
@@ -122,7 +148,7 @@ public class Game {
     public void addEvent(Event event) {
         events.add(event);
     }
-    
+
     public Map getMap() {
         return map;
     }

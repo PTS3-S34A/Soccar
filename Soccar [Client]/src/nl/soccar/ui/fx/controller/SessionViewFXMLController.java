@@ -91,6 +91,7 @@ public class SessionViewFXMLController implements Initializable {
      * Method that navigates to the game view and set the application window to full screen mode.
      */
     public void startGame() {
+
         Main main = Main.getInstance();
         main.setScene(FXMLConstants.LOCATION_GAME_VIEW);
         main.setFullScreen(true);

@@ -8,6 +8,7 @@ package nl.soccar.library.enumeration;
 public enum GameStatus {
 
     RUNNING,
+    PAUSED,
     SCORED,
     STOPPED
     

@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
+import nl.soccar.library.Event;
 import nl.soccar.library.Game;
 import nl.soccar.library.Notification;
 import nl.soccar.library.enumeration.GameStatus;
@@ -19,6 +20,8 @@ import nl.soccar.ui.input.Keyboard;
 import nl.soccar.physics.PhysicsContants;
 import nl.soccar.physics.WorldObject;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 /**
@@ -30,6 +33,7 @@ public class GameCanvasFx extends GameCanvas {
 
     private GraphicsContext context;
     private Timeline gameTimer;
+    private NotificationUiFx scoredNotification;
 
     /**
      * Initiates a new GameCanvasFx object using the given parameters.
@@ -56,7 +60,7 @@ public class GameCanvasFx extends GameCanvas {
 
     @Override
     public void start() {
-        getGame().setStatus(GameStatus.RUNNING);
+        getGame().start();
         gameTimer.playFromStart();
     }
 
@@ -73,13 +77,22 @@ public class GameCanvasFx extends GameCanvas {
         List<WorldObject> worldObjects = super.getWorldObjects();
         GameStatus status = getGame().getStatus();
 
-        if (status == GameStatus.RUNNING) {
-            worldObjects.forEach(WorldObject::step);
+        worldObjects.forEach(WorldObject::step);
+
+        if (status == GameStatus.PAUSED) {
+            List<Event> events = getGame().getEvents();
+            LocalTime scoredTime = events.get(events.size() - 1).getTime();
+
+            if (ChronoUnit.SECONDS.between(scoredTime, LocalTime.now()) > 2) { // If 2 seconds have passed since a goal was scored
+                removeDrawable(scoredNotification);
+                getGame().setStatus(GameStatus.RUNNING);
+            }
         }
 
         if (status == GameStatus.SCORED) {
+
+            getGame().setStatus(GameStatus.PAUSED);
             worldObjects.forEach(WorldObject::reset);
-            getGame().setStatus(GameStatus.RUNNING);
 
             // TODO: Refactor...
             String text = getGame().getLastBallTouched().getUsername() + " SCORED!";
@@ -88,9 +101,11 @@ public class GameCanvasFx extends GameCanvas {
                     DisplayConstants.MAP_HEIGHT / 2, 0,
                     text, Font.font("Arial", FontWeight.BOLD, 80), Color.WHITE, Color.BLACK);
 
-            NotificationUiFx nFx = new NotificationUiFx(this, n);
-            addDrawable(nFx);
+            scoredNotification = new NotificationUiFx(this, n);
+            addDrawable(scoredNotification);
         }
+
+        System.out.println(getGame().getStatus());
     }
 
     /**
