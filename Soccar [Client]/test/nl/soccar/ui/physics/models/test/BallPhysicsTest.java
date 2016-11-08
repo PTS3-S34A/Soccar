@@ -29,6 +29,16 @@ public class BallPhysicsTest {
         ball = new Ball(0.0F, 0.0F, 0.0F, 10.0F, BallType.FOOTBALL);
         ballPhysics = new BallPhysics(ball, gamePhysics.getWorld());
     }
+    
+    /**
+     * Tests the reset method.
+     */
+    @Test
+    public void resetTest() {
+        ballPhysics.reset();
+        assertEquals(Math.round(0.0F), Math.round(ballPhysics.getX()));
+        assertEquals(Math.round(0.0F), Math.round(ballPhysics.getY()));
+    }
 
     /**
      * Tests the getX method.

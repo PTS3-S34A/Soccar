@@ -32,11 +32,12 @@ public class ObstaclePhysicsTest {
     }
 
     /**
-     * Tests void method for possible crashes.
+     * Tests step and reset methods for possible crashes.
      */
     @Test
-    public void voidMethodsTest() {
+    public void stepAndResetTest() {
         obstaclePhysics.step();
+        obstaclePhysics.reset();
     }
 
     /**

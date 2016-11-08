@@ -1,6 +1,7 @@
 package nl.soccar.library.test;
 
 import java.time.LocalTime;
+import java.util.Optional;
 import nl.soccar.library.Event;
 import nl.soccar.library.Game;
 import nl.soccar.library.Player;
@@ -9,6 +10,7 @@ import nl.soccar.library.enumeration.Duration;
 import nl.soccar.library.enumeration.EventType;
 import nl.soccar.library.enumeration.GameStatus;
 import nl.soccar.library.enumeration.Privilege;
+import nl.soccar.ui.DisplayConstants;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -40,9 +42,8 @@ public class GameTest {
      */
     @Test
     public void startTest() {
-        // TODO
-        // game.start();
-        // assertEquals(GameStatus.STARTED, game.getStatus());
+        game.start();
+        assertEquals(GameStatus.RUNNING, game.getStatus());
     }
 
     /**
@@ -50,9 +51,8 @@ public class GameTest {
      */
     @Test
     public void stopTest() {
-        // TODO
-        // game.stop();
-        // assertEquals(GameStatus.STOPPED, game.getStatus());
+        game.stop();
+        assertEquals(GameStatus.STOPPED, game.getStatus());
     }
 
     /**
@@ -69,15 +69,17 @@ public class GameTest {
      */
     @Test
     public void getStartTimeTest() {
-        // TODO
+        assertEquals(Optional.empty(), game.getStartTime());
     }
 
     /**
-     * Tests the getStatus method.
+     * Tests the getStatus and setStatus methods.
      */
     @Test
-    public void getStatusTest() {
+    public void getStatusAndSetStatusTest() {
         assertEquals(GameStatus.STOPPED, game.getStatus());
+        game.setStatus(GameStatus.SCORED);
+        assertEquals(GameStatus.SCORED, game.getStatus());
     }
 
     /**
@@ -89,4 +91,24 @@ public class GameTest {
         assertEquals(Duration.MINUTES_3, game.getDuration());
     }
 
+    /**
+     * Tests the getMap method.
+     */
+    @Test
+    public void getMapTest() {
+        assertEquals(0, Math.round(game.getMap().getSize().getX()));
+        assertEquals(0, Math.round(game.getMap().getSize().getY()));
+        assertEquals(Math.round(DisplayConstants.MAP_WIDTH), Math.round(game.getMap().getSize().getWidth()));
+        assertEquals(Math.round(DisplayConstants.MAP_HEIGHT), Math.round(game.getMap().getSize().getHeight()));
+    }
+    
+    /**
+     * Tests the getLastBallTouched andSetLastBallTouched methods.
+     */
+    @Test
+    public void getLastBallTouchedAndSetLastBallTouchedTest() {
+        game.setLastBallTouched(player);
+        assertEquals(player, game.getLastBallTouched());
+    }
+    
 }
