@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import nl.soccar.library.enumeration.EventType;
 
 /**
  * A Game is an object which contains information about a match, like the
@@ -92,6 +93,7 @@ public class Game {
 
     /**
      * Gets the time remaining for the current game.
+     *
      * @return
      */
     public long getTimeLeft() {
@@ -107,7 +109,6 @@ public class Game {
     public int getDuration() {
         return duration;
     }
-
 
     /**
      * Sets the Duration of this Game.
@@ -138,6 +139,17 @@ public class Game {
      */
     public List<Event> getEvents() {
         return Collections.unmodifiableList(events);
+    }
+
+    public int getScore(EventType type) {
+        int score = 0;
+
+        for (Event e : events) {
+            if (e.getType().equals(type)) {
+                score++;
+            }
+        }
+        return score;
     }
 
     /**

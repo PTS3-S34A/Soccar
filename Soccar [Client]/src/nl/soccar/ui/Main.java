@@ -84,6 +84,10 @@ public class Main extends Application {
     public void login(String username, CarType selectedCar) {
         //TODO Login handling (password, privilege)
         Soccar.setInstance(new Player(username, Privilege.NORMAL, selectedCar));
+        setScene(FXMLConstants.LOCATION_REGISTER);
+    }
+    
+    public void register(String username, String password) {
         setScene(FXMLConstants.LOCATION_MAIN_MENU);
     }
 

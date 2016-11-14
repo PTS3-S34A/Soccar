@@ -10,11 +10,12 @@ import nl.soccar.library.enumeration.CarType;
  * @author PTS34A
  */
 public class Player {
-
-    private final String username;
+ 
     private final Privilege privilege;
     private final CarType carType;
     private Statistics statistics;
+    private String tempUsername;
+    private String username;
 
     /**
      * Constructor used for instantiation of a Player object.
@@ -27,11 +28,20 @@ public class Player {
      * of the car.
      */
     public Player(String username, Privilege privilege, CarType carType) {
-        this.username = username;
+        this.username = "";
         this.privilege = privilege;
         this.carType = carType;
+        this.tempUsername = username;
     }
 
+    /**
+     * Sets the current username, after register
+     * 
+     * @param username 
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
     /**
      * Gets the username of this player.
      *
@@ -41,6 +51,9 @@ public class Player {
         return username;
     }
 
+    public String getTempUsername() {
+        return tempUsername;
+    }
     /**
      * Gets the privilege of this player.
      *

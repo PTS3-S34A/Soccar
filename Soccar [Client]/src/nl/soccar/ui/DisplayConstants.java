@@ -33,7 +33,7 @@ public final class DisplayConstants {
      */
     public static final float MAP_WIDTH = 160.0F;
     public static final float MAP_HEIGHT = 90.0F;
-    public static final float SCOREBOARD_WIDTH = 10.0F;
+    public static final float SCOREBOARD_WIDTH = 20.0F;
     public static final float SCOREBOARD_HEIGHT = 6.0F;
     public static final float LINE_WIDTH = 0.2F;
     public static final float CENTRE_CIRCLE_SIZE = 13.75F;

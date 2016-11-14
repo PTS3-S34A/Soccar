@@ -1,10 +1,9 @@
 package nl.soccar.ui.fx.models;
 
-import java.awt.Transparency;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import nl.soccar.library.Notification;
+import nl.soccar.library.ScoreBoard;
 import nl.soccar.ui.fx.DrawableFx;
 import nl.soccar.ui.fx.GameCanvasFx;
 import nl.soccar.util.PhysicsUtilities;
@@ -16,7 +15,7 @@ import nl.soccar.util.PhysicsUtilities;
  *
  * @author PTS34A
  */
-public class NotificationUiFx extends DrawableFx<Notification> {
+public class ScoreBoardUIFx extends DrawableFx<ScoreBoard> {
 
     /**
      * Initiates a new NotificationUiFx Object using the given parameters.
@@ -24,24 +23,22 @@ public class NotificationUiFx extends DrawableFx<Notification> {
      * @param canvas       The canvas on which this Notification is placed.
      * @param notification The notification model to keep track of.
      */
-    public NotificationUiFx(GameCanvasFx canvas, Notification notification) {
-        super(canvas, notification);
+    public ScoreBoardUIFx(GameCanvasFx canvas, ScoreBoard scoreboard) {
+        super(canvas, scoreboard);
     }
 
     @Override
     public void draw(GraphicsContext context) {
-        Notification notification = super.getModel();
+        ScoreBoard time = super.getModel();
 
-        float x = PhysicsUtilities.toPixelX(notification.getX());
-        float y = PhysicsUtilities.toPixelY(notification.getY());
+        float x = PhysicsUtilities.toPixelX(time.getX());
+        float y = time.getY();
 
         context.setTextAlign(TextAlignment.CENTER);
-        context.setFont(notification.getFont());
-        context.setFill(notification.getFill());
-        context.setStroke(notification.getStroke());
-        context.fillText(notification.getContent(), x, y);
-        context.strokeText(notification.getContent(), x, y);
-        context.setStroke(Color.WHITE);
+        context.setFont(time.getFont());
+        context.setFill(time.getFill());
+        context.fillText(time.getContent(), x, y);
+        context.strokeText(time.getContent(), x, y);
     }
 
 }

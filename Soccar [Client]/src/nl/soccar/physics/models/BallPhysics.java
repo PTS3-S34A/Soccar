@@ -83,17 +83,16 @@ public class BallPhysics implements WorldObject {
      */
     private void checkGoalScored() {
         Game game = Soccar.getInstance().getSessionController().getCurrentSession().get().getGame();
-        Player player = Soccar.getInstance().getCurrentPlayer();
-
+        
         float ballX = ball.getX();
         Rectangle leftGoal = MapUtilities.getLeftGoal();
         Rectangle rightGoal = MapUtilities.getRightGoal();
 
         if (ballX > rightGoal.getX() + DisplayConstants.BALL_RADIUS) {
-            game.addEvent(new Event(EventType.GOAL_RED, LocalTime.now(), player));
+            game.addEvent(new Event(EventType.GOAL_RED, LocalTime.now(), game.getLastBallTouched()));
             game.setStatus(GameStatus.SCORED);
         } else if (ballX < leftGoal.getX() + leftGoal.getWidth() - DisplayConstants.BALL_RADIUS) {
-            game.addEvent(new Event(EventType.GOAL_BLUE, LocalTime.now(), player));
+            game.addEvent(new Event(EventType.GOAL_BLUE, LocalTime.now(), game.getLastBallTouched()));
             game.setStatus(GameStatus.SCORED);
         }
     }

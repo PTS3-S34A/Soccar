@@ -99,7 +99,7 @@ public class CreateRoomFXMLController implements Initializable {
             session.getRoom().setCapacity((int) sliderCapacity.getValue());
 
             Game game = session.getGame();
-            game.setDuration(Duration.MINUTES_5); // TODO implement manual selection duration.
+            game.setDuration(Duration.MINUTES_3); // TODO implement manual selection duration.
 
             Map map = game.getMap();
             map.setMapType((MapType) cbMap.getValue());
