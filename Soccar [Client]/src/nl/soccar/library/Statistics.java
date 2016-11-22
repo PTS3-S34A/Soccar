@@ -1,12 +1,15 @@
 package nl.soccar.library;
 
+import java.io.Serializable;
+
 /**
  * Keeps track of all Statistics regarding a Player.
  *
  * @author PTS34A
  */
-public class Statistics {
+public class Statistics implements Serializable {
 
+    private final String username;
     private final int goals;
     private final int assists;
     private final int gamesWon;
@@ -16,6 +19,7 @@ public class Statistics {
     /**
      * Constructor used for instantiation of a new Statistics object.
      *
+     * @param username The username of the user where the statistics beling to.
      * @param goals Total number of goals, higher/equal than/to 0. scored by a
      * Player.
      * @param assists Total number of assist goals, higher/equal than/to 0,
@@ -27,7 +31,8 @@ public class Statistics {
      * @param gamesPlayed Total number of games, higher/equal than/to 0, played
      * by a player.
      */
-    public Statistics(int goals, int assists, int gamesWon, int gamesLost, int gamesPlayed) {
+    public Statistics(String username, int goals, int assists, int gamesWon, int gamesLost, int gamesPlayed) {
+        this.username = username;
         this.goals = goals;
         this.assists = assists;
         this.gamesWon = gamesWon;
@@ -43,8 +48,20 @@ public class Statistics {
      *
      * @return Calculated games ratio, higher/equal than/to 0.
      */
-    public double getGamesRatio() {
-        return ((double) gamesWon - (double) gamesLost) / (double) gamesPlayed * 100.0D;
+    public Double getGamesRatio() {
+        if (gamesPlayed > 0) {
+            return ((double) gamesWon - (double) gamesLost) / (double) gamesPlayed * 100.0D;
+        }
+        return 0.0D;
+    }
+
+    /**
+     * Gets the username of the user.
+     *
+     * @return The username of the user.
+     */
+    public String getUsername() {
+        return username;
     }
 
     /**
@@ -86,7 +103,8 @@ public class Statistics {
     /**
      * Gets the total amount of played games by a Player.
      *
-     * @return The total number of games that are played, higher/equal than/to 0.
+     * @return The total number of games that are played, higher/equal than/to
+     * 0.
      */
     public int getGamesPlayed() {
         return gamesPlayed;
