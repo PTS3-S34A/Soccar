@@ -49,7 +49,7 @@ public class Main extends Application {
         }
 
         try {
-            RmiController.setInstance("localhost");
+            RmiController.setInstance();
         } catch (RemoteException e) {
             System.out.println(e);
         }

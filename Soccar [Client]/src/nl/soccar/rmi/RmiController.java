@@ -1,10 +1,13 @@
 package nl.soccar.rmi;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Properties;
 import nl.soccar.library.Statistics;
 import nl.soccar.rmi.interfaces.IClientAuthenticated;
 import nl.soccar.rmi.interfaces.IClientUnauthenticated;
@@ -15,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * TODO Documentation
+ *
  * @author PTS34A
  */
 public class RmiController {
@@ -25,9 +29,17 @@ public class RmiController {
     private IClientUnauthenticated clientUnauthenticated;
     private IClientAuthenticated clientAuthenticated;
 
-    private RmiController(String ipAddressMainServer) throws RemoteException {
+    private RmiController() throws RemoteException {
+        Properties props = new Properties();
+
+        try (FileInputStream input = new FileInputStream("mainserver.prop")) {
+            props.load(input);
+        } catch (IOException e) {
+            LOGGER.error("An error occurred while loading the mainserver properties file.", e);
+        }
+
         try {
-            Registry r = LocateRegistry.getRegistry(ipAddressMainServer, RmiConstants.PORT_NUMBER_CLIENT);
+            Registry r = LocateRegistry.getRegistry(props.getProperty("mainserver"), RmiConstants.PORT_NUMBER_CLIENT);
             clientUnauthenticated = (IClientUnauthenticated) r.lookup(RmiConstants.BINDING_NAME_CLIENT);
         } catch (RemoteException | NotBoundException e) {
             LOGGER.error("An error occurred while connecting to the Main server through RMI.", e);
@@ -39,8 +51,8 @@ public class RmiController {
         return instance;
     }
 
-    public static void setInstance(String ipAddressMainServer) throws RemoteException {
-        instance = new RmiController(ipAddressMainServer);
+    public static void setInstance() throws RemoteException {
+        instance = new RmiController();
     }
 
     public boolean add(String username, String password) {
