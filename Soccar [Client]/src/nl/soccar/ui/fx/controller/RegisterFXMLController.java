@@ -74,7 +74,6 @@ public class RegisterFXMLController implements Initializable {
         }
 
         if (userExists && rmiController.checkPassword(username, password)) {
-            System.out.println("hoi");
             Main.getInstance().setScene(FXMLConstants.LOCATION_MAIN_MENU);
         } else {
             clearInput();
