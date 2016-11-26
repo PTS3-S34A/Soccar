@@ -1,6 +1,7 @@
 package nl.soccar.ui.fx.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import nl.soccar.exception.UIException;
 import nl.soccar.library.Session;
 import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
+import nl.soccar.library.Statistics;
 import nl.soccar.rmi.RmiController;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
@@ -137,7 +139,8 @@ public class MainMenuFXMLController implements Initializable {
 
     private void updateStatisticTable() {
         ObservableList<StatisticsTableItem> statisticItems = FXCollections.observableArrayList();
-        RmiController.getInstance().getAllStatistics().forEach((s) -> {
+        ArrayList<Statistics> statistics = (ArrayList<Statistics>) RmiController.getInstance().getAllStatistics();
+        statistics.forEach((s) -> {
             statisticItems.add(new StatisticsTableItem(s));
         });
 
