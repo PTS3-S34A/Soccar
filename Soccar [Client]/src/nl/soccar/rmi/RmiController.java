@@ -6,7 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import nl.soccar.library.Statistics;
 import nl.soccar.rmi.interfaces.IClientAuthenticated;
@@ -82,7 +82,7 @@ public class RmiController {
         return clientAuthenticated != null;
     }
 
-    public ArrayList<Statistics> getAllStatistics() {
+    public List<Statistics> getAllStatistics() {
         try {
             return clientUnauthenticated.getAllStatistics();
         } catch (RemoteException e) {
