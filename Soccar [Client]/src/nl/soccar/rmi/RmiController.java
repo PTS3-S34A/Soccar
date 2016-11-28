@@ -11,7 +11,6 @@ import java.util.Properties;
 import nl.soccar.library.Statistics;
 import nl.soccar.rmi.interfaces.IClientAuthenticated;
 import nl.soccar.rmi.interfaces.IClientUnauthenticated;
-import nl.soccar.rmi.util.RmiConstants;
 import nl.soccar.util.PasswordUtilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
