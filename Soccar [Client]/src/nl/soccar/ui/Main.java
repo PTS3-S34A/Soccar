@@ -1,6 +1,7 @@
 package nl.soccar.ui;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import nl.soccar.library.Player;
 import nl.soccar.library.Soccar;
 import nl.soccar.library.enumeration.CarType;
 import nl.soccar.library.enumeration.Privilege;
+import nl.soccar.rmi.RmiController;
 import nl.soccar.ui.fx.FXMLConstants;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
@@ -32,7 +34,8 @@ public class Main extends Application {
 
     /**
      * Constructor used for initiation of a Main object. This only happens once,
-     * so the static instance gets filled out here.
+     * so the static instance gets filled out here. The RmiController Singleton
+     * gets set with the given IP-address of the server.
      */
     public Main() {
         super();
@@ -43,6 +46,12 @@ public class Main extends Application {
             }
 
             instance = this;
+        }
+
+        try {
+            RmiController.setInstance();
+        } catch (RemoteException e) {
+            System.out.println(e);
         }
     }
 
@@ -74,21 +83,32 @@ public class Main extends Application {
     }
 
     /**
-     * Handles a login request. On success, it adjusts the current Player and
-     * changes the scene to the main menu. On fail, it throws an exception and
-     * displays an error message to the user.
+     * Handles a loginOrRegister request. On success, it adjusts the current
+     * Player and changes the scene to the register view.
      *
      * @param username The username of the Player.
      * @param selectedCar The selected car of the Player.
      */
-    public void login(String username, CarType selectedCar) {
-        //TODO Login handling (password, privilege)
+    public void loginOrRegister(String username, CarType selectedCar) {
         Soccar.setInstance(new Player(username, Privilege.NORMAL, selectedCar));
+        setScene(FXMLConstants.LOCATION_REGISTER);
+    }
+
+    /**
+     * Handles a playAsGuest request. One success, it adjusts the current Player
+     * and changes the scene to the main view.
+     *
+     * @param username The username of the Player.
+     * @param selectedCar The selected car of the Player.
+     */
+    public void playAsGuest(String username, CarType selectedCar) {
+        Soccar.setInstance(new Player(username, Privilege.GUEST, selectedCar));
         setScene(FXMLConstants.LOCATION_MAIN_MENU);
     }
 
     /**
-     * Logs out the current user and changes the scene to the login menu.
+     * Logs out the current user and changes the scene to the loginOrRegister
+     * menu.
      */
     public void logOut() {
         Soccar.setInstance(null);

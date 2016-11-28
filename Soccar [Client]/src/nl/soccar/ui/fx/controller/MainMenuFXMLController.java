@@ -1,6 +1,7 @@
 package nl.soccar.ui.fx.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -21,6 +23,8 @@ import nl.soccar.exception.UIException;
 import nl.soccar.library.Session;
 import nl.soccar.library.SessionController;
 import nl.soccar.library.Soccar;
+import nl.soccar.library.Statistics;
+import nl.soccar.rmi.RmiController;
 import nl.soccar.ui.Main;
 import nl.soccar.ui.fx.FXMLConstants;
 import org.apache.log4j.Logger;
@@ -48,13 +52,33 @@ public class MainMenuFXMLController implements Initializable {
     @FXML
     private TableView<SessionTableItem> tblSessionList;
     @FXML
-    private TableColumn tbclName;
+    private TableView<StatisticsTableItem> tblStatisticsList;
     @FXML
-    private TableColumn tbclOccupation;
+    private TableColumn tbclSessionRoomName;
     @FXML
-    private TableColumn tbclOwner;
+    private TableColumn tbclSessionOccupation;
     @FXML
-    private TableColumn tbclPassword;
+    private TableColumn tbclSessionHost;
+    @FXML
+    private TableColumn tbclSessionPassword;
+    @FXML
+    private TableColumn tbclStatisticUsername;
+    @FXML
+    private TableColumn tbclStatisticGoals;
+    @FXML
+    private TableColumn tbclStatisticAssists;
+    @FXML
+    private TableColumn tbclStatisticRatio;
+    @FXML
+    private TableColumn tbclStatisticGamesWon;
+    @FXML
+    private TableColumn tbclStatisticGamesEven;
+    @FXML
+    private TableColumn tbclStatisticGamesLost;
+    @FXML
+    private Tab tabSession;
+    @FXML
+    private Tab tabStatistic;
 
     private SessionController sessionController;
 
@@ -64,6 +88,7 @@ public class MainMenuFXMLController implements Initializable {
 
         // Overwrite the standard placeholder text with an empty String.
         tblSessionList.setPlaceholder(new Label(""));
+        tblStatisticsList.setPlaceholder(new Label(""));
 
         lblUsername.setText(Soccar.getInstance().getCurrentPlayer().getUsername());
         lblCar.setText(Soccar.getInstance().getCurrentPlayer().getCarType().toString());
@@ -73,10 +98,18 @@ public class MainMenuFXMLController implements Initializable {
         btnJoinRoom.setOnAction(e -> joinRoom(tblSessionList.getSelectionModel().getSelectedItem()));
         btnJoinRoom.setDisable(true);
 
-        tbclName.setCellValueFactory(new PropertyValueFactory<>("roomName"));
-        tbclOccupation.setCellValueFactory(new PropertyValueFactory<>("occupancy"));
-        tbclOwner.setCellValueFactory(new PropertyValueFactory<>("hostName"));
-        tbclPassword.setCellValueFactory(new PropertyValueFactory<>("passwordAvailable"));
+        tbclSessionRoomName.setCellValueFactory(new PropertyValueFactory<>("roomName"));
+        tbclSessionOccupation.setCellValueFactory(new PropertyValueFactory<>("occupancy"));
+        tbclSessionHost.setCellValueFactory(new PropertyValueFactory<>("hostName"));
+        tbclSessionPassword.setCellValueFactory(new PropertyValueFactory<>("passwordAvailable"));
+
+        tbclStatisticUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tbclStatisticGoals.setCellValueFactory(new PropertyValueFactory<>("goals"));
+        tbclStatisticAssists.setCellValueFactory(new PropertyValueFactory<>("assists"));
+        tbclStatisticRatio.setCellValueFactory(new PropertyValueFactory<>("ratio"));
+        tbclStatisticGamesWon.setCellValueFactory(new PropertyValueFactory<>("gamesWon"));
+        tbclStatisticGamesEven.setCellValueFactory(new PropertyValueFactory<>("gamesEven"));
+        tbclStatisticGamesLost.setCellValueFactory(new PropertyValueFactory<>("gamesLost"));
 
         tblSessionList.setRowFactory(tv -> {
             TableRow<SessionTableItem> row = new TableRow();
@@ -92,15 +125,27 @@ public class MainMenuFXMLController implements Initializable {
         model.setSelectionMode(SelectionMode.SINGLE);
         model.selectedItemProperty().addListener(l -> btnJoinRoom.setDisable(model.getSelectedItem() == null));
 
-        updateTable();
+        tabStatistic.setOnSelectionChanged(e -> updateSessionTable());
+        tabStatistic.setOnSelectionChanged(e -> updateStatisticTable());
     }
 
-    private void updateTable() {
+    private void updateSessionTable() {
         ObservableList<SessionTableItem> sessionItems = FXCollections.observableArrayList();
         Soccar.getInstance().getSessionController().getAllSessions().stream().map(SessionTableItem::new).forEach(sessionItems::add);
 
         tblSessionList.getItems().clear();
         tblSessionList.getItems().addAll(sessionItems);
+    }
+
+    private void updateStatisticTable() {
+        ObservableList<StatisticsTableItem> statisticItems = FXCollections.observableArrayList();
+        ArrayList<Statistics> statistics = (ArrayList<Statistics>) RmiController.getInstance().getAllStatistics();
+        statistics.forEach((s) -> {
+            statisticItems.add(new StatisticsTableItem(s));
+        });
+
+        tblStatisticsList.getItems().clear();
+        tblStatisticsList.getItems().addAll(statisticItems);
     }
 
     private void joinRoom(SessionTableItem selectedRow) {

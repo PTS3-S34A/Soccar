@@ -20,7 +20,7 @@ public class StatisticsTest {
      */
     @Before
     public void setUp() {
-        statistics = new Statistics(10, 5, 2, 4, 6);
+        statistics = new Statistics("username",10, 5, 2, 4, 6);
     }
 
     /**
@@ -28,7 +28,7 @@ public class StatisticsTest {
      */
     @Test
     public void getGamesRatioTest() {
-        assertEquals(Math.round(((2.0D - 4.0D) / 6.0D) * 100.0D), Math.round(statistics.getGamesRatio()));
+        assertEquals(Double.toString(Math.round(((2.0D - 4.0D) / 6.0D) * 100.0D)), statistics.getGamesRatio());
     }
 
     /**

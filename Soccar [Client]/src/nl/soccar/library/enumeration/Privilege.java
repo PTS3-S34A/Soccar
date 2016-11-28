@@ -7,6 +7,7 @@ package nl.soccar.library.enumeration;
  */
 public enum Privilege {
     
+    GUEST,
     NORMAL,
     ADMINISTRATOR
     
